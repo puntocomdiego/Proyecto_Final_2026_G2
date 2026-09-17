@@ -37,10 +37,4 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Alumno1\" />
-    <Folder Include="Alumno2\" />
-    <Folder Include="Alumno3\" />
-  </ItemGroup>
-
 </Project>
