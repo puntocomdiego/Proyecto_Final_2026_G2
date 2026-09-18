@@ -85,4 +85,10 @@ Public Class frmMenuPrincipal
 
     Private m_ChildFormNumber As Integer
 
+    Private Sub ProductosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProductosToolStripMenuItem.Click
+        Dim f As New frmProductos
+        f.MdiParent = Me
+        f.Show()
+
+    End Sub
 End Class

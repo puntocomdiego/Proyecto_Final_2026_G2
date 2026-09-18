@@ -65,6 +65,10 @@ Partial Class frmMenuPrincipal
         SearchToolStripMenuItem = New ToolStripMenuItem()
         ToolStripSeparator8 = New ToolStripSeparator()
         AboutToolStripMenuItem = New ToolStripMenuItem()
+        MenuToolStripMenuItem = New ToolStripMenuItem()
+        ProductosToolStripMenuItem = New ToolStripMenuItem()
+        ClientesToolStripMenuItem = New ToolStripMenuItem()
+        VentasToolStripMenuItem = New ToolStripMenuItem()
         ToolStrip = New ToolStrip()
         NewToolStripButton = New ToolStripButton()
         OpenToolStripButton = New ToolStripButton()
@@ -77,10 +81,6 @@ Partial Class frmMenuPrincipal
         StatusStrip = New StatusStrip()
         ToolStripStatusLabel = New ToolStripStatusLabel()
         ToolTip = New ToolTip(components)
-        MenuToolStripMenuItem = New ToolStripMenuItem()
-        ProductosToolStripMenuItem = New ToolStripMenuItem()
-        ClientesToolStripMenuItem = New ToolStripMenuItem()
-        VentasToolStripMenuItem = New ToolStripMenuItem()
         MenuStrip.SuspendLayout()
         ToolStrip.SuspendLayout()
         StatusStrip.SuspendLayout()
@@ -374,6 +374,31 @@ Partial Class frmMenuPrincipal
         AboutToolStripMenuItem.Size = New Size(207, 26)
         AboutToolStripMenuItem.Text = "&About ..."
         ' 
+        ' MenuToolStripMenuItem
+        ' 
+        MenuToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ProductosToolStripMenuItem, ClientesToolStripMenuItem, VentasToolStripMenuItem})
+        MenuToolStripMenuItem.Name = "MenuToolStripMenuItem"
+        MenuToolStripMenuItem.Size = New Size(60, 24)
+        MenuToolStripMenuItem.Text = "Menu"
+        ' 
+        ' ProductosToolStripMenuItem
+        ' 
+        ProductosToolStripMenuItem.Name = "ProductosToolStripMenuItem"
+        ProductosToolStripMenuItem.Size = New Size(224, 26)
+        ProductosToolStripMenuItem.Text = "Productos"
+        ' 
+        ' ClientesToolStripMenuItem
+        ' 
+        ClientesToolStripMenuItem.Name = "ClientesToolStripMenuItem"
+        ClientesToolStripMenuItem.Size = New Size(224, 26)
+        ClientesToolStripMenuItem.Text = "Clientes"
+        ' 
+        ' VentasToolStripMenuItem
+        ' 
+        VentasToolStripMenuItem.Name = "VentasToolStripMenuItem"
+        VentasToolStripMenuItem.Size = New Size(224, 26)
+        VentasToolStripMenuItem.Text = "Ventas"
+        ' 
         ' ToolStrip
         ' 
         ToolStrip.ImageScalingSize = New Size(20, 20)
@@ -465,31 +490,6 @@ Partial Class frmMenuPrincipal
         ToolStripStatusLabel.Size = New Size(49, 20)
         ToolStripStatusLabel.Text = "Status"
         ' 
-        ' MenuToolStripMenuItem
-        ' 
-        MenuToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ProductosToolStripMenuItem, ClientesToolStripMenuItem, VentasToolStripMenuItem})
-        MenuToolStripMenuItem.Name = "MenuToolStripMenuItem"
-        MenuToolStripMenuItem.Size = New Size(60, 24)
-        MenuToolStripMenuItem.Text = "Menu"
-        ' 
-        ' ProductosToolStripMenuItem
-        ' 
-        ProductosToolStripMenuItem.Name = "ProductosToolStripMenuItem"
-        ProductosToolStripMenuItem.Size = New Size(224, 26)
-        ProductosToolStripMenuItem.Text = "Productos"
-        ' 
-        ' ClientesToolStripMenuItem
-        ' 
-        ClientesToolStripMenuItem.Name = "ClientesToolStripMenuItem"
-        ClientesToolStripMenuItem.Size = New Size(224, 26)
-        ClientesToolStripMenuItem.Text = "Clientes"
-        ' 
-        ' VentasToolStripMenuItem
-        ' 
-        VentasToolStripMenuItem.Name = "VentasToolStripMenuItem"
-        VentasToolStripMenuItem.Size = New Size(224, 26)
-        VentasToolStripMenuItem.Text = "Ventas"
-        ' 
         ' frmMenuPrincipal
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
@@ -503,6 +503,7 @@ Partial Class frmMenuPrincipal
         Margin = New Padding(4, 5, 4, 5)
         Name = "frmMenuPrincipal"
         Text = "frmMenuPrincipal"
+        WindowState = FormWindowState.Maximized
         MenuStrip.ResumeLayout(False)
         MenuStrip.PerformLayout()
         ToolStrip.ResumeLayout(False)
