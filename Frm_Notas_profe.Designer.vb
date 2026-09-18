@@ -27,7 +27,7 @@ Partial Class Frm_Notas_profe
         ' 
         ' Button1
         ' 
-        Button1.Location = New Point(93, 56)
+        Button1.Location = New Point(207, 78)
         Button1.Name = "Button1"
         Button1.Size = New Size(146, 52)
         Button1.TabIndex = 0
@@ -41,7 +41,7 @@ Partial Class Frm_Notas_profe
         ClientSize = New Size(992, 514)
         Controls.Add(Button1)
         Name = "Frm_Notas_profe"
-        Text = "Form1"
+        Text = "Notas"
         ResumeLayout(False)
     End Sub
 
