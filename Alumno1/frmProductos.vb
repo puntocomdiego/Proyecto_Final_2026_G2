@@ -3,13 +3,14 @@
 
     Private Sub frmProductos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CargarCategorias()
-        CargarGrillaProductos()
+        ConfigurarGrilla()
+        MostrarProductos(datos.Listar())
     End Sub
 
     Private Sub CargarCategorias()
         Try
             Dim consulta As String = "SELECT IdCategoria, Nombre FROM Categorias"
-            Dim dt As DataTable = Conexion.Consultar(consulta)
+            Dim dt As DataTable = 'Conexion.Consultar(consulta)
 
             cmbCategorias.DataSource = dt
             cmbCategorias.DisplayMember = "Nombre"
@@ -19,21 +20,39 @@
             MessageBox.Show("Error al cargar las categorías: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Private Sub ConfigurarGrilla()
+        dgvProductos.AutoGenerateColumns = True
+        dgvProductos.ReadOnly = True
+        dgvProductos.AllowUserToAddRows = False
+        dgvProductos.MultiSelect = False
+        dgvProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        dgvProductos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+    End Sub
+    Private Sub MostrarProductos(dt As DataTable)
+        dgvProductos.DataSource = dt
 
-    ' 2. Cargar los productos en el DataGridView
-    Private Sub CargarGrillaProductos()
-        Try
-            Dim consulta As String = "SELECT IdProducto, Codigo, Descripcion, Precio, Stock, StockMinimo, IdCategoria, Activo FROM Productos WHERE Activo = True"
-            dgvProductos.DataSource = Conexion.Consultar(consulta)
+        If dt.Rows.Count = 0 Then Exit Sub
 
-            ' Aplicar alerta visual si hay stock bajo
-            VerificarStockMinimo()
-        Catch ex As Exception
-            MessageBox.Show("Error al cargar los productos: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
+        dgvProductos.Columns("codigo").HeaderText = "Código"
+        dgvProductos.Columns("descripcion").HeaderText = "Descripción"
+        dgvProductos.Columns("stockminimo").HeaderText = "Stock Mínimo"
+        dgvProductos.Columns("precio").HeaderText = "Precio"
+        dgvProductos.Columns("stock").HeaderText = "Stock Disponible"
+        dgvProductos.Columns("precio").DefaultCellStyle.Format = "C2"
+        dgvProductos.Columns("precio").DefaultCellStyle.FormatProvider =
+            Globalization.CultureInfo.GetCultureInfo("es-UY")
     End Sub
 
-    ' 3. Alerta de Stock Mínimo (Requisito del Alumno A)
+    Private Sub Limpiar()
+        txtCodigo.Clear()
+        txtDescripcion.Clear()
+        txtPrecio.Clear()
+        txtBuscar.Clear()
+        txtBuscar.Visible = False
+        btnBuscar.Visible = True
+        txtStock.Clear()
+        txtStockminimo.Clear()
+    End Sub
     Private Sub VerificarStockMinimo()
         For Each row As DataGridViewRow In dgvProductos.Rows
             If Not row.IsNewRow Then
@@ -46,94 +65,20 @@
             End If
         Next
     End Sub
-
-    ' 4. Botón Agregar / Guardar (Alta)
     Private Sub btnAgregar_Click(sender As Object, e As EventArgs) Handles btnAgregar.Click
-        If txtCodigo.Text = "" Or txtDescripcion.Text = "" Or txtPrecio.Text = "" Or txtStock.Text = "" Then
-            MessageBox.Show("Por favor complete los campos obligatorios.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return
-        End If
-
+        If Not DatosValidos() Then Exit Sub
         Try
-            Dim precioStr As String = txtPrecio.Text.Replace(",", ".") ' Asegurar formato decimal para Access
-            Dim sql As String = $"INSERT INTO Productos (Codigo, Descripcion, Precio, Stock, StockMinimo, IdCategoria, Activo) " &
-                                $"VALUES ('{txtCodigo.Text}', '{txtDescripcion.Text}', {precioStr}, {txtStock.Text}, {txtStockminimo.Text}, {cmbCategorias.SelectedValue}, True)"
-
-            Conexion.Ejecutar(sql)
-            MessageBox.Show("Producto agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-            CargarGrillaProductos()
-            LimpiarCampos()
+            Dim p As New Cls_Producto(txtDescripcion.Text.Trim(),
+                                  Decimal.Parse(txtPrecio.Text)
+            If datos.Agregar(p) Then          ' el objeto datos hace el trabajo 
+                MostrarProductos(datos.Listar())
+                Limpiar()
+            End If
         Catch ex As Exception
-            MessageBox.Show("Error al guardar el producto: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("No se pudo agregar el producto: " & ex.Message)
         End Try
     End Sub
 
-    ' 5. Seleccionar un producto de la grilla para pasarlo a los controles
-    Private Sub dgvProductos_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvProductos.CellClick
-        If e.RowIndex >= 0 Then
-            Dim row As DataGridViewRow = dgvProductos.Rows(e.RowIndex)
-
-            idProductoSeleccionado = Convert.ToInt32(row.Cells("IdProducto").Value)
-            txtCodigo.Text = row.Cells("Codigo").Value.ToString()
-            txtDescripcion.Text = row.Cells("Descripcion").Value.ToString()
-            txtPrecio.Text = row.Cells("Precio").Value.ToString()
-            txtStock.Text = row.Cells("Stock").Value.ToString()
-            txtStockminimo.Text = row.Cells("StockMinimo").Value.ToString()
-            cmbCategorias.SelectedValue = row.Cells("IdCategoria").Value
-        End If
-    End Sub
-
-    ' 6. Botón Modificar
-    Private Sub btnModificar_Click(sender As Object, e As EventArgs) Handles btnModificar.Click
-        If idProductoSeleccionado = -1 Then
-            MessageBox.Show("Seleccione un producto de la grilla para modificar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return
-        End If
-
-        Try
-            Dim precioStr As String = txtPrecio.Text.Replace(",", ".")
-            Dim sql As String = $"UPDATE Productos SET Codigo = '{txtCodigo.Text}', " &
-                                $"Descripcion = '{txtDescripcion.Text}', " &
-                                $"Precio = {precioStr}, " &
-                                $"Stock = {txtStock.Text}, " &
-                                $"StockMinimo = {txtStockminimo.Text}, " &
-                                $"IdCategoria = {cmbCategorias.SelectedValue} " &
-                                $"WHERE IdProducto = {idProductoSeleccionado}"
-
-            Conexion.Ejecutar(sql)
-            MessageBox.Show("Producto modificado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-            CargarGrillaProductos()
-            LimpiarCampos()
-        Catch ex As Exception
-            MessageBox.Show("Error al modificar: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
-
-    ' 7. Botón Eliminar (Baja lógica)
-    Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
-        If idProductoSeleccionado = -1 Then
-            MessageBox.Show("Seleccione un producto para dar de baja.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return
-        End If
-
-        If MessageBox.Show("¿Está seguro de dar de baja este producto?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-            Try
-                ' Baja lógica cambiando Activo a False
-                Dim sql As String = $"UPDATE Productos SET Activo = False WHERE IdProducto = {idProductoSeleccionado}"
-                Conexion.Ejecutar(sql)
-
-                MessageBox.Show("Producto dado de baja.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                CargarGrillaProductos()
-                LimpiarCampos()
-            Catch ex As Exception
-                MessageBox.Show("Error al eliminar: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            End Try
-        End If
-    End Sub
-
-    ' 8. Botón Limpiar
     Private Sub btnLimpiar_Click(sender As Object, e As EventArgs) Handles btnLimpiar.Click
         LimpiarCampos()
     End Sub
@@ -156,21 +101,6 @@
     End Sub
 
     Private Sub txtBuscar_TextChanged(sender As Object, e As EventArgs) Handles txtBuscar.TextChanged
-
-        Try
-            Dim textoFiltro As String = txtBuscar.Text.Trim()
-
-            Dim consulta As String = "SELECT IdProducto, Codigo, Descripcion, Precio, Stock, StockMinimo, IdCategoria, Activo " &
-                                 "FROM Productos " &
-                                 "WHERE Activo = True AND (Descripcion LIKE '%" & textoFiltro & "%' OR Codigo LIKE '%" & textoFiltro & "%')"
-
-            Dim dt As DataTable = Conexion.Consultar(consulta)
-            dgvProductos.DataSource = dt
-
-            VerificarStockMinimo()
-
-        Catch ex As Exception
-            MessageBox.Show("Error al filtrar los productos: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
+        MostrarProductos(datos.Buscar(txtBuscar.Text.Trim()))
     End Sub
 End Class
