@@ -10,7 +10,7 @@
     Private Sub CargarCategorias()
         Try
             Dim consulta As String = "SELECT IdCategoria, Nombre FROM Categorias"
-            Dim dt As DataTable = 'Conexion.Consultar(consulta)
+            Dim dt As DataTable = datos.Consultar(consulta)
 
             cmbCategorias.DataSource = dt
             cmbCategorias.DisplayMember = "Nombre"
@@ -69,7 +69,7 @@
         If Not DatosValidos() Then Exit Sub
         Try
             Dim p As New Cls_Producto(txtDescripcion.Text.Trim(),
-                                  Decimal.Parse(txtPrecio.Text)
+                                  Decimal.Parse(txtPrecio.Text), ruta)
             If datos.Agregar(p) Then          ' el objeto datos hace el trabajo 
                 MostrarProductos(datos.Listar())
                 Limpiar()
@@ -102,5 +102,48 @@
 
     Private Sub txtBuscar_TextChanged(sender As Object, e As EventArgs) Handles txtBuscar.TextChanged
         MostrarProductos(datos.Buscar(txtBuscar.Text.Trim()))
+    End Sub
+    Private Function DatosValidos() As Boolean
+        If txtDescripcion.Text.Trim() = "" Then
+            MessageBox.Show("Ingresá la descripción.")
+            Return False
+        End If
+        Dim p As Decimal
+        If Not Decimal.TryParse(txtPrecio.Text, p) Then
+            MessageBox.Show("El precio debe ser un número válido.")
+            Return False
+        End If
+        Return True
+    End Function
+
+    Private Sub btnModificar_Click(sender As Object, e As EventArgs) Handles btnModificar.Click
+        If txtCodigo.Text = "" Then Exit Sub
+        If Not DatosValidos() Then Exit Sub
+        Try
+            Dim p As New Cls_Producto(txtDescripcion.Text.Trim(),
+                                  Decimal.Parse(txtPrecio.Text), ruta)
+            p.Codigo = Integer.Parse(txtCodigo.Text)
+            If datos.Modificar(p) Then MostrarProductos(datos.Listar())
+        Catch ex As Exception
+            MessageBox.Show("No se pudo modificar el producto: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
+        If txtCodigo.Text = "" Then Exit Sub
+        If MessageBox.Show("¿Eliminar el producto seleccionado?", "Confirmar",
+                           MessageBoxButtons.YesNo) = DialogResult.No Then Exit Sub
+        Try
+            If datos.Eliminar(Integer.Parse(txtCodigo.Text)) Then
+                MostrarProductos(datos.Listar())
+                Limpiar()
+            End If
+        Catch ex As Exception
+            MessageBox.Show("No se pudo eliminar el producto: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub dgvProductos_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvProductos.CellContentClick
+
     End Sub
 End Class
