@@ -78,6 +78,11 @@ Public Class frmClientes
         End If
     End Function
     Private Function DatosValidos() As Boolean
+        ' Habilitar las codificaciones clásicas de Windows (Encoding 1252) para usar StrConv
+        System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance)
+
+        ' === 1. Validar Documento (Cédula) ===
+        txtDocumento.Text = Trim(txtDocumento.Text)
         ' === 1. Validar Documento (Cédula) ===
         txtDocumento.Text = Trim(txtDocumento.Text)
         If txtDocumento.Text = "" Then
@@ -99,7 +104,7 @@ Public Class frmClientes
             Return False
         End If
         ' Convierte la primera letra en mayúscula automáticamente
-        'txtNombre.Text = StrConv(txtNombre.Text, VbStrConv.ProperCase)
+        txtNombre.Text = StrConv(txtNombre.Text, VbStrConv.ProperCase)
 
         ' === 3. Validar Apellido ===
         txtApellido.Text = Trim(txtApellido.Text)
@@ -109,7 +114,7 @@ Public Class frmClientes
             Return False
         End If
         ' Convierte la primera letra en mayúscula automáticamente
-        'txtApellido.Text = StrConv(txtApellido.Text, VbStrConv.ProperCase)
+        txtApellido.Text = StrConv(txtApellido.Text, VbStrConv.ProperCase)
 
         ' === 4. Validar Teléfono ===
         txtTelefono.Text = Trim(txtTelefono.Text)
