@@ -8,15 +8,15 @@
 
     Private Sub CargarCategorias()
         Try
-            Dim consulta As String = "SELECT IdCategoria, Nombre FROM Categorias"
-            Dim dt As DataTable = Conexion.Consultar(consulta)
+            '    Dim consulta As String = "SELECT IdCategoria, Nombre FROM Categorias"
+            '    Dim dt As DataTable = Conexion.Consultar(consulta)
 
-            cmbCategorias.DataSource = dt
-            cmbCategorias.DisplayMember = "Nombre"
-            cmbCategorias.ValueMember = "IdCategoria"
-            cmbCategorias.SelectedIndex = -1
+            '    cmbCategorias.DataSource = dt
+            '    cmbCategorias.DisplayMember = "Nombre"
+            '    cmbCategorias.ValueMember = "IdCategoria"
+            '    cmbCategorias.SelectedIndex = -1
         Catch ex As Exception
-            MessageBox.Show("Error al cargar las categorías: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            '    MessageBox.Show("Error al cargar las categorías: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -24,7 +24,7 @@
     Private Sub CargarGrillaProductos()
         Try
             Dim consulta As String = "SELECT IdProducto, Codigo, Descripcion, Precio, Stock, StockMinimo, IdCategoria, Activo FROM Productos WHERE Activo = True"
-            dgvProductos.DataSource = Conexion.Consultar(consulta)
+            '  dgvProductos.DataSource = Conexion.Consultar(consulta)
 
             ' Aplicar alerta visual si hay stock bajo
             VerificarStockMinimo()
@@ -59,7 +59,7 @@
             Dim sql As String = $"INSERT INTO Productos (Codigo, Descripcion, Precio, Stock, StockMinimo, IdCategoria, Activo) " &
                                 $"VALUES ('{txtCodigo.Text}', '{txtDescripcion.Text}', {precioStr}, {txtStock.Text}, {txtStockminimo.Text}, {cmbCategorias.SelectedValue}, True)"
 
-            Conexion.Ejecutar(sql)
+            ' Conexion.Ejecutar(sql)
             MessageBox.Show("Producto agregado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             CargarGrillaProductos()
@@ -101,7 +101,7 @@
                                 $"IdCategoria = {cmbCategorias.SelectedValue} " &
                                 $"WHERE IdProducto = {idProductoSeleccionado}"
 
-            Conexion.Ejecutar(sql)
+            ' Conexion.Ejecutar(sql)
             MessageBox.Show("Producto modificado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             CargarGrillaProductos()
@@ -122,7 +122,7 @@
             Try
                 ' Baja lógica cambiando Activo a False
                 Dim sql As String = $"UPDATE Productos SET Activo = False WHERE IdProducto = {idProductoSeleccionado}"
-                Conexion.Ejecutar(sql)
+                '  Conexion.Ejecutar(sql)
 
                 MessageBox.Show("Producto dado de baja.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 CargarGrillaProductos()
@@ -164,8 +164,8 @@
                                  "FROM Productos " &
                                  "WHERE Activo = True AND (Descripcion LIKE '%" & textoFiltro & "%' OR Codigo LIKE '%" & textoFiltro & "%')"
 
-            Dim dt As DataTable = Conexion.Consultar(consulta)
-            dgvProductos.DataSource = dt
+            '  Dim dt As DataTable = Conexion.Consultar(consulta)
+            ' dgvProductos.DataSource = dt
 
             VerificarStockMinimo()
 
