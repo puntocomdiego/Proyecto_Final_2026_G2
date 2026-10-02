@@ -1,25 +1,27 @@
 ﻿Public Class frmProductos
     Private idProductoSeleccionado As Integer = -1
+    Private datos As New Cls_ProductoDatos()
+    Private ruta As String = String.Empty
 
     Private Sub frmProductos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        CargarCategorias()
+        'CargarCategorias()
         ConfigurarGrilla()
         MostrarProductos(datos.Listar())
     End Sub
 
-    Private Sub CargarCategorias()
-        Try
-            Dim consulta As String = "SELECT IdCategoria, Nombre FROM Categorias"
-            Dim dt As DataTable = datos.Consultar(consulta)
+    'Private Sub CargarCategorias()
+    '    Try
+    '        Dim consulta As String = "SELECT IdCategoria, Nombre FROM Categorias"
+    '        Dim dt As DataTable = datos.Consulta
 
-            cmbCategorias.DataSource = dt
-            cmbCategorias.DisplayMember = "Nombre"
-            cmbCategorias.ValueMember = "IdCategoria"
-            cmbCategorias.SelectedIndex = -1
-        Catch ex As Exception
-            MessageBox.Show("Error al cargar las categorías: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
+    '        cmbCategorias.DataSource = dt
+    '        cmbCategorias.DisplayMember = "Nombre"
+    '        cmbCategorias.ValueMember = "IdCategoria"
+    '        cmbCategorias.SelectedIndex = -1
+    '    Catch ex As Exception
+    '        MessageBox.Show("Error al cargar las categorías: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+    '    End Try
+    'End Sub
     Private Sub ConfigurarGrilla()
         dgvProductos.AutoGenerateColumns = True
         dgvProductos.ReadOnly = True
