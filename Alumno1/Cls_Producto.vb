@@ -8,6 +8,7 @@
     Public Property IdCategoria As Integer
     Public Property Activo As Boolean
 
+
     Public Sub New()
     End Sub
 

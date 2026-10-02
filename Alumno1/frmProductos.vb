@@ -8,7 +8,6 @@
         ConfigurarGrilla()
         MostrarProductos(datos.Listar())
     End Sub
-
     'Private Sub CargarCategorias()
     '    Try
     '        Dim consulta As String = "SELECT IdCategoria, Nombre FROM Categorias"

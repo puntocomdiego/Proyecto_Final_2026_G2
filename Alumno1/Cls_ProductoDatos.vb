@@ -1,4 +1,5 @@
 ﻿Imports System.Data.OleDb
+
 Public Class Cls_ProductoDatos
     Private Shared ReadOnly ruta As String =
         IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "comercial.accdb")

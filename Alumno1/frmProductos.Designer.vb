@@ -214,7 +214,7 @@ Partial Class frmProductos
         ' txtBuscar
         ' 
         txtBuscar.Font = New Font("Segoe UI", 12F)
-        txtBuscar.Location = New Point(411, 25)
+        txtBuscar.Location = New Point(411, 24)
         txtBuscar.Name = "txtBuscar"
         txtBuscar.Size = New Size(205, 29)
         txtBuscar.TabIndex = 20
