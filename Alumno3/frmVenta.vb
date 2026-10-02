@@ -19,16 +19,15 @@ IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Comercial.accdb")
 
         cboCliente.Items.Clear()
 
-
         Try
-            Using cn As New OleDbConnection(CadenaConexion)
+            Using cn As New OleDbConnection(cadenaConexion)
                 cn.Open()
 
                 Dim sql As String = "SELECT Clientes.Apellido, Clientes.Nombre " _
                                   + "FROM Clientes ORDER By Clientes.Apellido DESC; "
 
 
-                Dim da As New OleDb.OleDbDataAdapter(sql, CadenaConexion)
+                Dim da As New OleDb.OleDbDataAdapter(sql, cadenaConexion)
                 Dim dt As New DataTable
                 da.Fill(dt)
 
@@ -46,12 +45,9 @@ IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Comercial.accdb")
                 cboCliente.SelectedIndex = 0
             End Using
 
-            'If cboCliente.Items.Count > 0 Then
-            '    cboCliente.SelectedIndex = 0
-            'End If
 
         Catch ex As Exception
-            MessageBox.Show("Error al leer las tablas: " & ex.Message, "Error",
+            MessageBox.Show("Error al cargar clientes " & ex.Message, "Error",
                          MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
