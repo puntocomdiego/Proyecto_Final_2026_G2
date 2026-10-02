@@ -8,7 +8,7 @@ Public Class Cls_ProductoDatos
     Public Function Agregar(p As Cls_Producto) As Boolean
         Using cn As New OleDbConnection(cadenaConexion)
             Dim sql As String =
-                "INSERT INTO Productos (descripcion, precio, foto) VALUES (?, ?, ?)"
+                "INSERT INTO Productos (descripcion, precio, stock, stockminimo, codigo, idcategorias, activo) VALUES (?, ?, ?, ?, ?, ?, ?)"
             Using cmd As New OleDbCommand(sql, cn)
                 cmd.Parameters.AddWithValue("?", p.Descripcion)
                 cmd.Parameters.AddWithValue("?", p.Precio)
@@ -25,7 +25,7 @@ Public Class Cls_ProductoDatos
     Public Function Modificar(p As Cls_Producto) As Boolean
         Using cn As New OleDbConnection(cadenaConexion)
             Dim sql As String =
-                "UPDATE Productos SET descripcion = ?, precio = ?, foto = ? WHERE codigo = ?"
+                "UPDATE Productos SET descripcion = ?, precio = ?, stock = ?, stockminimo = ?, idcategorias = ?, activo = ? WHERE codigo = ?"
             Using cmd As New OleDbCommand(sql, cn)
                 cmd.Parameters.AddWithValue("?", p.Descripcion)
                 cmd.Parameters.AddWithValue("?", p.Precio)
@@ -53,7 +53,7 @@ Public Class Cls_ProductoDatos
         Dim dt As New DataTable()
         Using cn As New OleDbConnection(cadenaConexion)
             Dim sql As String =
-                "SELECT codigo, descripcion, precio, foto " _
+                "SELECT codigo, descripcion, precio, stock, stockminimo, idcategorias, activo " _
                 + "FROM Productos " _
                + "WHERE descripcion LIKE ? ORDER BY descripcion"
             Using cmd As New OleDbCommand(sql, cn)
@@ -69,7 +69,8 @@ Public Class Cls_ProductoDatos
         Dim dt As New DataTable()
         Using cn As New OleDbConnection(cadenaConexion)
             Dim sql As String =
-                "SELECT codigo, descripcion, precio, foto FROM Productos ORDER BY descripcion"
+                "SELECT codigo, descripcion, precio, stock, stockminimo, idcategorias, activo " _
+                + "FROM Productos ORDER BY descripcion"
             Using da As New OleDbDataAdapter(sql, cn)
                 da.Fill(dt)
             End Using
