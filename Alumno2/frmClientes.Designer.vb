@@ -41,7 +41,7 @@ Partial Class frmClientes
         Label4 = New Label()
         Label5 = New Label()
         Label6 = New Label()
-        txtDocumento = New TextBox()
+        txtDocumento = New MaskedTextBox()
         CType(picFoto, ComponentModel.ISupportInitialize).BeginInit()
         CType(dgvClientes, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -199,18 +199,19 @@ Partial Class frmClientes
         ' 
         ' txtDocumento
         ' 
-        txtDocumento.Location = New Point(194, 12)
+        txtDocumento.Location = New Point(194, 19)
         txtDocumento.Name = "txtDocumento"
         txtDocumento.Size = New Size(279, 27)
-        txtDocumento.TabIndex = 19
+        txtDocumento.TabIndex = 21
+        txtDocumento.Text = " .   .   -"
         ' 
         ' frmClientes
         ' 
         AutoScaleDimensions = New SizeF(8.0F, 20.0F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
-        Controls.Add(Label6)
         Controls.Add(txtDocumento)
+        Controls.Add(Label6)
         Controls.Add(Label5)
         Controls.Add(Label4)
         Controls.Add(Label3)
@@ -254,6 +255,6 @@ Partial Class frmClientes
     Friend WithEvents Label4 As Label
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
-    Friend WithEvents txtDocumento As TextBox
+    Friend WithEvents txtDocumento As MaskedTextBox
 
 End Class
