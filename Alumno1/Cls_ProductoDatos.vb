@@ -8,8 +8,9 @@ Public Class Cls_ProductoDatos
     Public Function Agregar(p As Cls_Producto) As Boolean
         Using cn As New OleDbConnection(cadenaConexion)
             Dim sql As String =
-                "INSERT INTO Productos (Descripcion, Precio, Stock, StockMinimo, Codigo, IdCategorias, Activo) VALUES (?, ?, ?, ?, ?, ?, ?)"
+                "INSERT INTO Productos ( idProducto, Descripcion, Precio, Stock, StockMinimo, Codigo, IdCategorias, Activo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
             Using cmd As New OleDbCommand(sql, cn)
+                cmd.Parameters.AddWithValue("?", p.IdProducto)
                 cmd.Parameters.AddWithValue("?", p.Descripcion)
                 cmd.Parameters.AddWithValue("?", p.Precio)
                 cmd.Parameters.AddWithValue("?", p.Codigo)
@@ -53,9 +54,10 @@ Public Class Cls_ProductoDatos
         Dim dt As New DataTable()
         Using cn As New OleDbConnection(cadenaConexion)
             Dim sql As String =
-                "SELECT Codigo, Descripcion, Precio, Stock, StockMinimo, IdCategorias, Activo " _
-                + "FROM Productos " _
-               + "WHERE Descripcion LIKE ? ORDER BY Descripcion"
+                "SELECT Productos.Descripcion " _
++ "From Categorias INNER Join Productos On Categorias.IdCategoria = Productos.IdCategoria " _
++ "Order By Productos.Descripcion;"
+
             Using cmd As New OleDbCommand(sql, cn)
                 cmd.Parameters.AddWithValue("?", "%" & texto & "%")
                 Using da As New OleDbDataAdapter(cmd)
