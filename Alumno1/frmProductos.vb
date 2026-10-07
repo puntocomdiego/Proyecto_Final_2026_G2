@@ -4,23 +4,25 @@
     Private ruta As String = String.Empty
 
     Private Sub frmProductos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'CargarCategorias()
+        CargarCategorias()
         ConfigurarGrilla()
-        MostrarProductos(datos.Listar())
+        MostrarProductos(datos.ListarProductos())
     End Sub
-    'Private Sub CargarCategorias()
-    '    Try
-    '        Dim consulta As String = "SELECT IdCategoria, Nombre FROM Categorias"
-    '        Dim dt As DataTable = datos.Consulta
+    Private Sub CargarCategorias()
+        Try
+            Dim consulta As String = "SELECT Categorias.IdCategoria, Categorias.Nombre " _
++ "From Categorias " _
++ "Order By Categorias.Nombre;"
+            Dim dt As DataTable = datos.Listar
 
-    '        cmbCategorias.DataSource = dt
-    '        cmbCategorias.DisplayMember = "Nombre"
-    '        cmbCategorias.ValueMember = "IdCategoria"
-    '        cmbCategorias.SelectedIndex = -1
-    '    Catch ex As Exception
-    '        MessageBox.Show("Error al cargar las categorías: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-    '    End Try
-    'End Sub
+            cmbCategorias.DataSource = dt
+            cmbCategorias.DisplayMember = "Nombre"
+            cmbCategorias.ValueMember = "IdCategoria"
+            cmbCategorias.SelectedIndex = -1
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar las categorías: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
     Private Sub ConfigurarGrilla()
         dgvProductos.AutoGenerateColumns = True
         dgvProductos.ReadOnly = True
@@ -142,9 +144,5 @@
         Catch ex As Exception
             MessageBox.Show("No se pudo eliminar el producto: " & ex.Message)
         End Try
-    End Sub
-
-    Private Sub dgvProductos_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvProductos.CellContentClick
-
     End Sub
 End Class
