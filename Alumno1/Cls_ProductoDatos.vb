@@ -69,8 +69,24 @@ Public Class Cls_ProductoDatos
         Dim dt As New DataTable()
         Using cn As New OleDbConnection(cadenaConexion)
             Dim sql As String =
-                "SELECT Codigo, Descripcion, Precio, Stock, StockMinimo, IdCategorias, Activo " _
-                + "FROM Productos ORDER BY Descripcion"
+                "SELECT Categorias.IdCategoria, Categorias.Nombre " _
++ "From Categorias " _
++ "Order By Categorias.Nombre;"
+
+            Using da As New OleDbDataAdapter(sql, cn)
+                da.Fill(dt)
+            End Using
+        End Using
+        Return dt
+    End Function
+    Public Function ListarProductos() As DataTable
+        Dim dt As New DataTable()
+        Using cn As New OleDbConnection(cadenaConexion)
+            Dim sql As String =
+                "SELECT Productos.IdProducto, Productos.Codigo, Productos.Descripcion, Productos.Precio, Productos.Stock, Productos.StockMinimo, Categorias.Nombre, Productos.Activo " _
++ "FROM Categorias INNER JOIN Productos ON Categorias.IdCategoria = Productos.IdCategoria " _
++ "ORDER BY Productos.IdProducto;"
+
             Using da As New OleDbDataAdapter(sql, cn)
                 da.Fill(dt)
             End Using
