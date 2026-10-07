@@ -94,7 +94,7 @@ Partial Class frmVenta
         ' 
         Label3.AutoSize = True
         Label3.Font = New Font("Segoe UI Semibold", 11F, FontStyle.Bold)
-        Label3.Location = New Point(284, 88)
+        Label3.Location = New Point(292, 88)
         Label3.Name = "Label3"
         Label3.Size = New Size(74, 20)
         Label3.TabIndex = 5
@@ -103,7 +103,7 @@ Partial Class frmVenta
         ' txtCantidad
         ' 
         txtCantidad.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
-        txtCantidad.Location = New Point(358, 87)
+        txtCantidad.Location = New Point(366, 87)
         txtCantidad.Name = "txtCantidad"
         txtCantidad.Size = New Size(65, 23)
         txtCantidad.TabIndex = 6
@@ -111,7 +111,7 @@ Partial Class frmVenta
         ' dgvVenta
         ' 
         dgvVenta.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        dgvVenta.Location = New Point(12, 125)
+        dgvVenta.Location = New Point(12, 136)
         dgvVenta.Name = "dgvVenta"
         dgvVenta.Size = New Size(537, 313)
         dgvVenta.TabIndex = 7
@@ -131,7 +131,7 @@ Partial Class frmVenta
         ' 
         btnNuevo.BackColor = SystemColors.GradientInactiveCaption
         btnNuevo.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold)
-        btnNuevo.Location = New Point(577, 12)
+        btnNuevo.Location = New Point(593, 24)
         btnNuevo.Name = "btnNuevo"
         btnNuevo.Size = New Size(144, 53)
         btnNuevo.TabIndex = 9
@@ -175,9 +175,9 @@ Partial Class frmVenta
         GroupBox1.Controls.Add(btnEditar)
         GroupBox1.Controls.Add(btnConfirmar)
         GroupBox1.Controls.Add(btnEliminar)
-        GroupBox1.Location = New Point(569, 113)
+        GroupBox1.Location = New Point(586, 137)
         GroupBox1.Name = "GroupBox1"
-        GroupBox1.Size = New Size(158, 238)
+        GroupBox1.Size = New Size(158, 229)
         GroupBox1.TabIndex = 13
         GroupBox1.TabStop = False
         ' 
@@ -195,7 +195,7 @@ Partial Class frmVenta
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(745, 450)
+        ClientSize = New Size(784, 461)
         Controls.Add(Label4)
         Controls.Add(GroupBox1)
         Controls.Add(cboProducto)

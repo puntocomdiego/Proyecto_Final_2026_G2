@@ -1,4 +1,5 @@
 ﻿Imports System.Data.OleDb
+Imports System.Runtime
 
 Public Class frmVenta
 
@@ -12,6 +13,7 @@ IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Comercial.accdb")
     Private Sub frmVenta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         CargarClientes()
+        CargarCategorias()
 
     End Sub
 
@@ -53,6 +55,48 @@ IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Comercial.accdb")
 
     End Sub
 
+    Private Sub CargarCategorias()
+
+        cboCategoria.Items.Clear()
+
+        Try
+            Using cn As New OleDbConnection(cadenaConexion)
+                cn.Open()
+
+                Dim sql As String = "SELECT Categorias.IdCategoria , Categorias.Nombre " _
+                                  + "FROM Categorias ; "
+
+
+                Dim da As New OleDb.OleDbDataAdapter(sql, cadenaConexion)
+                Dim dt As New DataTable
+                da.Fill(dt)
+
+                cboCategoria.Items.Clear()
+                cboCategoria.Items.Add("-- Seleccione una categoria --")
+
+
+                For i = 0 To dt.Rows.Count - 1
+                    Dim dr As DataRow
+                    dr = dt.Rows(i)
+                    cboCategoria.Items.Add(dr(1))
+                Next
+
+                cboCategoria.SelectedIndex = 0
+
+            End Using
+
+
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar categorias " & ex.Message, "Error",
+                         MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
+
+
+
+    '===========================
+
     Private Sub cboCliente_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboCliente.SelectedIndexChanged
 
         If cboCliente.SelectedIndex = 0 Then
@@ -76,6 +120,44 @@ IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Comercial.accdb")
             txtCantidad.Visible = True
 
         End If
+
+    End Sub
+
+    Private Sub cboCategoria_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboCategoria.SelectedIndexChanged
+
+        Dim idCategoria As Integer = CInt(cboCategoria.SelectedIndex)
+
+        If idCategoria = 0 Then Return
+
+        If cboCategoria.SelectedItem = "-- Seleccione una categoria --" Then Return
+
+        Using cn As New OleDbConnection(cadenaConexion)
+            Dim sql As String = "SELECT Productos.Descripcion " _
+                                + "FROM Productos " _
+                                + "WHERE Productos.IdCategoria = ? " _
+                                + "ORDER By Productos.Descripcion DESC;"
+
+
+            Dim da As New OleDb.OleDbDataAdapter(sql, cn)
+
+            da.SelectCommand.Parameters.AddWithValue("?", idCategoria)
+
+            Dim dt As New DataTable
+            da.Fill(dt)
+
+            cboProducto.Items.Clear()
+            cboProducto.Items.Add("-- Seleccione un producto --")
+
+
+            For i = 0 To dt.Rows.Count - 1
+                Dim dr As DataRow
+                dr = dt.Rows(i)
+                cboProducto.Items.Add(dr(0))
+            Next
+
+            cboProducto.SelectedIndex = 0
+
+        End Using
 
     End Sub
 End Class
