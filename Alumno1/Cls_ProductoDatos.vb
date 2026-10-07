@@ -8,8 +8,9 @@ Public Class Cls_ProductoDatos
     Public Function Agregar(p As Cls_Producto) As Boolean
         Using cn As New OleDbConnection(cadenaConexion)
             Dim sql As String =
-                "INSERT INTO Productos (descripcion, precio, stock, stockminimo, codigo, idcategorias, activo) VALUES (?, ?, ?, ?, ?, ?, ?)"
+                "INSERT INTO Productos ( idProducto, Descripcion, Precio, Stock, StockMinimo, Codigo, IdCategorias, Activo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
             Using cmd As New OleDbCommand(sql, cn)
+                cmd.Parameters.AddWithValue("?", p.IdProducto)
                 cmd.Parameters.AddWithValue("?", p.Descripcion)
                 cmd.Parameters.AddWithValue("?", p.Precio)
                 cmd.Parameters.AddWithValue("?", p.Codigo)
@@ -25,7 +26,7 @@ Public Class Cls_ProductoDatos
     Public Function Modificar(p As Cls_Producto) As Boolean
         Using cn As New OleDbConnection(cadenaConexion)
             Dim sql As String =
-                "UPDATE Productos SET descripcion = ?, precio = ?, stock = ?, stockminimo = ?, idcategorias = ?, activo = ? WHERE codigo = ?"
+                "UPDATE Productos SET Descripcion = ?, Precio = ?, Stock = ?, StockMinimo = ?, IdCategorias = ?, Activo = ? WHERE Codigo     = ?"
             Using cmd As New OleDbCommand(sql, cn)
                 cmd.Parameters.AddWithValue("?", p.Descripcion)
                 cmd.Parameters.AddWithValue("?", p.Precio)
@@ -41,7 +42,7 @@ Public Class Cls_ProductoDatos
     End Function
     Public Function Eliminar(codigo As Integer) As Boolean
         Using cn As New OleDbConnection(cadenaConexion)
-            Dim sql As String = "DELETE FROM Productos WHERE codigo = ?"
+            Dim sql As String = "DELETE FROM Productos WHERE Codigo = ?"
             Using cmd As New OleDbCommand(sql, cn)
                 cmd.Parameters.AddWithValue("?", codigo)
                 cn.Open()
@@ -53,9 +54,10 @@ Public Class Cls_ProductoDatos
         Dim dt As New DataTable()
         Using cn As New OleDbConnection(cadenaConexion)
             Dim sql As String =
-                "SELECT codigo, descripcion, precio, stock, stockminimo, idcategorias, activo " _
-                + "FROM Productos " _
-               + "WHERE descripcion LIKE ? ORDER BY descripcion"
+                "SELECT Productos.Descripcion " _
++ "From Categorias INNER Join Productos On Categorias.IdCategoria = Productos.IdCategoria " _
++ "Order By Productos.Descripcion;"
+
             Using cmd As New OleDbCommand(sql, cn)
                 cmd.Parameters.AddWithValue("?", "%" & texto & "%")
                 Using da As New OleDbDataAdapter(cmd)
@@ -69,8 +71,24 @@ Public Class Cls_ProductoDatos
         Dim dt As New DataTable()
         Using cn As New OleDbConnection(cadenaConexion)
             Dim sql As String =
-                "SELECT codigo, descripcion, precio, stock, stockminimo, idcategorias, activo " _
-                + "FROM Productos ORDER BY descripcion"
+                "SELECT Categorias.IdCategoria, Categorias.Nombre " _
++ "From Categorias " _
++ "Order By Categorias.Nombre;"
+
+            Using da As New OleDbDataAdapter(sql, cn)
+                da.Fill(dt)
+            End Using
+        End Using
+        Return dt
+    End Function
+    Public Function ListarProductos() As DataTable
+        Dim dt As New DataTable()
+        Using cn As New OleDbConnection(cadenaConexion)
+            Dim sql As String =
+                "SELECT Productos.IdProducto, Productos.Codigo, Productos.Descripcion, Productos.Precio, Productos.Stock, Productos.StockMinimo, Categorias.Nombre, Productos.Activo " _
++ "FROM Categorias INNER JOIN Productos ON Categorias.IdCategoria = Productos.IdCategoria " _
++ "ORDER BY Productos.IdProducto;"
+
             Using da As New OleDbDataAdapter(sql, cn)
                 da.Fill(dt)
             End Using

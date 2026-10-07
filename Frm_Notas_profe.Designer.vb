@@ -37,7 +37,7 @@ Partial Class Frm_Notas_profe
         ' 
         ' Frm_Notas_profe
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(868, 386)
         Controls.Add(Button1)
