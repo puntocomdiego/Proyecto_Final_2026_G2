@@ -14,6 +14,7 @@ IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Comercial.accdb")
 
         CargarClientes()
         CargarCategorias()
+        CargarTemp()
 
     End Sub
 
@@ -25,7 +26,7 @@ IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Comercial.accdb")
             Using cn As New OleDbConnection(cadenaConexion)
                 cn.Open()
 
-                Dim sql As String = "SELECT Clientes.Apellido, Clientes.Nombre " _
+                Dim sql As String = "SELECT Clientes.IdCliente, Clientes.Apellido, Clientes.Nombre " _
                                   + "FROM Clientes ORDER By Clientes.Apellido DESC; "
 
 
@@ -41,7 +42,7 @@ IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Comercial.accdb")
                 For i = 0 To dt.Rows.Count - 1
                     Dim dr As DataRow
                     dr = dt.Rows(i)
-                    cboCliente.Items.Add(dr(0) & ", " & dr(1))
+                    cboCliente.Items.Add(dr(1) & ", " & dr(2))
                 Next
 
                 cboCliente.SelectedIndex = 0
@@ -65,7 +66,6 @@ IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Comercial.accdb")
 
                 Dim sql As String = "SELECT Categorias.IdCategoria , Categorias.Nombre " _
                                   + "FROM Categorias ; "
-
 
                 Dim da As New OleDb.OleDbDataAdapter(sql, cadenaConexion)
                 Dim dt As New DataTable
@@ -93,7 +93,21 @@ IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Comercial.accdb")
 
     End Sub
 
+    Private Sub CargarTemp()
 
+        Using cn As New OleDbConnection(cadenaConexion)
+            Dim sql As String = "SELECT Temp.Descripcion, Temp.Cantidad, Temp.PrecioUnita, Temp.Subtotal " _
+                                + "FROM Temp"
+
+            Dim da As New OleDb.OleDbDataAdapter(sql, cn)
+
+            Dim dt As New DataTable
+            da.Fill(dt)
+            dgvTemp.DataSource = dt
+
+        End Using
+
+    End Sub
 
     '===========================
 
@@ -101,23 +115,23 @@ IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Comercial.accdb")
 
         If cboCliente.SelectedIndex = 0 Then
 
-            Label2.Visible = False
-            Label3.Visible = False
-            Label4.Visible = False
+            'Label2.Visible = False
+            'Label3.Visible = False
+            'Label4.Visible = False
 
-            cboCategoria.Visible = False
-            cboProducto.Visible = False
-            txtCantidad.Visible = False
+            cboCategoria.Enabled = False
+            cboProducto.Enabled = False
+            txtCantidad.Enabled = False
 
         Else
 
-            Label2.Visible = True
-            Label3.Visible = True
-            Label4.Visible = True
+            'Label2.Visible = True
+            'Label3.Visible = True
+            'Label4.Visible = True
 
-            cboCategoria.Visible = True
-            cboProducto.Visible = True
-            txtCantidad.Visible = True
+            cboCategoria.Enabled = True
+            cboProducto.Enabled = True
+            txtCantidad.Enabled = True
 
         End If
 
@@ -136,7 +150,6 @@ IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Comercial.accdb")
                                 + "FROM Productos " _
                                 + "WHERE Productos.IdCategoria = ? " _
                                 + "ORDER By Productos.Descripcion DESC;"
-
 
             Dim da As New OleDb.OleDbDataAdapter(sql, cn)
 
@@ -157,7 +170,38 @@ IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Comercial.accdb")
 
             cboProducto.SelectedIndex = 0
 
+
+            If cboCategoria.SelectedIndex = 0 Then
+
+                cboProducto.Enabled = False
+                txtCantidad.Enabled = False
+
+            Else
+
+                cboProducto.Enabled = True
+                txtCantidad.Enabled = True
+
+            End If
+
         End Using
+
+    End Sub
+
+    Private Sub txtCantidad_TextChanged(sender As Object, e As EventArgs) Handles txtCantidad.TextChanged
+
+        If txtCantidad.Text = "" Then
+            btnAgregar.Enabled = False
+        Else
+            btnAgregar.Enabled = True
+        End If
+
+    End Sub
+
+    Private Sub txtCantidad_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtCantidad.KeyPress
+
+        If Not Char.IsDigit(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
+            e.Handled = True
+        End If
 
     End Sub
 End Class

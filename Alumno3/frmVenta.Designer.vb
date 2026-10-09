@@ -48,6 +48,7 @@ Partial Class frmVenta
         ' btnConfirmar
         ' 
         btnConfirmar.BackColor = SystemColors.GradientInactiveCaption
+        btnConfirmar.Enabled = False
         btnConfirmar.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold)
         btnConfirmar.Location = New Point(9, 123)
         btnConfirmar.Name = "btnConfirmar"
@@ -115,6 +116,7 @@ Partial Class frmVenta
         ' btnAgregar
         ' 
         btnAgregar.BackColor = SystemColors.GradientInactiveCaption
+        btnAgregar.Enabled = False
         btnAgregar.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold)
         btnAgregar.Location = New Point(309, 24)
         btnAgregar.Name = "btnAgregar"
@@ -137,6 +139,7 @@ Partial Class frmVenta
         ' btnEliminar
         ' 
         btnEliminar.BackColor = SystemColors.GradientInactiveCaption
+        btnEliminar.Enabled = False
         btnEliminar.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold)
         btnEliminar.Location = New Point(9, 256)
         btnEliminar.Name = "btnEliminar"
@@ -158,6 +161,7 @@ Partial Class frmVenta
         ' 
         btnEditar.BackColor = SystemColors.GradientInactiveCaption
         btnEditar.DialogResult = DialogResult.Continue
+        btnEditar.Enabled = False
         btnEditar.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold)
         btnEditar.Location = New Point(9, 202)
         btnEditar.Name = "btnEditar"
