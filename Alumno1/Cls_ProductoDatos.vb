@@ -8,12 +8,11 @@ Public Class Cls_ProductoDatos
     Public Function Agregar(p As Cls_Producto) As Boolean
         Using cn As New OleDbConnection(cadenaConexion)
             Dim sql As String =
-                "INSERT INTO Productos ( idProducto, Descripcion, Precio, Stock, StockMinimo, Codigo, IdCategorias, Activo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+                "INSERT INTO Productos ( Descripcion, Codigo, Precio, Stock, StockMinimo, IdCategoria, Activo) VALUES (?, ?, ?, ?, ?, ?, ?)"
             Using cmd As New OleDbCommand(sql, cn)
-                cmd.Parameters.AddWithValue("?", p.IdProducto)
                 cmd.Parameters.AddWithValue("?", p.Descripcion)
-                cmd.Parameters.AddWithValue("?", p.Precio)
                 cmd.Parameters.AddWithValue("?", p.Codigo)
+                cmd.Parameters.AddWithValue("?", p.Precio)
                 cmd.Parameters.AddWithValue("?", p.Stock)
                 cmd.Parameters.AddWithValue("?", p.StockMinimo)
                 cmd.Parameters.AddWithValue("?", p.IdCategoria)
@@ -25,16 +24,18 @@ Public Class Cls_ProductoDatos
     End Function
     Public Function Modificar(p As Cls_Producto) As Boolean
         Using cn As New OleDbConnection(cadenaConexion)
-            Dim sql As String =
-                "UPDATE Productos SET Descripcion = ?, Precio = ?, Stock = ?, StockMinimo = ?, IdCategorias = ?, Activo = ? WHERE Codigo     = ?"
+            Dim sql As String = "UPDATE Productos SET Descripcion = ?, Codigo = ?, Precio = ?, Stock = ?, StockMinimo = ?, IdCategoria = ?, Activo = ? WHERE Codigo = ?"
+
             Using cmd As New OleDbCommand(sql, cn)
                 cmd.Parameters.AddWithValue("?", p.Descripcion)
+                cmd.Parameters.AddWithValue("?", p.Codigo)
                 cmd.Parameters.AddWithValue("?", p.Precio)
                 cmd.Parameters.AddWithValue("?", p.Stock)
-                cmd.Parameters.AddWithValue("?", p.Codigo)
                 cmd.Parameters.AddWithValue("?", p.StockMinimo)
                 cmd.Parameters.AddWithValue("?", p.IdCategoria)
                 cmd.Parameters.AddWithValue("?", p.Activo)
+                cmd.Parameters.AddWithValue("?", p.Codigo)
+
                 cn.Open()
                 Return cmd.ExecuteNonQuery() > 0
             End Using
