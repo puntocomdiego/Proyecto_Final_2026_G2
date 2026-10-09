@@ -9,12 +9,16 @@ IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Comercial.accdb")
     $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={ruta};"
 
     Private datos As New VentaDatos()
+    Private temporal As New TempDatos()
 
     Private Sub frmVenta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         CargarClientes()
         CargarCategorias()
-        CargarTemp()
+        'CargarTemp()
+        MostrarCompras(temporal.Listar())
+
+
 
     End Sub
 
@@ -93,21 +97,39 @@ IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Comercial.accdb")
 
     End Sub
 
-    Private Sub CargarTemp()
+    Private Sub MostrarCompras(dt As DataTable)
+        dgvTemp.DataSource = dt
+        dgvTemp.Columns("IdProducto").HeaderText = "ID"
+        dgvTemp.Columns("Descripcion").HeaderText = "Producto"
+        dgvTemp.Columns("Cantidad").HeaderText = "Cantidad"
+        dgvTemp.Columns("Cantidad").DefaultCellStyle.Format = "C2"
 
-        Using cn As New OleDbConnection(cadenaConexion)
-            Dim sql As String = "SELECT Temp.Descripcion, Temp.Cantidad, Temp.PrecioUnita, Temp.Subtotal " _
-                                + "FROM Temp"
+        dgvTemp.Columns("PrecioUnita").HeaderText = "Precio Unitario"
+        dgvTemp.Columns("PrecioUnita").DefaultCellStyle.Format = "C2"
+        dgvTemp.Columns("PrecioUnita").DefaultCellStyle.FormatProvider =
+        Globalization.CultureInfo.GetCultureInfo("es-UY")
 
-            Dim da As New OleDb.OleDbDataAdapter(sql, cn)
-
-            Dim dt As New DataTable
-            da.Fill(dt)
-            dgvTemp.DataSource = dt
-
-        End Using
-
+        dgvTemp.Columns("Subtotal").HeaderText = "Subtotal"
+        dgvTemp.Columns("Subtotal").DefaultCellStyle.Format = "C2"
+        dgvTemp.Columns("Subtotal").DefaultCellStyle.FormatProvider =
+        Globalization.CultureInfo.GetCultureInfo("es-UY")
     End Sub
+
+    'Private Sub CargarTemp()
+
+    '    Using cn As New OleDbConnection(cadenaConexion)
+    '        Dim sql As String = "SELECT Temp.Descripcion, Temp.Cantidad, Temp.PrecioUnita, Temp.Subtotal " _
+    '                            + "FROM Temp"
+
+    '        Dim da As New OleDb.OleDbDataAdapter(sql, cn)
+
+    '        Dim dt As New DataTable
+    '        da.Fill(dt)
+    '        dgvTemp.DataSource = dt
+
+    '    End Using
+
+    'End Sub
 
     '===========================
 

@@ -230,6 +230,8 @@ Partial Class frmVenta
         dgvTemp.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         dgvTemp.Location = New Point(12, 137)
         dgvTemp.Name = "dgvTemp"
+        dgvTemp.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing
+        dgvTemp.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         dgvTemp.Size = New Size(561, 312)
         dgvTemp.TabIndex = 16
         ' 
