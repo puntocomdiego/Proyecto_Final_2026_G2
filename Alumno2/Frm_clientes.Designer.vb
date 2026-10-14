@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmClientes
+Partial Class Frm_clientes
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
@@ -27,21 +27,21 @@ Partial Class frmClientes
         ' 
         ' Button1
         ' 
-        Button1.Location = New Point(581, 396)
+        Button1.Location = New Point(288, 231)
         Button1.Name = "Button1"
-        Button1.Size = New Size(207, 42)
+        Button1.Size = New Size(317, 64)
         Button1.TabIndex = 0
-        Button1.Text = "Fin"
+        Button1.Text = "fin"
         Button1.UseVisualStyleBackColor = True
         ' 
-        ' frmClientes
+        ' Frm_clientes
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
         Controls.Add(Button1)
-        Name = "frmClientes"
-        Text = "frmClientes"
+        Name = "Frm_clientes"
+        Text = "Frm_clientes"
         ResumeLayout(False)
     End Sub
 
