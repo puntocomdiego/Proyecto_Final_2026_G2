@@ -196,6 +196,7 @@ Partial Class frmClientes
         ' txtDocumento
         ' 
         txtDocumento.Location = New Point(115, 26)
+        txtDocumento.Mask = "0.000.000-0"
         txtDocumento.Name = "txtDocumento"
         txtDocumento.Size = New Size(279, 27)
         txtDocumento.TabIndex = 21
