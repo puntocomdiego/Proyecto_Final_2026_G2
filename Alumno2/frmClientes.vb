@@ -170,6 +170,7 @@ Public Class frmClientes
 
     ' ===== BOTÓN FIN =====
     Private Sub btnFin_Click(sender As Object, e As EventArgs) Handles btnFin.Click
+        MsgBox("¡Gracias por usar el sistema!", MsgBoxStyle.Information, "Cierre de la aplicación")
         Me.Close()
     End Sub
 
