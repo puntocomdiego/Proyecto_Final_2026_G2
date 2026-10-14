@@ -108,12 +108,10 @@
     Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
         txtBuscar.Visible = True
         btnBuscar.Visible = False
+        btnok.Visible = True
 
     End Sub
 
-    Private Sub txtBuscar_TextChanged(sender As Object, e As EventArgs) Handles txtBuscar.TextChanged
-
-    End Sub
     Private Function DatosValidos() As Boolean
         If txtDescripcion.Text.Trim() = "" Then
             MessageBox.Show("Ingresá la descripción.")
@@ -210,6 +208,45 @@
         btnModificar.Enabled = False
     End Sub
 
+    Private Sub txtBuscar_TextChanged(sender As Object, e As EventArgs) Handles txtBuscar.TextChanged
+        'opción 1: Filtrar la grilla directamente
+
+        'Try
+        '    If dgvProductos.DataSource IsNot Nothing Then
+        '        Dim dt As DataTable = CType(dgvProductos.DataSource, DataTable)
+        '        Dim dv As DataView = dt.DefaultView
+        '        Dim filtro As String = txtBuscar.Text.Trim()
+
+        '        If filtro = "" Then
+        '            dv.RowFilter = String.Empty
+        '        Else
+        '            dv.RowFilter = "Descripcion LIKE '%" & filtro & "%' OR Codigo LIKE '%" & filtro & "%'"
+        '        End If
+        '    End If
+        'Catch ex As Exception
+        '    MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
+        'End Try
+
+        '---------------------------------------------------------------------------------------------------------
+
+        'opcion 2: Buscar en la base de datos y actualizar la grilla
+
+        'Try
+        '    Dim dt As DataTable = datos.Buscar(txtBuscar.Text.Trim())
+
+        '    dgvProductos.DataSource = dt
+
+        '    If dt.Rows.Count > 0 Then
+        '    End If
+        'Catch ex As Exception
+        '    MessageBox.Show("Error en la búsqueda: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        'End Try
+    End Sub
+    Private Sub btnok_Click(sender As Object, e As EventArgs) Handles btnok.Click
+        txtBuscar.Visible = False
+        btnBuscar.Visible = True
+        btnok.Visible = False
+    End Sub
 
     Private Sub txtCodigo_GotFocus(sender As Object, e As EventArgs) Handles txtCodigo.GotFocus
         txtCodigo.BackColor = Color.LightGreen
@@ -241,4 +278,5 @@
     Private Sub txtStockminimo_LostFocus(sender As Object, e As EventArgs) Handles txtStockminimo.LostFocus
         txtStockminimo.BackColor = Color.White
     End Sub
+
 End Class

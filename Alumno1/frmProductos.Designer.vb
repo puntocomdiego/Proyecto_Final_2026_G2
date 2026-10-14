@@ -41,6 +41,7 @@ Partial Class frmProductos
         dgvProductos = New DataGridView()
         btnBuscar = New Button()
         txtBuscar = New TextBox()
+        btnok = New Button()
         CType(dgvProductos, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -155,8 +156,9 @@ Partial Class frmProductos
         ' 
         ' btnAgregar
         ' 
+        btnAgregar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnAgregar.Font = New Font("Segoe UI", 12F)
-        btnAgregar.Location = New Point(474, 61)
+        btnAgregar.Location = New Point(465, 61)
         btnAgregar.Name = "btnAgregar"
         btnAgregar.Size = New Size(143, 39)
         btnAgregar.TabIndex = 13
@@ -165,8 +167,9 @@ Partial Class frmProductos
         ' 
         ' btnModificar
         ' 
+        btnModificar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnModificar.Font = New Font("Segoe UI", 12F)
-        btnModificar.Location = New Point(474, 106)
+        btnModificar.Location = New Point(465, 106)
         btnModificar.Name = "btnModificar"
         btnModificar.Size = New Size(143, 39)
         btnModificar.TabIndex = 14
@@ -175,8 +178,9 @@ Partial Class frmProductos
         ' 
         ' btnEliminar
         ' 
+        btnEliminar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnEliminar.Font = New Font("Segoe UI", 12F)
-        btnEliminar.Location = New Point(474, 151)
+        btnEliminar.Location = New Point(465, 151)
         btnEliminar.Name = "btnEliminar"
         btnEliminar.Size = New Size(143, 39)
         btnEliminar.TabIndex = 15
@@ -185,8 +189,9 @@ Partial Class frmProductos
         ' 
         ' btnLimpiar
         ' 
+        btnLimpiar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnLimpiar.Font = New Font("Segoe UI", 12F)
-        btnLimpiar.Location = New Point(474, 196)
+        btnLimpiar.Location = New Point(465, 196)
         btnLimpiar.Name = "btnLimpiar"
         btnLimpiar.Size = New Size(143, 39)
         btnLimpiar.TabIndex = 16
@@ -195,6 +200,7 @@ Partial Class frmProductos
         ' 
         ' dgvProductos
         ' 
+        dgvProductos.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         dgvProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         dgvProductos.Location = New Point(12, 254)
         dgvProductos.Name = "dgvProductos"
@@ -203,8 +209,9 @@ Partial Class frmProductos
         ' 
         ' btnBuscar
         ' 
+        btnBuscar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnBuscar.Font = New Font("Segoe UI", 12F)
-        btnBuscar.Location = New Point(474, 16)
+        btnBuscar.Location = New Point(465, 16)
         btnBuscar.Name = "btnBuscar"
         btnBuscar.Size = New Size(143, 39)
         btnBuscar.TabIndex = 19
@@ -213,18 +220,32 @@ Partial Class frmProductos
         ' 
         ' txtBuscar
         ' 
+        txtBuscar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         txtBuscar.Font = New Font("Segoe UI", 12F)
-        txtBuscar.Location = New Point(411, 24)
+        txtBuscar.Location = New Point(403, 25)
         txtBuscar.Name = "txtBuscar"
         txtBuscar.Size = New Size(205, 29)
         txtBuscar.TabIndex = 20
         txtBuscar.Visible = False
+        ' 
+        ' btnok
+        ' 
+        btnok.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        btnok.BackColor = Color.FromArgb(CByte(192), CByte(255), CByte(192))
+        btnok.Font = New Font("Segoe UI", 12F)
+        btnok.Location = New Point(361, 25)
+        btnok.Name = "btnok"
+        btnok.Size = New Size(40, 29)
+        btnok.TabIndex = 21
+        btnok.Text = "OK"
+        btnok.UseVisualStyleBackColor = False
         ' 
         ' frmProductos
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(629, 482)
+        Controls.Add(btnok)
         Controls.Add(txtBuscar)
         Controls.Add(btnBuscar)
         Controls.Add(Label6)
@@ -270,4 +291,5 @@ Partial Class frmProductos
     Friend WithEvents dgvProductos As DataGridView
     Friend WithEvents btnBuscar As Button
     Friend WithEvents txtBuscar As TextBox
+    Friend WithEvents btnok As Button
 End Class
