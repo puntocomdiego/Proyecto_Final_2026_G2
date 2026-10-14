@@ -29,9 +29,8 @@ Partial Class frmClientes
         txtTelefono = New TextBox()
         txtEmail = New TextBox()
         txtDireccion = New TextBox()
-        picFoto = New PictureBox()
         dgvClientes = New DataGridView()
-        btnCargarFoto = New Button()
+        btnCancelar = New Button()
         btnAgregar = New Button()
         btnModificar = New Button()
         btnEliminar = New Button()
@@ -42,83 +41,80 @@ Partial Class frmClientes
         Label5 = New Label()
         Label6 = New Label()
         txtDocumento = New MaskedTextBox()
-        CType(picFoto, ComponentModel.ISupportInitialize).BeginInit()
+        btnNuevo = New Button()
+        GroupBox1 = New GroupBox()
+        GroupBox2 = New GroupBox()
         CType(dgvClientes, ComponentModel.ISupportInitialize).BeginInit()
+        GroupBox1.SuspendLayout()
+        GroupBox2.SuspendLayout()
         SuspendLayout()
         ' 
         ' btnFin
         ' 
-        btnFin.Location = New Point(581, 396)
+        btnFin.Location = New Point(17, 321)
         btnFin.Name = "btnFin"
-        btnFin.Size = New Size(207, 42)
+        btnFin.Size = New Size(152, 53)
         btnFin.TabIndex = 0
         btnFin.Text = "Fin"
         btnFin.UseVisualStyleBackColor = True
         ' 
         ' txtNombre
         ' 
-        txtNombre.Location = New Point(194, 50)
+        txtNombre.Location = New Point(105, 66)
         txtNombre.Name = "txtNombre"
         txtNombre.Size = New Size(279, 27)
         txtNombre.TabIndex = 1
         ' 
         ' txtApellido
         ' 
-        txtApellido.Location = New Point(194, 83)
+        txtApellido.Location = New Point(105, 99)
         txtApellido.Name = "txtApellido"
         txtApellido.Size = New Size(279, 27)
         txtApellido.TabIndex = 2
         ' 
         ' txtTelefono
         ' 
-        txtTelefono.Location = New Point(194, 116)
+        txtTelefono.Location = New Point(105, 132)
         txtTelefono.Name = "txtTelefono"
         txtTelefono.Size = New Size(279, 27)
         txtTelefono.TabIndex = 3
         ' 
         ' txtEmail
         ' 
-        txtEmail.Location = New Point(194, 149)
+        txtEmail.Location = New Point(105, 275)
         txtEmail.Name = "txtEmail"
         txtEmail.Size = New Size(279, 27)
         txtEmail.TabIndex = 4
         ' 
         ' txtDireccion
         ' 
-        txtDireccion.Location = New Point(194, 185)
+        txtDireccion.Location = New Point(105, 347)
         txtDireccion.Name = "txtDireccion"
         txtDireccion.Size = New Size(279, 27)
         txtDireccion.TabIndex = 5
         ' 
-        ' picFoto
-        ' 
-        picFoto.Location = New Point(479, 12)
-        picFoto.Name = "picFoto"
-        picFoto.Size = New Size(151, 142)
-        picFoto.TabIndex = 7
-        picFoto.TabStop = False
-        ' 
         ' dgvClientes
         ' 
+        dgvClientes.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         dgvClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        dgvClientes.Location = New Point(12, 219)
+        dgvClientes.Location = New Point(12, 419)
         dgvClientes.Name = "dgvClientes"
         dgvClientes.RowHeadersWidth = 51
-        dgvClientes.Size = New Size(776, 171)
+        dgvClientes.Size = New Size(596, 171)
         dgvClientes.TabIndex = 8
         ' 
-        ' btnCargarFoto
+        ' btnCancelar
         ' 
-        btnCargarFoto.Location = New Point(479, 160)
-        btnCargarFoto.Name = "btnCargarFoto"
-        btnCargarFoto.Size = New Size(152, 53)
-        btnCargarFoto.TabIndex = 9
-        btnCargarFoto.Text = "CARGAR FOTO"
-        btnCargarFoto.UseVisualStyleBackColor = True
+        btnCancelar.Location = New Point(17, 203)
+        btnCancelar.Name = "btnCancelar"
+        btnCancelar.Size = New Size(152, 53)
+        btnCancelar.TabIndex = 9
+        btnCancelar.Text = "CANCELAR"
+        btnCancelar.UseVisualStyleBackColor = True
         ' 
         ' btnAgregar
         ' 
-        btnAgregar.Location = New Point(636, 12)
+        btnAgregar.Location = New Point(17, 85)
         btnAgregar.Name = "btnAgregar"
         btnAgregar.Size = New Size(152, 53)
         btnAgregar.TabIndex = 10
@@ -127,7 +123,7 @@ Partial Class frmClientes
         ' 
         ' btnModificar
         ' 
-        btnModificar.Location = New Point(636, 78)
+        btnModificar.Location = New Point(17, 144)
         btnModificar.Name = "btnModificar"
         btnModificar.Size = New Size(152, 53)
         btnModificar.TabIndex = 11
@@ -136,7 +132,7 @@ Partial Class frmClientes
         ' 
         ' btnEliminar
         ' 
-        btnEliminar.Location = New Point(636, 160)
+        btnEliminar.Location = New Point(17, 262)
         btnEliminar.Name = "btnEliminar"
         btnEliminar.Size = New Size(152, 53)
         btnEliminar.TabIndex = 12
@@ -146,7 +142,7 @@ Partial Class frmClientes
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.Location = New Point(12, 53)
+        Label1.Location = New Point(13, 69)
         Label1.Name = "Label1"
         Label1.Size = New Size(67, 20)
         Label1.TabIndex = 13
@@ -155,7 +151,7 @@ Partial Class frmClientes
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Location = New Point(12, 86)
+        Label2.Location = New Point(13, 102)
         Label2.Name = "Label2"
         Label2.Size = New Size(69, 20)
         Label2.TabIndex = 14
@@ -164,7 +160,7 @@ Partial Class frmClientes
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Location = New Point(12, 119)
+        Label3.Location = New Point(13, 135)
         Label3.Name = "Label3"
         Label3.Size = New Size(70, 20)
         Label3.TabIndex = 15
@@ -173,7 +169,7 @@ Partial Class frmClientes
         ' Label4
         ' 
         Label4.AutoSize = True
-        Label4.Location = New Point(12, 152)
+        Label4.Location = New Point(13, 278)
         Label4.Name = "Label4"
         Label4.Size = New Size(49, 20)
         Label4.TabIndex = 16
@@ -182,7 +178,7 @@ Partial Class frmClientes
         ' Label5
         ' 
         Label5.AutoSize = True
-        Label5.Location = New Point(12, 192)
+        Label5.Location = New Point(13, 354)
         Label5.Name = "Label5"
         Label5.Size = New Size(75, 20)
         Label5.TabIndex = 17
@@ -191,7 +187,7 @@ Partial Class frmClientes
         ' Label6
         ' 
         Label6.AutoSize = True
-        Label6.Location = New Point(12, 19)
+        Label6.Location = New Point(13, 35)
         Label6.Name = "Label6"
         Label6.Size = New Size(90, 20)
         Label6.TabIndex = 20
@@ -199,42 +195,73 @@ Partial Class frmClientes
         ' 
         ' txtDocumento
         ' 
-        txtDocumento.Location = New Point(194, 19)
+        txtDocumento.Location = New Point(115, 26)
         txtDocumento.Name = "txtDocumento"
         txtDocumento.Size = New Size(279, 27)
         txtDocumento.TabIndex = 21
-        txtDocumento.Text = " .   .   -"
+        ' 
+        ' btnNuevo
+        ' 
+        btnNuevo.Location = New Point(17, 26)
+        btnNuevo.Name = "btnNuevo"
+        btnNuevo.Size = New Size(152, 53)
+        btnNuevo.TabIndex = 22
+        btnNuevo.Text = "NUEVO"
+        btnNuevo.UseVisualStyleBackColor = True
+        ' 
+        ' GroupBox1
+        ' 
+        GroupBox1.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
+        GroupBox1.Controls.Add(btnNuevo)
+        GroupBox1.Controls.Add(btnEliminar)
+        GroupBox1.Controls.Add(btnModificar)
+        GroupBox1.Controls.Add(btnAgregar)
+        GroupBox1.Controls.Add(btnCancelar)
+        GroupBox1.Controls.Add(btnFin)
+        GroupBox1.Location = New Point(420, 20)
+        GroupBox1.Name = "GroupBox1"
+        GroupBox1.Size = New Size(189, 393)
+        GroupBox1.TabIndex = 23
+        GroupBox1.TabStop = False
+        GroupBox1.Text = "Acciones"
+        ' 
+        ' GroupBox2
+        ' 
+        GroupBox2.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left
+        GroupBox2.Controls.Add(txtDocumento)
+        GroupBox2.Controls.Add(Label6)
+        GroupBox2.Controls.Add(Label5)
+        GroupBox2.Controls.Add(Label4)
+        GroupBox2.Controls.Add(Label3)
+        GroupBox2.Controls.Add(Label2)
+        GroupBox2.Controls.Add(Label1)
+        GroupBox2.Controls.Add(txtDireccion)
+        GroupBox2.Controls.Add(txtEmail)
+        GroupBox2.Controls.Add(txtTelefono)
+        GroupBox2.Controls.Add(txtApellido)
+        GroupBox2.Controls.Add(txtNombre)
+        GroupBox2.Location = New Point(12, 20)
+        GroupBox2.Name = "GroupBox2"
+        GroupBox2.Size = New Size(400, 393)
+        GroupBox2.TabIndex = 24
+        GroupBox2.TabStop = False
+        GroupBox2.Text = "Cliente"
         ' 
         ' frmClientes
         ' 
         AutoScaleDimensions = New SizeF(8.0F, 20.0F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(800, 450)
-        Controls.Add(txtDocumento)
-        Controls.Add(Label6)
-        Controls.Add(Label5)
-        Controls.Add(Label4)
-        Controls.Add(Label3)
-        Controls.Add(Label2)
-        Controls.Add(Label1)
-        Controls.Add(btnEliminar)
-        Controls.Add(btnModificar)
-        Controls.Add(btnAgregar)
-        Controls.Add(btnCargarFoto)
+        ClientSize = New Size(620, 602)
+        Controls.Add(GroupBox2)
+        Controls.Add(GroupBox1)
         Controls.Add(dgvClientes)
-        Controls.Add(picFoto)
-        Controls.Add(txtDireccion)
-        Controls.Add(txtEmail)
-        Controls.Add(txtTelefono)
-        Controls.Add(txtApellido)
-        Controls.Add(txtNombre)
-        Controls.Add(btnFin)
         Name = "frmClientes"
         Text = "frmClientes"
-        CType(picFoto, ComponentModel.ISupportInitialize).EndInit()
         CType(dgvClientes, ComponentModel.ISupportInitialize).EndInit()
+        GroupBox1.ResumeLayout(False)
+        GroupBox2.ResumeLayout(False)
+        GroupBox2.PerformLayout()
         ResumeLayout(False)
-        PerformLayout()
     End Sub
 
     Friend WithEvents btnFin As Button
@@ -245,7 +272,7 @@ Partial Class frmClientes
     Friend WithEvents txtDireccion As TextBox
     Friend WithEvents picFoto As PictureBox
     Friend WithEvents dgvClientes As DataGridView
-    Friend WithEvents btnCargarFoto As Button
+    Friend WithEvents btnCancelar As Button
     Friend WithEvents btnAgregar As Button
     Friend WithEvents btnModificar As Button
     Friend WithEvents btnEliminar As Button
@@ -256,5 +283,8 @@ Partial Class frmClientes
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents txtDocumento As MaskedTextBox
+    Friend WithEvents btnNuevo As Button
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents GroupBox2 As GroupBox
 
 End Class
