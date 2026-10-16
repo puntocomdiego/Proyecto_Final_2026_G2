@@ -239,6 +239,7 @@ Partial Class frmProductos
         btnok.TabIndex = 21
         btnok.Text = "OK"
         btnok.UseVisualStyleBackColor = False
+        btnok.Visible = False
         ' 
         ' frmProductos
         ' 

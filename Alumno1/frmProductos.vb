@@ -178,7 +178,6 @@
             Dim row As DataGridViewRow = dgvProductos.Rows(e.RowIndex)
 
             idProductoSeleccionado = Convert.ToInt32(row.Cells("IdProducto").Value)
-
             txtCodigo.Text = row.Cells("Codigo").Value.ToString()
             txtDescripcion.Text = row.Cells("Descripcion").Value.ToString()
             txtPrecio.Text = row.Cells("Precio").Value.ToString()
@@ -231,16 +230,16 @@
 
         'opcion 2: Buscar en la base de datos y actualizar la grilla
 
-        'Try
-        '    Dim dt As DataTable = datos.Buscar(txtBuscar.Text.Trim())
+        Try
+            Dim dt As DataTable = datos.Buscar(txtBuscar.Text.Trim())
 
-        '    dgvProductos.DataSource = dt
+            dgvProductos.DataSource = dt
 
-        '    If dt.Rows.Count > 0 Then
-        '    End If
-        'Catch ex As Exception
-        '    MessageBox.Show("Error en la búsqueda: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        'End Try
+            If dt.Rows.Count > 0 Then
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error en la búsqueda: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
     Private Sub btnok_Click(sender As Object, e As EventArgs) Handles btnok.Click
         txtBuscar.Visible = False
