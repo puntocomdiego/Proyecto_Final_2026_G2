@@ -250,7 +250,7 @@ Partial Class frmClientes
         ' 
         ' frmClientes
         ' 
-        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(620, 602)
         Controls.Add(GroupBox2)
