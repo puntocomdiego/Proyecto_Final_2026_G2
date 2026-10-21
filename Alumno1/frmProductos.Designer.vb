@@ -42,6 +42,9 @@ Partial Class frmProductos
         btnBuscar = New Button()
         txtBuscar = New TextBox()
         btnok = New Button()
+        btnNuevo = New Button()
+        btnFin = New Button()
+        chkActivo = New CheckBox()
         CType(dgvProductos, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -157,10 +160,11 @@ Partial Class frmProductos
         ' btnAgregar
         ' 
         btnAgregar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        btnAgregar.Enabled = False
         btnAgregar.Font = New Font("Segoe UI", 12F)
-        btnAgregar.Location = New Point(465, 61)
+        btnAgregar.Location = New Point(483, 61)
         btnAgregar.Name = "btnAgregar"
-        btnAgregar.Size = New Size(143, 39)
+        btnAgregar.Size = New Size(125, 39)
         btnAgregar.TabIndex = 13
         btnAgregar.Text = "Agregar"
         btnAgregar.UseVisualStyleBackColor = True
@@ -168,10 +172,11 @@ Partial Class frmProductos
         ' btnModificar
         ' 
         btnModificar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        btnModificar.Enabled = False
         btnModificar.Font = New Font("Segoe UI", 12F)
-        btnModificar.Location = New Point(465, 106)
+        btnModificar.Location = New Point(352, 106)
         btnModificar.Name = "btnModificar"
-        btnModificar.Size = New Size(143, 39)
+        btnModificar.Size = New Size(125, 39)
         btnModificar.TabIndex = 14
         btnModificar.Text = "Modificar"
         btnModificar.UseVisualStyleBackColor = True
@@ -179,10 +184,11 @@ Partial Class frmProductos
         ' btnEliminar
         ' 
         btnEliminar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        btnEliminar.Enabled = False
         btnEliminar.Font = New Font("Segoe UI", 12F)
-        btnEliminar.Location = New Point(465, 151)
+        btnEliminar.Location = New Point(483, 106)
         btnEliminar.Name = "btnEliminar"
-        btnEliminar.Size = New Size(143, 39)
+        btnEliminar.Size = New Size(125, 39)
         btnEliminar.TabIndex = 15
         btnEliminar.Text = "Eliminar"
         btnEliminar.UseVisualStyleBackColor = True
@@ -191,9 +197,9 @@ Partial Class frmProductos
         ' 
         btnLimpiar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnLimpiar.Font = New Font("Segoe UI", 12F)
-        btnLimpiar.Location = New Point(465, 196)
+        btnLimpiar.Location = New Point(352, 61)
         btnLimpiar.Name = "btnLimpiar"
-        btnLimpiar.Size = New Size(143, 39)
+        btnLimpiar.Size = New Size(125, 39)
         btnLimpiar.TabIndex = 16
         btnLimpiar.Text = "Limpiar"
         btnLimpiar.UseVisualStyleBackColor = True
@@ -211,9 +217,9 @@ Partial Class frmProductos
         ' 
         btnBuscar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnBuscar.Font = New Font("Segoe UI", 12F)
-        btnBuscar.Location = New Point(465, 16)
+        btnBuscar.Location = New Point(352, 16)
         btnBuscar.Name = "btnBuscar"
-        btnBuscar.Size = New Size(143, 39)
+        btnBuscar.Size = New Size(125, 39)
         btnBuscar.TabIndex = 19
         btnBuscar.Text = "Buscar"
         btnBuscar.UseVisualStyleBackColor = True
@@ -222,7 +228,7 @@ Partial Class frmProductos
         ' 
         txtBuscar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         txtBuscar.Font = New Font("Segoe UI", 12F)
-        txtBuscar.Location = New Point(403, 25)
+        txtBuscar.Location = New Point(403, 174)
         txtBuscar.Name = "txtBuscar"
         txtBuscar.Size = New Size(205, 29)
         txtBuscar.TabIndex = 20
@@ -233,7 +239,7 @@ Partial Class frmProductos
         btnok.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnok.BackColor = Color.FromArgb(CByte(192), CByte(255), CByte(192))
         btnok.Font = New Font("Segoe UI", 12F)
-        btnok.Location = New Point(361, 25)
+        btnok.Location = New Point(357, 174)
         btnok.Name = "btnok"
         btnok.Size = New Size(40, 29)
         btnok.TabIndex = 21
@@ -241,11 +247,48 @@ Partial Class frmProductos
         btnok.UseVisualStyleBackColor = False
         btnok.Visible = False
         ' 
+        ' btnNuevo
+        ' 
+        btnNuevo.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        btnNuevo.Font = New Font("Segoe UI", 12F)
+        btnNuevo.Location = New Point(483, 16)
+        btnNuevo.Name = "btnNuevo"
+        btnNuevo.Size = New Size(125, 39)
+        btnNuevo.TabIndex = 22
+        btnNuevo.Text = "Nuevo"
+        btnNuevo.UseVisualStyleBackColor = True
+        ' 
+        ' btnFin
+        ' 
+        btnFin.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        btnFin.Font = New Font("Segoe UI", 12F)
+        btnFin.Location = New Point(483, 209)
+        btnFin.Name = "btnFin"
+        btnFin.Size = New Size(125, 39)
+        btnFin.TabIndex = 23
+        btnFin.Text = "Fin"
+        btnFin.UseVisualStyleBackColor = True
+        ' 
+        ' chkActivo
+        ' 
+        chkActivo.AutoSize = True
+        chkActivo.Font = New Font("Segoe UI", 12F)
+        chkActivo.Location = New Point(373, 147)
+        chkActivo.Name = "chkActivo"
+        chkActivo.Size = New Size(72, 25)
+        chkActivo.TabIndex = 24
+        chkActivo.Text = "Activo"
+        chkActivo.UseVisualStyleBackColor = True
+        chkActivo.Visible = False
+        ' 
         ' frmProductos
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(629, 482)
+        Controls.Add(chkActivo)
+        Controls.Add(btnFin)
+        Controls.Add(btnNuevo)
         Controls.Add(btnok)
         Controls.Add(txtBuscar)
         Controls.Add(btnBuscar)
@@ -293,4 +336,7 @@ Partial Class frmProductos
     Friend WithEvents btnBuscar As Button
     Friend WithEvents txtBuscar As TextBox
     Friend WithEvents btnok As Button
+    Friend WithEvents btnNuevo As Button
+    Friend WithEvents btnFin As Button
+    Friend WithEvents chkActivo As CheckBox
 End Class
