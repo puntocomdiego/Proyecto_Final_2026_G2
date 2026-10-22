@@ -81,7 +81,7 @@ Partial Class frmClientes
         ' 
         ' txtEmail
         ' 
-        txtEmail.Location = New Point(105, 275)
+        txtEmail.Location = New Point(105, 170)
         txtEmail.Name = "txtEmail"
         txtEmail.Size = New Size(279, 27)
         txtEmail.TabIndex = 4
@@ -169,7 +169,7 @@ Partial Class frmClientes
         ' Label4
         ' 
         Label4.AutoSize = True
-        Label4.Location = New Point(13, 278)
+        Label4.Location = New Point(13, 177)
         Label4.Name = "Label4"
         Label4.Size = New Size(49, 20)
         Label4.TabIndex = 16
@@ -195,7 +195,7 @@ Partial Class frmClientes
         ' 
         ' txtDocumento
         ' 
-        txtDocumento.Location = New Point(115, 26)
+        txtDocumento.Location = New Point(105, 26)
         txtDocumento.Mask = "0.000.000-0"
         txtDocumento.Name = "txtDocumento"
         txtDocumento.Size = New Size(279, 27)
