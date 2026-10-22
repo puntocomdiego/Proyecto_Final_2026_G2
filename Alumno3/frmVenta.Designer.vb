@@ -32,7 +32,7 @@ Partial Class frmVenta
         btnAgregar = New Button()
         btnNuevo = New Button()
         btnEliminar = New Button()
-        cboProducto = New ComboBox()
+        cboDescripcion = New ComboBox()
         btnEditar = New Button()
         GroupBox1 = New GroupBox()
         GroupBox2 = New GroupBox()
@@ -80,7 +80,7 @@ Partial Class frmVenta
         ' 
         cboCategoria.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
         cboCategoria.FormattingEnabled = True
-        cboCategoria.Location = New Point(102, 56)
+        cboCategoria.Location = New Point(102, 59)
         cboCategoria.Name = "cboCategoria"
         cboCategoria.Size = New Size(164, 23)
         cboCategoria.TabIndex = 4
@@ -89,7 +89,7 @@ Partial Class frmVenta
         ' 
         Label2.AutoSize = True
         Label2.Font = New Font("Segoe UI Semibold", 11F, FontStyle.Bold)
-        Label2.Location = New Point(17, 59)
+        Label2.Location = New Point(17, 62)
         Label2.Name = "Label2"
         Label2.Size = New Size(79, 20)
         Label2.TabIndex = 3
@@ -99,7 +99,7 @@ Partial Class frmVenta
         ' 
         Label3.AutoSize = True
         Label3.Font = New Font("Segoe UI Semibold", 11F, FontStyle.Bold)
-        Label3.Location = New Point(292, 88)
+        Label3.Location = New Point(299, 91)
         Label3.Name = "Label3"
         Label3.Size = New Size(74, 20)
         Label3.TabIndex = 5
@@ -108,7 +108,7 @@ Partial Class frmVenta
         ' txtCantidad
         ' 
         txtCantidad.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
-        txtCantidad.Location = New Point(366, 87)
+        txtCantidad.Location = New Point(373, 90)
         txtCantidad.Name = "txtCantidad"
         txtCantidad.Size = New Size(65, 23)
         txtCantidad.TabIndex = 6
@@ -148,14 +148,14 @@ Partial Class frmVenta
         btnEliminar.Text = "Eliminar"
         btnEliminar.UseVisualStyleBackColor = False
         ' 
-        ' cboProducto
+        ' cboDescripcion
         ' 
-        cboProducto.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
-        cboProducto.FormattingEnabled = True
-        cboProducto.Location = New Point(102, 85)
-        cboProducto.Name = "cboProducto"
-        cboProducto.Size = New Size(164, 23)
-        cboProducto.TabIndex = 11
+        cboDescripcion.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
+        cboDescripcion.FormattingEnabled = True
+        cboDescripcion.Location = New Point(102, 88)
+        cboDescripcion.Name = "cboDescripcion"
+        cboDescripcion.Size = New Size(164, 23)
+        cboDescripcion.TabIndex = 11
         ' 
         ' btnEditar
         ' 
@@ -219,7 +219,7 @@ Partial Class frmVenta
         ' 
         Label4.AutoSize = True
         Label4.Font = New Font("Segoe UI Semibold", 11F, FontStyle.Bold)
-        Label4.Location = New Point(20, 88)
+        Label4.Location = New Point(20, 91)
         Label4.Name = "Label4"
         Label4.Size = New Size(76, 20)
         Label4.TabIndex = 14
@@ -243,7 +243,7 @@ Partial Class frmVenta
         Controls.Add(dgvTemp)
         Controls.Add(Label4)
         Controls.Add(GroupBox1)
-        Controls.Add(cboProducto)
+        Controls.Add(cboDescripcion)
         Controls.Add(btnNuevo)
         Controls.Add(btnAgregar)
         Controls.Add(txtCantidad)
@@ -272,7 +272,7 @@ Partial Class frmVenta
     Friend WithEvents btnAgregar As Button
     Friend WithEvents btnNuevo As Button
     Friend WithEvents btnEliminar As Button
-    Friend WithEvents cboProducto As ComboBox
+    Friend WithEvents cboDescripcion As ComboBox
     Friend WithEvents btnEditar As Button
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label4 As Label
