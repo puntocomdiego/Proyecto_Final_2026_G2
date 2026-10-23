@@ -99,6 +99,10 @@
     End Sub
 
     Private Sub btnLimpiar_Click(sender As Object, e As EventArgs) Handles btnLimpiar.Click
+        txtBuscar.Clear()
+        txtBuscar.Visible = False
+        btnok.Visible = False
+        btnBuscar.Enabled = True
         LimpiarCampos()
         MsgBox("Se han limpiado los campos del formulario.", MsgBoxStyle.Information, "Campos Limpiados")
     End Sub
@@ -287,6 +291,7 @@
         txtBuscar.Visible = False
         btnBuscar.Enabled = True
         btnok.Visible = False
+        txtBuscar.Text = String.Empty
     End Sub
 
     Private Sub txtCodigo_GotFocus(sender As Object, e As EventArgs) Handles txtCodigo.GotFocus
@@ -315,6 +320,7 @@
     End Sub
     Private Sub txtStockminimo_GotFocus(sender As Object, e As EventArgs) Handles txtStockminimo.GotFocus
         txtStockminimo.BackColor = Color.LightGreen
+        btnAgregar.Enabled = True
     End Sub
     Private Sub txtStockminimo_LostFocus(sender As Object, e As EventArgs) Handles txtStockminimo.LostFocus
         txtStockminimo.BackColor = Color.White
@@ -334,5 +340,75 @@
 
     Private Sub dgvProductos_DataBindingComplete(sender As Object, e As DataGridViewBindingCompleteEventArgs) Handles dgvProductos.DataBindingComplete
         VerificarStockMinimo()
+    End Sub
+    Private Sub txtCodigo_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtCodigo.KeyPress
+        If InStr("0123456789" & Chr(8), e.KeyChar) Then
+            e.Handled = False
+        Else
+            e.Handled = True
+        End If
+
+        If Chr(13) = e.KeyChar Then
+            txtDescripcion.Focus()
+        End If
+    End Sub
+    Private Sub txtdescripcion_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtDescripcion.KeyPress
+        If InStr("0123456789ZXCVBNMASDFGHJKLQWERTYUIOPzxcvbnmasdfghjklqwertyuiopáíéúóúñÁÉÍÓÚÑ " & Chr(8), e.KeyChar) Then
+            e.Handled = False
+        Else
+            e.Handled = True
+        End If
+
+        If Chr(13) = e.KeyChar Then
+            txtPrecio.Focus()
+        End If
+    End Sub
+    Private Sub txtprecio_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtPrecio.KeyPress
+        If InStr("0123456789" & Chr(8), e.KeyChar) Then
+            e.Handled = False
+        Else
+            e.Handled = True
+        End If
+
+        If Chr(13) = e.KeyChar Then
+            txtStock.Focus()
+        End If
+    End Sub
+    Private Sub txtStock_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtStock.KeyPress
+        If InStr("0123456789" & Chr(8), e.KeyChar) Then
+            e.Handled = False
+        Else
+            e.Handled = True
+        End If
+
+        If Chr(13) = e.KeyChar Then
+            txtStockminimo.Focus()
+        End If
+    End Sub
+    Private Sub txtStockminimo_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtStockminimo.KeyPress
+        If InStr("0123456789" & Chr(8), e.KeyChar) Then
+            e.Handled = False
+        Else
+            e.Handled = True
+        End If
+
+        If Chr(13) = e.KeyChar Then
+            btnAgregar.PerformClick()
+        End If
+    End Sub
+    Private Sub txtbuscar_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtBuscar.KeyPress
+        If InStr("0123456789ZXCVBNMASDFGHJKLQWERTYUIOPzxcvbnmasdfghjklqwertyuiopáíéúóúñÁÉÍÓÚÑ " & Chr(8), e.KeyChar) Then
+            e.Handled = False
+        Else
+            e.Handled = True
+        End If
+
+        If Chr(13) = e.KeyChar Then
+            btnok.PerformClick()
+        End If
+    End Sub
+
+    Private Sub txtStockminimo_TextChanged(sender As Object, e As EventArgs) Handles txtStockminimo.TextChanged
+
     End Sub
 End Class
