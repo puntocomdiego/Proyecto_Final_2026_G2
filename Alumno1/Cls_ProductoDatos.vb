@@ -55,9 +55,10 @@ Public Class Cls_ProductoDatos
         Dim dt As New DataTable()
         Using cn As New OleDbConnection(cadenaConexion)
             Dim sql As String =
-                "SELECT Productos.Descripcion " _
-+ "From Categorias INNER Join Productos On Categorias.IdCategoria = Productos.IdCategoria " _
-+ "Order By Productos.Descripcion;"
+                "SELECT Productos.IdProducto, Productos.Codigo, Productos.Descripcion, Productos.Precio, Productos.Stock, Productos.StockMinimo, Productos.IdCategoria, Productos.Activo " &
+            "FROM Productos " &
+            "WHERE Productos.Descripcion LIKE ? " &
+            "ORDER BY Productos.Descripcion, Productos.Codigo, Productos.IdCategoria, Productos.IdProducto;"
 
             Using cmd As New OleDbCommand(sql, cn)
                 cmd.Parameters.AddWithValue("?", "%" & texto & "%")
