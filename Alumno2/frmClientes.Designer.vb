@@ -44,6 +44,7 @@ Partial Class frmClientes
         btnNuevo = New Button()
         GroupBox1 = New GroupBox()
         GroupBox2 = New GroupBox()
+        btnmail = New Button()
         CType(dgvClientes, ComponentModel.ISupportInitialize).BeginInit()
         GroupBox1.SuspendLayout()
         GroupBox2.SuspendLayout()
@@ -52,7 +53,7 @@ Partial Class frmClientes
         ' btnFin
         ' 
         btnFin.Font = New Font("Stencil", 13F, FontStyle.Bold)
-        btnFin.Location = New Point(17, 256)
+        btnFin.Location = New Point(17, 302)
         btnFin.Name = "btnFin"
         btnFin.Size = New Size(140, 40)
         btnFin.TabIndex = 0
@@ -62,7 +63,7 @@ Partial Class frmClientes
         ' txtNombre
         ' 
         txtNombre.Font = New Font("Arial Rounded MT Bold", 12F)
-        txtNombre.Location = New Point(142, 68)
+        txtNombre.Location = New Point(142, 72)
         txtNombre.Name = "txtNombre"
         txtNombre.Size = New Size(265, 31)
         txtNombre.TabIndex = 1
@@ -70,7 +71,7 @@ Partial Class frmClientes
         ' txtApellido
         ' 
         txtApellido.Font = New Font("Arial Rounded MT Bold", 12F)
-        txtApellido.Location = New Point(142, 105)
+        txtApellido.Location = New Point(142, 118)
         txtApellido.Name = "txtApellido"
         txtApellido.Size = New Size(265, 31)
         txtApellido.TabIndex = 2
@@ -78,7 +79,7 @@ Partial Class frmClientes
         ' txtTelefono
         ' 
         txtTelefono.Font = New Font("Arial Rounded MT Bold", 12F)
-        txtTelefono.Location = New Point(142, 142)
+        txtTelefono.Location = New Point(142, 164)
         txtTelefono.Name = "txtTelefono"
         txtTelefono.Size = New Size(265, 31)
         txtTelefono.TabIndex = 3
@@ -86,7 +87,7 @@ Partial Class frmClientes
         ' txtEmail
         ' 
         txtEmail.Font = New Font("Arial Rounded MT Bold", 12F)
-        txtEmail.Location = New Point(142, 179)
+        txtEmail.Location = New Point(142, 210)
         txtEmail.Name = "txtEmail"
         txtEmail.Size = New Size(265, 31)
         txtEmail.TabIndex = 4
@@ -94,7 +95,7 @@ Partial Class frmClientes
         ' txtDireccion
         ' 
         txtDireccion.Font = New Font("Arial Rounded MT Bold", 12F)
-        txtDireccion.Location = New Point(142, 216)
+        txtDireccion.Location = New Point(142, 256)
         txtDireccion.Name = "txtDireccion"
         txtDireccion.Size = New Size(265, 31)
         txtDireccion.TabIndex = 5
@@ -103,10 +104,10 @@ Partial Class frmClientes
         ' 
         dgvClientes.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         dgvClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        dgvClientes.Location = New Point(12, 333)
+        dgvClientes.Location = New Point(12, 367)
         dgvClientes.Name = "dgvClientes"
         dgvClientes.RowHeadersWidth = 51
-        dgvClientes.Size = New Size(596, 257)
+        dgvClientes.Size = New Size(596, 223)
         dgvClientes.TabIndex = 8
         ' 
         ' btnCancelar
@@ -153,7 +154,7 @@ Partial Class frmClientes
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Arial Rounded MT Bold", 12F)
-        Label1.Location = New Point(6, 76)
+        Label1.Location = New Point(6, 80)
         Label1.Name = "Label1"
         Label1.Size = New Size(95, 23)
         Label1.TabIndex = 13
@@ -163,7 +164,7 @@ Partial Class frmClientes
         ' 
         Label2.AutoSize = True
         Label2.Font = New Font("Arial Rounded MT Bold", 12F)
-        Label2.Location = New Point(6, 113)
+        Label2.Location = New Point(6, 126)
         Label2.Name = "Label2"
         Label2.Size = New Size(95, 23)
         Label2.TabIndex = 14
@@ -173,7 +174,7 @@ Partial Class frmClientes
         ' 
         Label3.AutoSize = True
         Label3.Font = New Font("Arial Rounded MT Bold", 12F)
-        Label3.Location = New Point(6, 150)
+        Label3.Location = New Point(6, 172)
         Label3.Name = "Label3"
         Label3.Size = New Size(101, 23)
         Label3.TabIndex = 15
@@ -183,7 +184,7 @@ Partial Class frmClientes
         ' 
         Label4.AutoSize = True
         Label4.Font = New Font("Arial Rounded MT Bold", 12F)
-        Label4.Location = New Point(6, 187)
+        Label4.Location = New Point(6, 218)
         Label4.Name = "Label4"
         Label4.Size = New Size(69, 23)
         Label4.TabIndex = 16
@@ -193,7 +194,7 @@ Partial Class frmClientes
         ' 
         Label5.AutoSize = True
         Label5.Font = New Font("Arial Rounded MT Bold", 12F)
-        Label5.Location = New Point(6, 224)
+        Label5.Location = New Point(6, 264)
         Label5.Name = "Label5"
         Label5.Size = New Size(110, 23)
         Label5.TabIndex = 17
@@ -203,7 +204,7 @@ Partial Class frmClientes
         ' 
         Label6.AutoSize = True
         Label6.Font = New Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label6.Location = New Point(6, 39)
+        Label6.Location = New Point(6, 34)
         Label6.Name = "Label6"
         Label6.Size = New Size(128, 23)
         Label6.TabIndex = 20
@@ -212,7 +213,7 @@ Partial Class frmClientes
         ' txtDocumento
         ' 
         txtDocumento.Font = New Font("Arial Rounded MT Bold", 12F)
-        txtDocumento.Location = New Point(142, 31)
+        txtDocumento.Location = New Point(142, 26)
         txtDocumento.Mask = "0.000.000-0"
         txtDocumento.Name = "txtDocumento"
         txtDocumento.Size = New Size(265, 31)
@@ -232,6 +233,7 @@ Partial Class frmClientes
         ' GroupBox1
         ' 
         GroupBox1.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
+        GroupBox1.Controls.Add(btnmail)
         GroupBox1.Controls.Add(btnNuevo)
         GroupBox1.Controls.Add(btnEliminar)
         GroupBox1.Controls.Add(btnModificar)
@@ -240,7 +242,7 @@ Partial Class frmClientes
         GroupBox1.Controls.Add(btnFin)
         GroupBox1.Location = New Point(431, 12)
         GroupBox1.Name = "GroupBox1"
-        GroupBox1.Size = New Size(177, 315)
+        GroupBox1.Size = New Size(177, 349)
         GroupBox1.TabIndex = 23
         GroupBox1.TabStop = False
         GroupBox1.Text = "Acciones"
@@ -262,10 +264,20 @@ Partial Class frmClientes
         GroupBox2.Controls.Add(txtNombre)
         GroupBox2.Location = New Point(12, 12)
         GroupBox2.Name = "GroupBox2"
-        GroupBox2.Size = New Size(413, 272)
+        GroupBox2.Size = New Size(413, 349)
         GroupBox2.TabIndex = 24
         GroupBox2.TabStop = False
         GroupBox2.Text = "Cliente"
+        ' 
+        ' btnmail
+        ' 
+        btnmail.Font = New Font("Stencil", 13F, FontStyle.Bold)
+        btnmail.Location = New Point(17, 256)
+        btnmail.Name = "btnmail"
+        btnmail.Size = New Size(140, 40)
+        btnmail.TabIndex = 23
+        btnmail.Text = "Ma&iling"
+        btnmail.UseVisualStyleBackColor = True
         ' 
         ' frmClientes
         ' 
@@ -306,5 +318,6 @@ Partial Class frmClientes
     Friend WithEvents btnNuevo As Button
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents btnmail As Button
 
 End Class

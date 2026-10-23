@@ -171,4 +171,13 @@ Public Class Mailing
             Return False
         End Try
     End Function
+
+    Private Sub btnclientes_Click(sender As Object, e As EventArgs) Handles btnclientes.Click
+        ' Volvemos a abrir la pantalla de Clientes
+        Dim ventanaClientes As New frmClientes()
+        ventanaClientes.Show()
+
+        ' Ocultamos la pantalla actual de Mailing
+        Me.Hide()
+    End Sub
 End Class
