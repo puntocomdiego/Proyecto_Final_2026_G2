@@ -51,90 +51,100 @@ Partial Class frmClientes
         ' 
         ' btnFin
         ' 
-        btnFin.Location = New Point(17, 321)
+        btnFin.Font = New Font("Stencil", 13F, FontStyle.Bold)
+        btnFin.Location = New Point(17, 256)
         btnFin.Name = "btnFin"
-        btnFin.Size = New Size(152, 53)
+        btnFin.Size = New Size(140, 40)
         btnFin.TabIndex = 0
-        btnFin.Text = "Fin"
+        btnFin.Text = "&Fin"
         btnFin.UseVisualStyleBackColor = True
         ' 
         ' txtNombre
         ' 
-        txtNombre.Location = New Point(105, 66)
+        txtNombre.Font = New Font("Arial Rounded MT Bold", 12F)
+        txtNombre.Location = New Point(142, 68)
         txtNombre.Name = "txtNombre"
-        txtNombre.Size = New Size(279, 27)
+        txtNombre.Size = New Size(265, 31)
         txtNombre.TabIndex = 1
         ' 
         ' txtApellido
         ' 
-        txtApellido.Location = New Point(105, 99)
+        txtApellido.Font = New Font("Arial Rounded MT Bold", 12F)
+        txtApellido.Location = New Point(142, 105)
         txtApellido.Name = "txtApellido"
-        txtApellido.Size = New Size(279, 27)
+        txtApellido.Size = New Size(265, 31)
         txtApellido.TabIndex = 2
         ' 
         ' txtTelefono
         ' 
-        txtTelefono.Location = New Point(105, 132)
+        txtTelefono.Font = New Font("Arial Rounded MT Bold", 12F)
+        txtTelefono.Location = New Point(142, 142)
         txtTelefono.Name = "txtTelefono"
-        txtTelefono.Size = New Size(279, 27)
+        txtTelefono.Size = New Size(265, 31)
         txtTelefono.TabIndex = 3
         ' 
         ' txtEmail
         ' 
-        txtEmail.Location = New Point(105, 275)
+        txtEmail.Font = New Font("Arial Rounded MT Bold", 12F)
+        txtEmail.Location = New Point(142, 179)
         txtEmail.Name = "txtEmail"
-        txtEmail.Size = New Size(279, 27)
+        txtEmail.Size = New Size(265, 31)
         txtEmail.TabIndex = 4
         ' 
         ' txtDireccion
         ' 
-        txtDireccion.Location = New Point(105, 347)
+        txtDireccion.Font = New Font("Arial Rounded MT Bold", 12F)
+        txtDireccion.Location = New Point(142, 216)
         txtDireccion.Name = "txtDireccion"
-        txtDireccion.Size = New Size(279, 27)
+        txtDireccion.Size = New Size(265, 31)
         txtDireccion.TabIndex = 5
         ' 
         ' dgvClientes
         ' 
         dgvClientes.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         dgvClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        dgvClientes.Location = New Point(12, 419)
+        dgvClientes.Location = New Point(12, 333)
         dgvClientes.Name = "dgvClientes"
         dgvClientes.RowHeadersWidth = 51
-        dgvClientes.Size = New Size(596, 171)
+        dgvClientes.Size = New Size(596, 257)
         dgvClientes.TabIndex = 8
         ' 
         ' btnCancelar
         ' 
-        btnCancelar.Location = New Point(17, 203)
+        btnCancelar.Font = New Font("Stencil", 13F, FontStyle.Bold)
+        btnCancelar.Location = New Point(17, 164)
         btnCancelar.Name = "btnCancelar"
-        btnCancelar.Size = New Size(152, 53)
+        btnCancelar.Size = New Size(140, 40)
         btnCancelar.TabIndex = 9
-        btnCancelar.Text = "CANCELAR"
+        btnCancelar.Text = "&CANCELAR"
         btnCancelar.UseVisualStyleBackColor = True
         ' 
         ' btnAgregar
         ' 
-        btnAgregar.Location = New Point(17, 85)
+        btnAgregar.Font = New Font("Stencil", 13F, FontStyle.Bold)
+        btnAgregar.Location = New Point(17, 72)
         btnAgregar.Name = "btnAgregar"
-        btnAgregar.Size = New Size(152, 53)
+        btnAgregar.Size = New Size(140, 40)
         btnAgregar.TabIndex = 10
-        btnAgregar.Text = "AGREGAR"
+        btnAgregar.Text = "&AGREGAR"
         btnAgregar.UseVisualStyleBackColor = True
         ' 
         ' btnModificar
         ' 
-        btnModificar.Location = New Point(17, 144)
+        btnModificar.Font = New Font("Stencil", 13F, FontStyle.Bold)
+        btnModificar.Location = New Point(17, 118)
         btnModificar.Name = "btnModificar"
-        btnModificar.Size = New Size(152, 53)
+        btnModificar.Size = New Size(140, 40)
         btnModificar.TabIndex = 11
-        btnModificar.Text = "MODIFICAR"
+        btnModificar.Text = "&MODIFICAR"
         btnModificar.UseVisualStyleBackColor = True
         ' 
         ' btnEliminar
         ' 
-        btnEliminar.Location = New Point(17, 262)
+        btnEliminar.Font = New Font("Stencil", 13F, FontStyle.Bold)
+        btnEliminar.Location = New Point(17, 210)
         btnEliminar.Name = "btnEliminar"
-        btnEliminar.Size = New Size(152, 53)
+        btnEliminar.Size = New Size(140, 40)
         btnEliminar.TabIndex = 12
         btnEliminar.Text = "ELIMINAR"
         btnEliminar.UseVisualStyleBackColor = True
@@ -142,72 +152,81 @@ Partial Class frmClientes
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.Location = New Point(13, 69)
+        Label1.Font = New Font("Arial Rounded MT Bold", 12F)
+        Label1.Location = New Point(6, 76)
         Label1.Name = "Label1"
-        Label1.Size = New Size(67, 20)
+        Label1.Size = New Size(95, 23)
         Label1.TabIndex = 13
         Label1.Text = "Nombre:"
         ' 
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Location = New Point(13, 102)
+        Label2.Font = New Font("Arial Rounded MT Bold", 12F)
+        Label2.Location = New Point(6, 113)
         Label2.Name = "Label2"
-        Label2.Size = New Size(69, 20)
+        Label2.Size = New Size(95, 23)
         Label2.TabIndex = 14
         Label2.Text = "Apellido:"
         ' 
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Location = New Point(13, 135)
+        Label3.Font = New Font("Arial Rounded MT Bold", 12F)
+        Label3.Location = New Point(6, 150)
         Label3.Name = "Label3"
-        Label3.Size = New Size(70, 20)
+        Label3.Size = New Size(101, 23)
         Label3.TabIndex = 15
         Label3.Text = "Teléfono:"
         ' 
         ' Label4
         ' 
         Label4.AutoSize = True
-        Label4.Location = New Point(13, 278)
+        Label4.Font = New Font("Arial Rounded MT Bold", 12F)
+        Label4.Location = New Point(6, 187)
         Label4.Name = "Label4"
-        Label4.Size = New Size(49, 20)
+        Label4.Size = New Size(69, 23)
         Label4.TabIndex = 16
         Label4.Text = "Email:"
         ' 
         ' Label5
         ' 
         Label5.AutoSize = True
-        Label5.Location = New Point(13, 354)
+        Label5.Font = New Font("Arial Rounded MT Bold", 12F)
+        Label5.Location = New Point(6, 224)
         Label5.Name = "Label5"
-        Label5.Size = New Size(75, 20)
+        Label5.Size = New Size(110, 23)
         Label5.TabIndex = 17
         Label5.Text = "Dirección:"
         ' 
         ' Label6
         ' 
         Label6.AutoSize = True
-        Label6.Location = New Point(13, 35)
+        Label6.Font = New Font("Arial Rounded MT Bold", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Label6.Location = New Point(6, 39)
         Label6.Name = "Label6"
-        Label6.Size = New Size(90, 20)
+        Label6.Size = New Size(128, 23)
         Label6.TabIndex = 20
         Label6.Text = "Documento:"
         ' 
         ' txtDocumento
         ' 
-        txtDocumento.Location = New Point(115, 26)
+        txtDocumento.Font = New Font("Arial Rounded MT Bold", 12F)
+        txtDocumento.Location = New Point(142, 31)
         txtDocumento.Mask = "0.000.000-0"
         txtDocumento.Name = "txtDocumento"
-        txtDocumento.Size = New Size(279, 27)
+        txtDocumento.Size = New Size(265, 31)
         txtDocumento.TabIndex = 21
         ' 
         ' btnNuevo
         ' 
+        btnNuevo.Font = New Font("Stencil", 13F, FontStyle.Bold)
         btnNuevo.Location = New Point(17, 26)
         btnNuevo.Name = "btnNuevo"
-        btnNuevo.Size = New Size(152, 53)
+        btnNuevo.Size = New Size(140, 40)
         btnNuevo.TabIndex = 22
-        btnNuevo.Text = "NUEVO"
+        btnNuevo.TabStop = False
+        btnNuevo.Text = "&NUEVO"
         btnNuevo.UseVisualStyleBackColor = True
         ' 
         ' GroupBox1
@@ -219,9 +238,9 @@ Partial Class frmClientes
         GroupBox1.Controls.Add(btnAgregar)
         GroupBox1.Controls.Add(btnCancelar)
         GroupBox1.Controls.Add(btnFin)
-        GroupBox1.Location = New Point(420, 20)
+        GroupBox1.Location = New Point(431, 12)
         GroupBox1.Name = "GroupBox1"
-        GroupBox1.Size = New Size(189, 393)
+        GroupBox1.Size = New Size(177, 315)
         GroupBox1.TabIndex = 23
         GroupBox1.TabStop = False
         GroupBox1.Text = "Acciones"
@@ -241,9 +260,9 @@ Partial Class frmClientes
         GroupBox2.Controls.Add(txtTelefono)
         GroupBox2.Controls.Add(txtApellido)
         GroupBox2.Controls.Add(txtNombre)
-        GroupBox2.Location = New Point(12, 20)
+        GroupBox2.Location = New Point(12, 12)
         GroupBox2.Name = "GroupBox2"
-        GroupBox2.Size = New Size(400, 393)
+        GroupBox2.Size = New Size(413, 272)
         GroupBox2.TabIndex = 24
         GroupBox2.TabStop = False
         GroupBox2.Text = "Cliente"
