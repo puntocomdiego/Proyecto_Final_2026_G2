@@ -1,4 +1,4 @@
-﻿Public Class Temp
+﻿Public Class Temporal
 
     Public Property IdProducto As Integer
     Public Property Descripcion As String
@@ -6,6 +6,7 @@
     Public Property PrecioUnita As Decimal
     Public Property Subtotal As Decimal
 
+    Public Property MetodoPago As String
 
     Public Sub New()
 
@@ -14,12 +15,12 @@
 
     Public Sub New(IdProducto As Integer, Descripcion As String, Cantidad As Decimal, PrecioUnita As Decimal, Subtotal As Decimal)
 
-        Me.IdProducto = IdProducto
+        'Me.IdProducto = IdProducto
         Me.Descripcion = Descripcion
         Me.Cantidad = Cantidad
-        Me.PrecioUnita = PrecioUnita
-        Me.Subtotal = Subtotal
-
+        'Me.PrecioUnita = PrecioUnita
+        'Me.Subtotal = Subtotal
+        'Me.MetodoPago = MetodoPago
     End Sub
 
 End Class

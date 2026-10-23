@@ -9,16 +9,14 @@ IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Comercial.accdb")
     $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={ruta};"
 
     Private datos As New VentaDatos()
-    Private temporal As New TempDatos()
+    Private temporal As New TemporalDatos()
 
     Private Sub frmVenta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         CargarClientes()
         CargarCategorias()
-        'CargarTemp()
+        ConfigurarGrilla()
         MostrarCompras(temporal.Listar())
-
-
 
     End Sub
 
@@ -68,24 +66,31 @@ IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Comercial.accdb")
             Using cn As New OleDbConnection(cadenaConexion)
                 cn.Open()
 
-                Dim sql As String = "SELECT Categorias.IdCategoria , Categorias.Nombre " _
-                                  + "FROM Categorias ; "
+                Dim sql As String = "SELECT IdCategoria ,Nombre FROM Categorias ; "
 
                 Dim da As New OleDb.OleDbDataAdapter(sql, cadenaConexion)
                 Dim dt As New DataTable
                 da.Fill(dt)
 
                 cboCategoria.Items.Clear()
-                cboCategoria.Items.Add("-- Seleccione una categoria --")
 
+                Dim fila As DataRow = dt.NewRow()
+                fila("IdCategoria") = 0
+                fila("Nombre") = "-- Seleccione una categoria --"
+                dt.Rows.InsertAt(fila, 0)
 
-                For i = 0 To dt.Rows.Count - 1
-                    Dim dr As DataRow
-                    dr = dt.Rows(i)
-                    cboCategoria.Items.Add(dr(1))
-                Next
+                ' Vincular los datos al ComboBox
+                cboCategoria.DataSource = dt
+                cboCategoria.DisplayMember = "Nombre"
+                cboCategoria.ValueMember = "IdCategoria"
 
                 cboCategoria.SelectedIndex = 0
+
+                If cboCategoria.SelectedIndex <= 0 Then
+                    Return
+                End If
+
+                Dim idCategoria As Integer = Convert.ToInt32(cboCategoria.SelectedValue)
 
             End Using
 
@@ -97,12 +102,55 @@ IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Comercial.accdb")
 
     End Sub
 
+    Private Sub CargarProductos()
+        Try
+
+            If cboCategoria.SelectedIndex <= 0 Then
+                cboDescripcion.DataSource = Nothing
+                cboDescripcion.Items.Clear()
+                Return
+
+            End If
+
+            Dim idCategoria As Integer = Convert.ToInt32(cboCategoria.SelectedValue)
+
+            Using cn As New OleDbConnection(cadenaConexion)
+                cn.Open()
+                Dim sql As String = "SELECT IdProducto, Descripcion " _
+                                  + "FROM Productos " _
+                                  + "WHERE IdCategoria = ? " _
+                                  + "ORDER By Descripcion DESC;"
+
+                Dim da As New OleDb.OleDbDataAdapter(sql, cn)
+                da.SelectCommand.Parameters.AddWithValue("?", idCategoria)
+                Dim dt As New DataTable
+                da.Fill(dt)
+
+                Dim fila As DataRow = dt.NewRow()
+                fila("IdProducto") = 0
+                fila("Descripcion") = "-- Seleccione un producto --"
+                dt.Rows.InsertAt(fila, 0)
+
+                cboDescripcion.DataSource = dt
+                cboDescripcion.DisplayMember = "Descripcion"
+                cboDescripcion.ValueMember = "IdProducto"
+                cboDescripcion.SelectedIndex = 0
+
+                cboDescripcion.SelectedIndex = 0
+            End Using
+
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar productos " & ex.Message, "Error",
+                         MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
+
     Private Sub MostrarCompras(dt As DataTable)
         dgvTemp.DataSource = dt
         dgvTemp.Columns("IdProducto").HeaderText = "ID"
         dgvTemp.Columns("Descripcion").HeaderText = "Producto"
         dgvTemp.Columns("Cantidad").HeaderText = "Cantidad"
-        dgvTemp.Columns("Cantidad").DefaultCellStyle.Format = "C2"
 
         dgvTemp.Columns("PrecioUnita").HeaderText = "Precio Unitario"
         dgvTemp.Columns("PrecioUnita").DefaultCellStyle.Format = "C2"
@@ -115,21 +163,13 @@ IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Comercial.accdb")
         Globalization.CultureInfo.GetCultureInfo("es-UY")
     End Sub
 
-    'Private Sub CargarTemp()
-
-    '    Using cn As New OleDbConnection(cadenaConexion)
-    '        Dim sql As String = "SELECT Temp.Descripcion, Temp.Cantidad, Temp.PrecioUnita, Temp.Subtotal " _
-    '                            + "FROM Temp"
-
-    '        Dim da As New OleDb.OleDbDataAdapter(sql, cn)
-
-    '        Dim dt As New DataTable
-    '        da.Fill(dt)
-    '        dgvTemp.DataSource = dt
-
-    '    End Using
-
-    'End Sub
+    Private Sub ConfigurarGrilla()
+        dgvTemp.ReadOnly = True
+        dgvTemp.AllowUserToAddRows = False
+        dgvTemp.MultiSelect = False
+        dgvTemp.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        dgvTemp.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+    End Sub
 
     '===========================
 
@@ -137,22 +177,14 @@ IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Comercial.accdb")
 
         If cboCliente.SelectedIndex = 0 Then
 
-            'Label2.Visible = False
-            'Label3.Visible = False
-            'Label4.Visible = False
-
             cboCategoria.Enabled = False
-            cboProducto.Enabled = False
+            cboDescripcion.Enabled = False
             txtCantidad.Enabled = False
 
         Else
 
-            'Label2.Visible = True
-            'Label3.Visible = True
-            'Label4.Visible = True
-
             cboCategoria.Enabled = True
-            cboProducto.Enabled = True
+            cboDescripcion.Enabled = True
             txtCantidad.Enabled = True
 
         End If
@@ -161,51 +193,21 @@ IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Comercial.accdb")
 
     Private Sub cboCategoria_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboCategoria.SelectedIndexChanged
 
-        Dim idCategoria As Integer = CInt(cboCategoria.SelectedIndex)
+        CargarProductos()
 
-        If idCategoria = 0 Then Return
+        If cboCategoria.SelectedIndex = 0 Then
 
-        If cboCategoria.SelectedItem = "-- Seleccione una categoria --" Then Return
-
-        Using cn As New OleDbConnection(cadenaConexion)
-            Dim sql As String = "SELECT Productos.Descripcion " _
-                                + "FROM Productos " _
-                                + "WHERE Productos.IdCategoria = ? " _
-                                + "ORDER By Productos.Descripcion DESC;"
-
-            Dim da As New OleDb.OleDbDataAdapter(sql, cn)
-
-            da.SelectCommand.Parameters.AddWithValue("?", idCategoria)
-
-            Dim dt As New DataTable
-            da.Fill(dt)
-
-            cboProducto.Items.Clear()
-            cboProducto.Items.Add("-- Seleccione un producto --")
-
-
-            For i = 0 To dt.Rows.Count - 1
-                Dim dr As DataRow
-                dr = dt.Rows(i)
-                cboProducto.Items.Add(dr(0))
-            Next
-
-            cboProducto.SelectedIndex = 0
-
-
-            If cboCategoria.SelectedIndex = 0 Then
-
-                cboProducto.Enabled = False
+                cboDescripcion.Enabled = False
                 txtCantidad.Enabled = False
 
             Else
 
-                cboProducto.Enabled = True
+                cboDescripcion.Enabled = True
                 txtCantidad.Enabled = True
 
             End If
 
-        End Using
+
 
     End Sub
 
@@ -224,6 +226,24 @@ IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Comercial.accdb")
         If Not Char.IsDigit(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) Then
             e.Handled = True
         End If
+
+    End Sub
+
+    Private Sub btnAgregar_Click(sender As Object, e As EventArgs) Handles btnAgregar.Click
+
+        Try
+            Dim t As New Temporal(cboDescripcion.SelectedValue, cboDescripcion.Text, CDec(txtCantidad.Text), 0, 0)
+
+            If temporal.Agregar(t) Then
+
+                'Llamar otra funcion para extraer los datos del producto seleccionado y calcular el subtotal
+                'Aca se puede agregar un mensaje de confirmacion de que se agrego correctamente el producto
+
+                MostrarCompras(temporal.Listar())
+            End If
+        Catch ex As Exception
+            MessageBox.Show("No se pudo agregar el producto: " & ex.Message)
+        End Try
 
     End Sub
 End Class
