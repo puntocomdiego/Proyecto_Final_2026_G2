@@ -2,11 +2,6 @@
 
 Public Class TemporalDatos
 
-    Private Shared ReadOnly ruta As String =
-IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Comercial.accdb")
-    Private Shared ReadOnly cadenaConexion As String =
-    $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={ruta};"
-
 
     Public Function Listar() As DataTable
         Dim dt As New DataTable()
@@ -24,7 +19,7 @@ IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Comercial.accdb")
 
         Using cn As New OleDbConnection(cadenaConexion)
             Dim sql As String = "INSERT INTO Temp (IdProducto, Descripcion, Cantidad) VALUES (?, ?, ?)"
-            '"INSERT INTO Temp (IdProducto, Descripcion, Cantidad, PrecioUnita, Subtotal, MetodoPago) VALUES (?, ?, ?, ?, ?, ?)"
+            '"INSERT INTO Temp (IdProducto, Descripcion, Cantidad, PrecioUnita, Subtotal) VALUES (?, ?, ?, ?, ?)"
 
             Using cmd As New OleDbCommand(sql, cn)
                 cmd.Parameters.AddWithValue("?", t.IdProducto)
@@ -32,12 +27,22 @@ IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Comercial.accdb")
                 cmd.Parameters.AddWithValue("?", t.Cantidad)
                 'cmd.Parameters.AddWithValue("?", t.PrecioUnita)
                 'cmd.Parameters.AddWithValue("?", t.Subtotal)
-                'cmd.Parameters.AddWithValue("?", t.MetodoPago)
                 cn.Open()
                 Return cmd.ExecuteNonQuery() > 0
             End Using
         End Using
 
+    End Function
+
+    Public Function Eliminar(idProducto As Integer) As Boolean
+        Using cn As New OleDbConnection(CadenaConexion)
+            Dim sql As String = "DELETE FROM Temp WHERE IdProducto = ?"
+            Using cmd As New OleDbCommand(sql, cn)
+                cmd.Parameters.AddWithValue("?", idProducto)
+                cn.Open()
+                Return cmd.ExecuteNonQuery() > 0
+            End Using
+        End Using
     End Function
 
 End Class
