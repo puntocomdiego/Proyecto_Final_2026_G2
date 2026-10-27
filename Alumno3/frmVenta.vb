@@ -320,6 +320,7 @@ Public Class frmVenta
         cboCategoria.SelectedIndex = 0
         txtCantidad.Text = ""
 
+
         lblTotal.Text = "$0,00"
         temporal.Limpiar()
         MostrarCompras(temporal.Listar())
