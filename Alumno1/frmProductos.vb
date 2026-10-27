@@ -57,14 +57,23 @@
         txtStockminimo.Clear()
     End Sub
     Private Sub VerificarStockMinimo()
-        For Each row As DataGridViewRow In dgvProductos.Rows
-            If Not row.IsNewRow Then
-                Dim stock As Integer = Convert.ToInt32(row.Cells("Stock").Value)
-                Dim stockMin As Integer = Convert.ToInt32(row.Cells("StockMinimo").Value)
+        If Not dgvProductos.Columns.Contains("Stock") OrElse
+        Not dgvProductos.Columns.Contains("StockMinimo") Then Exit Sub
 
-                If stock <= stockMin Then
-                    row.DefaultCellStyle.BackColor = Color.LightCoral
-                End If
+        For Each row As DataGridViewRow In dgvProductos.Rows
+            If row.IsNewRow Then Continue For
+
+            Dim valorStock As Object = row.Cells("Stock").Value
+            Dim valorMinimo As Object = row.Cells("StockMinimo").Value
+
+            ' Color.Empty devuelve la fila al color normal de la grilla
+            row.DefaultCellStyle.BackColor = Color.Empty
+
+            If valorStock Is Nothing OrElse IsDBNull(valorStock) OrElse
+            valorMinimo Is Nothing OrElse IsDBNull(valorMinimo) Then Continue For
+
+            If Convert.ToInt32(valorStock) <= Convert.ToInt32(valorMinimo) Then
+                row.DefaultCellStyle.BackColor = Color.LightCoral
             End If
         Next
     End Sub
@@ -82,6 +91,7 @@
 
             If datos.Agregar(p) Then
                 MostrarProductos(datos.ListarProductos())
+                MsgBox("Producto agregado correctamente.", MsgBoxStyle.Information, "Éxito")
             End If
         Catch ex As Exception
             MessageBox.Show("No se pudo agregar el producto: " & ex.Message)
@@ -90,6 +100,7 @@
 
     Private Sub btnLimpiar_Click(sender As Object, e As EventArgs) Handles btnLimpiar.Click
         LimpiarCampos()
+        MsgBox("Se han limpiado los campos del formulario.", MsgBoxStyle.Information, "Campos Limpiados")
     End Sub
 
     Private Sub LimpiarCampos()
@@ -103,25 +114,54 @@
         txtCodigo.Focus()
         btnEliminar.Enabled = False
         btnModificar.Enabled = False
+        btnAgregar.Enabled = False
+        chkActivo.Visible = False
+
     End Sub
 
     Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
         txtBuscar.Visible = True
-        btnBuscar.Visible = False
-
+        btnBuscar.Enabled = False
+        btnok.Visible = True
     End Sub
 
-    Private Sub txtBuscar_TextChanged(sender As Object, e As EventArgs) Handles txtBuscar.TextChanged
-
-    End Sub
     Private Function DatosValidos() As Boolean
-        If txtDescripcion.Text.Trim() = "" Then
-            MessageBox.Show("Ingresá la descripción.")
+        If txtCodigo.Text.Trim() = "" Then
+            MessageBox.Show("Ingresá el código por favor.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            txtCodigo.Focus()
             Return False
         End If
+
+        If txtDescripcion.Text.Trim() = "" Then
+            MessageBox.Show("Ingresá la descripción por favor.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            txtDescripcion.Focus()
+            Return False
+        End If
+
         Dim p As Decimal
         If Not Decimal.TryParse(txtPrecio.Text, p) Then
-            MessageBox.Show("El precio debe ser un número válido.")
+            MessageBox.Show("El precio debe ser un número válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            txtPrecio.Focus()
+            Return False
+        End If
+
+        Dim s As Integer
+        If Not Integer.TryParse(txtStock.Text, s) Then
+            MessageBox.Show("El stock debe ser un número entero válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            txtStock.Focus()
+            Return False
+        End If
+
+        Dim sm As Integer
+        If Not Integer.TryParse(txtStockminimo.Text, sm) Then
+            MessageBox.Show("El stock mínimo debe ser un número entero válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            txtStockminimo.Focus()
+            Return False
+        End If
+
+        If cmbCategorias.SelectedIndex = -1 Then
+            MessageBox.Show("Seleccioná una categoría por favor.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            cmbCategorias.Focus()
             Return False
         End If
         Return True
@@ -142,7 +182,7 @@
             p.Stock = Integer.Parse(txtStock.Text)
             p.StockMinimo = Integer.Parse(txtStockminimo.Text)
             p.IdCategoria = Convert.ToInt32(cmbCategorias.SelectedValue)
-            p.Activo = True
+            p.Activo = chkActivo.Checked
 
             If datos.Modificar(p) Then
                 MessageBox.Show("Producto modificado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -150,6 +190,7 @@
                 LimpiarCampos()
                 idProductoSeleccionado = -1
                 btnEliminar.Enabled = False
+                chkActivo.Visible = False
             Else
                 MessageBox.Show("No se pudo realizar la modificación en la base de datos.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             End If
@@ -169,6 +210,7 @@
             If datos.Eliminar(txtCodigo.Text.Trim()) Then
                 MostrarProductos(datos.ListarProductos())
                 Limpiar()
+                MsgBox("Producto eliminado correctamente.", MsgBoxStyle.Information, "Éxito")
             End If
         Catch ex As Exception
             MessageBox.Show("No se pudo eliminar el producto: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -180,7 +222,6 @@
             Dim row As DataGridViewRow = dgvProductos.Rows(e.RowIndex)
 
             idProductoSeleccionado = Convert.ToInt32(row.Cells("IdProducto").Value)
-
             txtCodigo.Text = row.Cells("Codigo").Value.ToString()
             txtDescripcion.Text = row.Cells("Descripcion").Value.ToString()
             txtPrecio.Text = row.Cells("Precio").Value.ToString()
@@ -190,8 +231,13 @@
             If row.Cells("Nombre").Value IsNot Nothing Then
                 cmbCategorias.Text = row.Cells("Nombre").Value.ToString()
             End If
+            If row.Cells("Activo").Value IsNot Nothing AndAlso Not IsDBNull(row.Cells("Activo").Value) Then
+                chkActivo.Checked = Convert.ToBoolean(row.Cells("Activo").Value)
+            End If
+
             btnEliminar.Enabled = True
             btnModificar.Enabled = True
+            chkActivo.Visible = True
         End If
     End Sub
     Private Sub dgvProductos_MouseDown(sender As Object, e As MouseEventArgs) Handles dgvProductos.MouseDown
@@ -202,14 +248,46 @@
             LimpiarCampos()
         End If
     End Sub
-    Private Sub frmProductos_MouseClick(sender As Object, e As MouseEventArgs) Handles MyBase.MouseClick
-        dgvProductos.ClearSelection()
-        idProductoSeleccionado = -1
-        LimpiarCampos()
-        btnEliminar.Enabled = False
-        btnModificar.Enabled = False
-    End Sub
 
+    Private Sub txtBuscar_TextChanged(sender As Object, e As EventArgs) Handles txtBuscar.TextChanged
+        'opción 1: Filtrar la grilla directamente
+
+        'Try
+        '    If dgvProductos.DataSource IsNot Nothing Then
+        '        Dim dt As DataTable = CType(dgvProductos.DataSource, DataTable)
+        '        Dim dv As DataView = dt.DefaultView
+        '        Dim filtro As String = txtBuscar.Text.Trim()
+
+        '        If filtro = "" Then
+        '            dv.RowFilter = String.Empty
+        '        Else
+        '            dv.RowFilter = "Descripcion LIKE '%" & filtro & "%' OR Codigo LIKE '%" & filtro & "%'"
+        '        End If
+        '    End If
+        'Catch ex As Exception
+        '    MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
+        'End Try
+
+        '---------------------------------------------------------------------------------------------------------
+
+        'opcion 2: Buscar en la base de datos y actualizar la grilla
+
+        Try
+            Dim dt As DataTable = datos.Buscar(txtBuscar.Text.Trim())
+
+            dgvProductos.DataSource = dt
+
+            If dt.Rows.Count > 0 Then
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error en la búsqueda: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Private Sub btnok_Click(sender As Object, e As EventArgs) Handles btnok.Click
+        txtBuscar.Visible = False
+        btnBuscar.Enabled = True
+        btnok.Visible = False
+    End Sub
 
     Private Sub txtCodigo_GotFocus(sender As Object, e As EventArgs) Handles txtCodigo.GotFocus
         txtCodigo.BackColor = Color.LightGreen
@@ -240,5 +318,21 @@
     End Sub
     Private Sub txtStockminimo_LostFocus(sender As Object, e As EventArgs) Handles txtStockminimo.LostFocus
         txtStockminimo.BackColor = Color.White
+    End Sub
+
+    Private Sub btnFin_Click(sender As Object, e As EventArgs) Handles btnFin.Click
+        Close()
+        MsgBox("Gracias por utilizar el programa!", MsgBoxStyle.Information, "Fin del programa")
+    End Sub
+
+    Private Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevo.Click
+        LimpiarCampos()
+        txtCodigo.Focus()
+        MsgBox("Ingrese los datos del nuevo producto y luego presione el botón 'Agregar'.", MsgBoxStyle.Information, "Nuevo Producto")
+        btnAgregar.Enabled = True
+    End Sub
+
+    Private Sub dgvProductos_DataBindingComplete(sender As Object, e As DataGridViewBindingCompleteEventArgs) Handles dgvProductos.DataBindingComplete
+        VerificarStockMinimo()
     End Sub
 End Class

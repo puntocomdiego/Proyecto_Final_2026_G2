@@ -5,8 +5,68 @@ Public Class frmClientes
     Private datos As New Cliente_datos()
     ' Variable CLAVE para recordar a quién modificar/eliminar
     Private idClienteSeleccionado As Integer = 0
+    ' Estado interno de la pantalla: "" | "NUEVO" | "MODIFICAR"
+    Private _modo As String = ""
 
+    ' ===== CARGA DEL FORMULARIO =====
+    Private Sub frmClientes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance)
+        ConfigurarGrilla()
+        MostrarClientes(datos.Listar())
+        EstadoInicial()
+    End Sub
 
+    ' ===== CONTROL DE ESTADOS Y BOTONES =====
+    Private Sub EstadoInicial()
+        Limpiar()
+        HabilitarCampos(False)
+        SetBotones(nuevo:=True, agregar:=False, modificar:=False, cancelar:=False, eliminar:=False)
+        btnModificar.Text = "MODIFICAR"
+        _modo = ""
+    End Sub
+
+    Private Sub HabilitarCampos(habilitar As Boolean)
+        txtDocumento.Enabled = habilitar
+        txtNombre.Enabled = habilitar
+        txtApellido.Enabled = habilitar
+        txtTelefono.Enabled = habilitar
+        txtEmail.Enabled = habilitar
+        txtDireccion.Enabled = habilitar
+    End Sub
+
+    Private Sub SetBotones(nuevo As Boolean, agregar As Boolean, modificar As Boolean, cancelar As Boolean, eliminar As Boolean)
+        btnNuevo.Enabled = nuevo
+        btnAgregar.Enabled = agregar
+        btnModificar.Enabled = modificar
+        btnCancelar.Enabled = cancelar
+        btnEliminar.Enabled = eliminar
+    End Sub
+
+    Private Sub Limpiar()
+        txtDocumento.Clear()
+        txtNombre.Clear()
+        txtApellido.Clear()
+        txtTelefono.Clear()
+        txtEmail.Clear()
+        txtDireccion.Clear()
+        idClienteSeleccionado = 0
+        dgvClientes.ClearSelection()
+    End Sub
+
+    ' ===== BOTONES NUEVO Y CANCELAR =====
+    Private Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevo.Click
+        Limpiar()
+        HabilitarCampos(True)
+        _modo = "NUEVO"
+        SetBotones(nuevo:=False, agregar:=True, modificar:=False, cancelar:=True, eliminar:=False)
+        txtDocumento.Focus()
+    End Sub
+
+    Private Sub btnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
+        EstadoInicial()
+    End Sub
+
+    ' ===== MÉTODOS DE LA GRILLA =====
     Private Sub ConfigurarGrilla()
         dgvClientes.ReadOnly = True
         dgvClientes.AllowUserToAddRows = False
@@ -17,10 +77,8 @@ Public Class frmClientes
 
     Private Sub MostrarClientes(dt As DataTable)
         dgvClientes.DataSource = dt
-
         If dt.Rows.Count = 0 Then Exit Sub
 
-        ' Ocultamos el ID porque es un dato interno
         If dgvClientes.Columns.Contains("IdCliente") Then
             dgvClientes.Columns("IdCliente").Visible = False
         End If
@@ -33,44 +91,17 @@ Public Class frmClientes
         dgvClientes.Columns("Direccion").HeaderText = "Dirección"
         dgvClientes.Columns("Activo").HeaderText = "Activo"
 
-        ' --- LA SOLUCIÓN DEFINITIVA ---
-        ' Obligamos a la grilla a soltar cualquier celda y fila seleccionada
+        ' Obligamos a la grilla a soltar cualquier celda y fila seleccionada automáticamente
         dgvClientes.CurrentCell = Nothing
     End Sub
 
-    ' ===== MÉTODO PARA LIMPIAR LAS CAJAS =====
-    Private Sub Limpiar()
-        txtDocumento.Clear()
-        txtNombre.Clear()
-        txtApellido.Clear()
-        txtTelefono.Clear()
-        txtEmail.Clear()
-        txtDireccion.Clear()
-        idClienteSeleccionado = 0 ' Olvidamos el ID al limpiar
-        txtDocumento.Focus()
-    End Sub
-
-    ' ===== CARGA DE LA PANTALLA =====
-    Private Sub frmClientes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Habilitar las codificaciones clásicas de Windows (Encoding 1252)
-        System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance)
-
-        ConfigurarGrilla()
-        MostrarClientes(datos.Listar())
-
-        ' Forzamos a que arranque todo vacío y sin seleccionar al abrir la pantalla
-        Limpiar()
-    End Sub
-
-    ' ===== EVENTO AL SELECCIONAR UNA FILA DE LA GRILLA =====
-    Private Sub dgvClientes_SelectionChanged(sender As Object, e As EventArgs) Handles dgvClientes.SelectionChanged
+    ' Usamos CellClick para asegurar que solo cargue datos cuando el usuario haga un clic real
+    Private Sub dgvClientes_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvClientes.CellClick
+        If e.RowIndex < 0 Then Exit Sub ' Ignorar si hacen clic en los títulos de las columnas
         If dgvClientes.CurrentRow Is Nothing Then Exit Sub
 
         Try
-            ' Atrapamos el ID oculto.
             idClienteSeleccionado = Convert.ToInt32(dgvClientes.CurrentRow.Cells("IdCliente").Value)
-
-            ' Pasamos los datos a las cajas de texto
             txtDocumento.Text = dgvClientes.CurrentRow.Cells("Documento").Value.ToString()
             txtNombre.Text = dgvClientes.CurrentRow.Cells("Nombre").Value.ToString()
             txtApellido.Text = dgvClientes.CurrentRow.Cells("Apellido").Value.ToString()
@@ -78,9 +109,13 @@ Public Class frmClientes
             txtEmail.Text = dgvClientes.CurrentRow.Cells("Email").Value.ToString()
             txtDireccion.Text = dgvClientes.CurrentRow.Cells("Direccion").Value.ToString()
 
+            ' Al seleccionar, bloqueamos edición y habilitamos acciones
+            _modo = ""
+            btnModificar.Text = "MODIFICAR"
+            HabilitarCampos(False)
+            SetBotones(nuevo:=True, agregar:=False, modificar:=True, cancelar:=True, eliminar:=True)
         Catch ex As Exception
-            ' ¡Quitamos el silenciador para descubrir el problema real!
-            MessageBox.Show("Error al leer los datos de la fila: " & ex.Message, "Modo Diagnóstico", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error al leer los datos: " & ex.Message)
         End Try
     End Sub
 
@@ -88,9 +123,8 @@ Public Class frmClientes
     Private Sub btnAgregar_Click(sender As Object, e As EventArgs) Handles btnAgregar.Click
         If Not DatosValidos() Then Exit Sub
 
-        ' ANTI-REPETIDOS
         If datos.ExisteDocumento(txtDocumento.Text.Trim(), 0) Then
-            MessageBox.Show("Ese documento ya está registrado en la base de datos.", "Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            MessageBox.Show("Ese documento ya está registrado.", "Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             txtDocumento.Focus()
             Exit Sub
         End If
@@ -104,7 +138,7 @@ Public Class frmClientes
             If datos.Agregar(nuevoCliente) Then
                 MessageBox.Show("¡Cliente guardado con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 MostrarClientes(datos.Listar())
-                Limpiar()
+                EstadoInicial()
             Else
                 MessageBox.Show("No se pudo guardar el cliente.")
             End If
@@ -115,52 +149,51 @@ Public Class frmClientes
 
     ' ===== BOTÓN MODIFICAR =====
     Private Sub btnModificar_Click(sender As Object, e As EventArgs) Handles btnModificar.Click
-        If idClienteSeleccionado = 0 Then
-            MessageBox.Show("Seleccioná un cliente de la grilla.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Exit Sub
-        End If
+        If _modo <> "MODIFICAR" Then
+            ' --- 1. Activar el modo de edición ---
+            HabilitarCampos(True)
+            txtDocumento.Enabled = False ' Bloqueamos la cédula para que no se cambie accidentalmente
+            _modo = "MODIFICAR"
+            btnModificar.Text = "GUARDAR"
+            SetBotones(nuevo:=False, agregar:=False, modificar:=True, cancelar:=True, eliminar:=False)
+        Else
+            ' --- 2. Ejecutar el guardado de los cambios ---
+            If Not DatosValidos() Then Exit Sub
 
-        If Not DatosValidos() Then Exit Sub
-
-        ' ANTI-REPETIDOS (excluyendo al propio cliente que estamos modificando)
-        If datos.ExisteDocumento(txtDocumento.Text.Trim(), idClienteSeleccionado) Then
-            MessageBox.Show("Ese documento ya pertenece a otro cliente.", "Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            txtDocumento.Focus()
-            Exit Sub
-        End If
-
-        Try
-            Dim c As New Cliente(
-                txtDocumento.Text.Trim(), txtNombre.Text.Trim(), txtApellido.Text.Trim(),
-                txtTelefono.Text.Trim(), txtEmail.Text.Trim(), txtDireccion.Text.Trim(), Nothing, True
-            )
-            c.IdCliente = idClienteSeleccionado
-
-            If datos.Modificar(c) Then
-                MessageBox.Show("¡Cliente modificado con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                MostrarClientes(datos.Listar())
-                Limpiar()
-            Else
-                MessageBox.Show("No se pudo modificar el cliente.")
+            If datos.ExisteDocumento(txtDocumento.Text.Trim(), idClienteSeleccionado) Then
+                MessageBox.Show("Ese documento ya pertenece a otro cliente.", "Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                txtDocumento.Focus()
+                Exit Sub
             End If
-        Catch ex As Exception
-            MessageBox.Show("Error al modificar: " & ex.Message)
-        End Try
+
+            Try
+                Dim c As New Cliente(
+                    txtDocumento.Text.Trim(), txtNombre.Text.Trim(), txtApellido.Text.Trim(),
+                    txtTelefono.Text.Trim(), txtEmail.Text.Trim(), txtDireccion.Text.Trim(), Nothing, True
+                )
+                c.IdCliente = idClienteSeleccionado
+
+                If datos.Modificar(c) Then
+                    MessageBox.Show("¡Cliente modificado con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    MostrarClientes(datos.Listar())
+                    EstadoInicial()
+                Else
+                    MessageBox.Show("No se pudo modificar el cliente.")
+                End If
+            Catch ex As Exception
+                MessageBox.Show("Error al modificar: " & ex.Message)
+            End Try
+        End If
     End Sub
 
     ' ===== BOTÓN ELIMINAR =====
     Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
-        If idClienteSeleccionado = 0 Then
-            MessageBox.Show("Seleccioná un cliente de la grilla.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Exit Sub
-        End If
-
         If MessageBox.Show("¿Estás seguro de eliminar este cliente?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
             Try
                 If datos.Eliminar(idClienteSeleccionado) Then
                     MessageBox.Show("¡Cliente eliminado con éxito!", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     MostrarClientes(datos.Listar())
-                    Limpiar()
+                    EstadoInicial()
                 End If
             Catch ex As Exception
                 MessageBox.Show("Error al eliminar: " & ex.Message)
@@ -170,20 +203,28 @@ Public Class frmClientes
 
     ' ===== BOTÓN FIN =====
     Private Sub btnFin_Click(sender As Object, e As EventArgs) Handles btnFin.Click
+        MsgBox("¡Gracias por usar el sistema!", MsgBoxStyle.Information, "Cierre de la aplicación")
         Me.Close()
     End Sub
 
     ' ===== FUNCIÓN PRINCIPAL DE VALIDACIÓN =====
     Private Function DatosValidos() As Boolean
         ' === 1. Validar Documento (Cédula) ===
-        txtDocumento.Text = Trim(txtDocumento.Text)
-        If txtDocumento.Text = "" Then
+        ' Al ser un MaskedTextBox, extraemos ÚNICAMENTE los números.
+        ' Esto ignora puntos, guiones, espacios y guiones bajos (_) automáticamente.
+        Dim cedulaLimpia As String = Regex.Replace(txtDocumento.Text, "[^\d]", "")
+
+        If cedulaLimpia = "" Then
             MessageBox.Show("Por favor, ingresá el documento del cliente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             txtDocumento.Focus()
             Return False
         End If
 
-        If Not valida_ci(txtDocumento.Text) Then
+        ' Si es una cédula antigua de menos de 8 números, la rellena con ceros a la izquierda
+        cedulaLimpia = cedulaLimpia.PadLeft(8, "0"c)
+
+        ' Enviamos a la matemática la variable perfectamente limpia
+        If Not valida_ci(cedulaLimpia) Then
             Return False
         End If
 
@@ -253,7 +294,7 @@ Public Class frmClientes
         Dim i As Byte
 
         If cedula.Length < 8 Then
-            MessageBox.Show("Cédula incompleta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            MsgBox("Cédula incompleta", MsgBoxStyle.Exclamation, "Error")
             txtDocumento.Focus()
             txtDocumento.SelectAll()
             Return False
@@ -274,7 +315,7 @@ Public Class frmClientes
             End If
 
             If d <> Val(Mid(cedula, 8, 1)) Then
-                MessageBox.Show("Cédula incorrecta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                MsgBox("Cédula incorrecta", MsgBoxStyle.Exclamation, "Error")
                 txtDocumento.Focus()
                 Return False
             End If
