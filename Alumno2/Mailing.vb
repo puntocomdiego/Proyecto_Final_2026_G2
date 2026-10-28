@@ -17,6 +17,7 @@ Public Class Mailing
     ' ===== 1. CARGA INICIAL =====
     Private Sub Mailing_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CargarClientes()
+        BuscarOfertaAutomatica() ' <--- Inicia la búsqueda automática aquí
         lblEstado.Text = "Esperando para enviar..."
     End Sub
 
@@ -42,6 +43,28 @@ Public Class Mailing
         Catch ex As Exception
             MessageBox.Show("Error al cargar clientes: " & ex.Message, "Error BD", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+    End Sub
+    Private Sub BuscarOfertaAutomatica()
+        Dim nombreArchivo As String = "Ofertasdelmes" & Now.ToString("MMyyyy") & ".pdf"
+        Dim rutaDinamica As String = IO.Path.Combine(Application.StartupPath, nombreArchivo)
+
+        If IO.File.Exists(rutaDinamica) Then
+            rutaAdjunto = rutaDinamica
+            lblAdjunto.Text = nombreArchivo
+            btnAdjuntar.Enabled = False
+
+            ' Mostramos la explicación y el botón alternativo
+            lblInfoAuto.Visible = True
+            btnCargarOtro.Visible = True
+        Else
+            rutaAdjunto = ""
+            lblAdjunto.Text = "Ningún archivo adjunto..."
+            btnAdjuntar.Enabled = True
+
+            ' Ocultamos la explicación y el botón extra si no hay archivo automático
+            lblInfoAuto.Visible = False
+            btnCargarOtro.Visible = False
+        End If
     End Sub
 
     ' ===== 2. ADJUNTAR PDF =====
@@ -138,9 +161,10 @@ Public Class Mailing
             ' Limpiamos los campos tras el éxito
             txtAsunto.Clear()
             txtCuerpo.Clear()
-            rutaAdjunto = ""
-            lblAdjunto.Text = "Ningún archivo adjunto..."
             cmbClientes.SelectedIndex = 0
+
+            ' Volvemos a chequear el PDF automático en lugar de vaciarlo a ciegas
+            BuscarOfertaAutomatica()
         End If
 
         ' Rehabilitar botones y limpiar memoria
@@ -171,4 +195,27 @@ Public Class Mailing
             Return False
         End Try
     End Function
+
+    Private Sub btnclientes_Click(sender As Object, e As EventArgs) Handles btnclientes.Click
+        ' Volvemos a abrir la pantalla de Clientes
+        Dim ventanaClientes As New frmClientes()
+        ventanaClientes.Show()
+
+        ' Ocultamos la pantalla actual de Mailing
+        Me.Hide()
+    End Sub
+
+    Private Sub btnCargarOtro_Click(sender As Object, e As EventArgs) Handles btnCargarOtro.Click
+        Dim ofdPdf As New OpenFileDialog()
+        ofdPdf.Filter = "Archivos PDF (*.pdf)|*.pdf"
+        ofdPdf.Title = "Seleccionar PDF de ofertas manual"
+
+        If ofdPdf.ShowDialog() = DialogResult.OK Then
+            rutaAdjunto = ofdPdf.FileName
+            lblAdjunto.Text = ofdPdf.SafeFileName
+
+            ' Ocultamos el mensaje de automatización para no confundir al usuario
+            lblInfoAuto.Visible = False
+        End If
+    End Sub
 End Class

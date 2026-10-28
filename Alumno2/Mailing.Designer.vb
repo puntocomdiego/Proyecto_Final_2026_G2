@@ -34,26 +34,29 @@ Partial Class Mailing
         Label3 = New Label()
         btnCancelar = New Button()
         lblEstado = New Label()
+        btnclientes = New Button()
+        lblInfoAuto = New Label()
+        btnCargarOtro = New Button()
         SuspendLayout()
         ' 
         ' cmbClientes
         ' 
         cmbClientes.FormattingEnabled = True
-        cmbClientes.Location = New Point(234, 51)
+        cmbClientes.Location = New Point(223, 51)
         cmbClientes.Name = "cmbClientes"
         cmbClientes.Size = New Size(345, 28)
         cmbClientes.TabIndex = 0
         ' 
         ' txtAsunto
         ' 
-        txtAsunto.Location = New Point(234, 85)
+        txtAsunto.Location = New Point(223, 85)
         txtAsunto.Name = "txtAsunto"
         txtAsunto.Size = New Size(345, 27)
         txtAsunto.TabIndex = 1
         ' 
         ' txtCuerpo
         ' 
-        txtCuerpo.Location = New Point(234, 118)
+        txtCuerpo.Location = New Point(223, 118)
         txtCuerpo.Multiline = True
         txtCuerpo.Name = "txtCuerpo"
         txtCuerpo.Size = New Size(345, 94)
@@ -72,7 +75,7 @@ Partial Class Mailing
         ' 
         lblAdjunto.Location = New Point(24, 289)
         lblAdjunto.Name = "lblAdjunto"
-        lblAdjunto.Size = New Size(345, 27)
+        lblAdjunto.Size = New Size(316, 27)
         lblAdjunto.TabIndex = 4
         lblAdjunto.Text = "Ningún archivo adjunto..."
         ' 
@@ -83,7 +86,7 @@ Partial Class Mailing
         ' btnEnviar
         ' 
         btnEnviar.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        btnEnviar.Location = New Point(576, 258)
+        btnEnviar.Location = New Point(574, 165)
         btnEnviar.Name = "btnEnviar"
         btnEnviar.Size = New Size(212, 87)
         btnEnviar.TabIndex = 5
@@ -93,8 +96,8 @@ Partial Class Mailing
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.Font = New Font("Segoe UI", 12F)
-        Label1.Location = New Point(87, 51)
+        Label1.Font = New Font("Segoe UI", 12.0F)
+        Label1.Location = New Point(76, 51)
         Label1.Name = "Label1"
         Label1.Size = New Size(141, 28)
         Label1.TabIndex = 6
@@ -103,8 +106,8 @@ Partial Class Mailing
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Font = New Font("Segoe UI", 12F)
-        Label2.Location = New Point(135, 85)
+        Label2.Font = New Font("Segoe UI", 12.0F)
+        Label2.Location = New Point(124, 85)
         Label2.Name = "Label2"
         Label2.Size = New Size(93, 28)
         Label2.TabIndex = 7
@@ -113,8 +116,8 @@ Partial Class Mailing
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Font = New Font("Segoe UI", 12F)
-        Label3.Location = New Point(14, 118)
+        Label3.Font = New Font("Segoe UI", 12.0F)
+        Label3.Location = New Point(3, 118)
         Label3.Name = "Label3"
         Label3.Size = New Size(214, 28)
         Label3.TabIndex = 8
@@ -123,7 +126,7 @@ Partial Class Mailing
         ' btnCancelar
         ' 
         btnCancelar.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        btnCancelar.Location = New Point(576, 351)
+        btnCancelar.Location = New Point(576, 258)
         btnCancelar.Name = "btnCancelar"
         btnCancelar.Size = New Size(212, 87)
         btnCancelar.TabIndex = 9
@@ -132,18 +135,54 @@ Partial Class Mailing
         ' 
         ' lblEstado
         ' 
+        lblEstado.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         lblEstado.AutoSize = True
-        lblEstado.Location = New Point(24, 351)
+        lblEstado.Font = New Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        lblEstado.Location = New Point(12, 410)
         lblEstado.Name = "lblEstado"
-        lblEstado.Size = New Size(166, 20)
+        lblEstado.Size = New Size(257, 31)
         lblEstado.TabIndex = 10
         lblEstado.Text = "Esperando para enviar..."
         ' 
+        ' btnclientes
+        ' 
+        btnclientes.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
+        btnclientes.Location = New Point(576, 351)
+        btnclientes.Name = "btnclientes"
+        btnclientes.Size = New Size(212, 87)
+        btnclientes.TabIndex = 11
+        btnclientes.Text = "Formulario Clientes"
+        btnclientes.UseVisualStyleBackColor = True
+        ' 
+        ' lblInfoAuto
+        ' 
+        lblInfoAuto.AutoSize = True
+        lblInfoAuto.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold Or FontStyle.Underline, GraphicsUnit.Point, CByte(0))
+        lblInfoAuto.Location = New Point(24, 319)
+        lblInfoAuto.Name = "lblInfoAuto"
+        lblInfoAuto.Size = New Size(474, 28)
+        lblInfoAuto.TabIndex = 12
+        lblInfoAuto.Text = "Catálogo de este mes cargado automáticamente."
+        lblInfoAuto.Visible = False
+        ' 
+        ' btnCargarOtro
+        ' 
+        btnCargarOtro.Location = New Point(217, 223)
+        btnCargarOtro.Name = "btnCargarOtro"
+        btnCargarOtro.Size = New Size(123, 60)
+        btnCargarOtro.TabIndex = 13
+        btnCargarOtro.Text = "Elegir otro"
+        btnCargarOtro.UseVisualStyleBackColor = True
+        btnCargarOtro.Visible = False
+        ' 
         ' Mailing
         ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
+        Controls.Add(btnCargarOtro)
+        Controls.Add(lblInfoAuto)
+        Controls.Add(btnclientes)
         Controls.Add(lblEstado)
         Controls.Add(btnCancelar)
         Controls.Add(Label3)
@@ -173,4 +212,7 @@ Partial Class Mailing
     Friend WithEvents Label3 As Label
     Friend WithEvents btnCancelar As Button
     Friend WithEvents lblEstado As Label
+    Friend WithEvents btnclientes As Button
+    Friend WithEvents lblInfoAuto As Label
+    Friend WithEvents btnCargarOtro As Button
 End Class
