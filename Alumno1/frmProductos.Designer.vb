@@ -45,6 +45,9 @@ Partial Class frmProductos
         btnNuevo = New Button()
         btnFin = New Button()
         chkActivo = New CheckBox()
+        btnexportar = New Button()
+        CheckBox1 = New CheckBox()
+        CheckBox2 = New CheckBox()
         CType(dgvProductos, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
@@ -161,7 +164,7 @@ Partial Class frmProductos
         ' 
         btnAgregar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnAgregar.Enabled = False
-        btnAgregar.Font = New Font("Segoe UI", 12F)
+        btnAgregar.Font = New Font("Berlin Sans FB Demi", 12F)
         btnAgregar.Location = New Point(483, 61)
         btnAgregar.Name = "btnAgregar"
         btnAgregar.Size = New Size(125, 39)
@@ -173,7 +176,7 @@ Partial Class frmProductos
         ' 
         btnModificar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnModificar.Enabled = False
-        btnModificar.Font = New Font("Segoe UI", 12F)
+        btnModificar.Font = New Font("Berlin Sans FB Demi", 12F)
         btnModificar.Location = New Point(352, 106)
         btnModificar.Name = "btnModificar"
         btnModificar.Size = New Size(125, 39)
@@ -185,7 +188,7 @@ Partial Class frmProductos
         ' 
         btnEliminar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnEliminar.Enabled = False
-        btnEliminar.Font = New Font("Segoe UI", 12F)
+        btnEliminar.Font = New Font("Berlin Sans FB Demi", 12F)
         btnEliminar.Location = New Point(483, 106)
         btnEliminar.Name = "btnEliminar"
         btnEliminar.Size = New Size(125, 39)
@@ -196,7 +199,7 @@ Partial Class frmProductos
         ' btnLimpiar
         ' 
         btnLimpiar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
-        btnLimpiar.Font = New Font("Segoe UI", 12F)
+        btnLimpiar.Font = New Font("Berlin Sans FB Demi", 12F)
         btnLimpiar.Location = New Point(352, 61)
         btnLimpiar.Name = "btnLimpiar"
         btnLimpiar.Size = New Size(125, 39)
@@ -208,7 +211,7 @@ Partial Class frmProductos
         ' 
         dgvProductos.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         dgvProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        dgvProductos.Location = New Point(12, 254)
+        dgvProductos.Location = New Point(11, 254)
         dgvProductos.Name = "dgvProductos"
         dgvProductos.Size = New Size(596, 216)
         dgvProductos.TabIndex = 18
@@ -216,7 +219,7 @@ Partial Class frmProductos
         ' btnBuscar
         ' 
         btnBuscar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
-        btnBuscar.Font = New Font("Segoe UI", 12F)
+        btnBuscar.Font = New Font("Berlin Sans FB Demi", 12F)
         btnBuscar.Location = New Point(352, 16)
         btnBuscar.Name = "btnBuscar"
         btnBuscar.Size = New Size(125, 39)
@@ -238,7 +241,7 @@ Partial Class frmProductos
         ' 
         btnok.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnok.BackColor = Color.FromArgb(CByte(192), CByte(255), CByte(192))
-        btnok.Font = New Font("Segoe UI", 12F)
+        btnok.Font = New Font("Berlin Sans FB Demi", 12F)
         btnok.Location = New Point(357, 174)
         btnok.Name = "btnok"
         btnok.Size = New Size(40, 29)
@@ -250,7 +253,7 @@ Partial Class frmProductos
         ' btnNuevo
         ' 
         btnNuevo.Anchor = AnchorStyles.Top Or AnchorStyles.Right
-        btnNuevo.Font = New Font("Segoe UI", 12F)
+        btnNuevo.Font = New Font("Berlin Sans FB Demi", 12F)
         btnNuevo.Location = New Point(483, 16)
         btnNuevo.Name = "btnNuevo"
         btnNuevo.Size = New Size(125, 39)
@@ -261,8 +264,8 @@ Partial Class frmProductos
         ' btnFin
         ' 
         btnFin.Anchor = AnchorStyles.Top Or AnchorStyles.Right
-        btnFin.Font = New Font("Segoe UI", 12F)
-        btnFin.Location = New Point(483, 209)
+        btnFin.Font = New Font("Berlin Sans FB Demi", 12F)
+        btnFin.Location = New Point(482, 476)
         btnFin.Name = "btnFin"
         btnFin.Size = New Size(125, 39)
         btnFin.TabIndex = 23
@@ -272,25 +275,63 @@ Partial Class frmProductos
         ' chkActivo
         ' 
         chkActivo.AutoSize = True
-        chkActivo.Font = New Font("Segoe UI", 12F)
+        chkActivo.Font = New Font("Berlin Sans FB Demi", 12F)
         chkActivo.Location = New Point(373, 147)
         chkActivo.Name = "chkActivo"
-        chkActivo.Size = New Size(72, 25)
+        chkActivo.Size = New Size(73, 22)
         chkActivo.TabIndex = 24
         chkActivo.Text = "Activo"
         chkActivo.UseVisualStyleBackColor = True
         chkActivo.Visible = False
         ' 
+        ' btnexportar
+        ' 
+        btnexportar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        btnexportar.Font = New Font("Berlin Sans FB Demi", 12F)
+        btnexportar.Location = New Point(482, 209)
+        btnexportar.Name = "btnexportar"
+        btnexportar.Size = New Size(125, 39)
+        btnexportar.TabIndex = 25
+        btnexportar.Text = "Exportar"
+        btnexportar.UseVisualStyleBackColor = True
+        ' 
+        ' CheckBox1
+        ' 
+        CheckBox1.AutoSize = True
+        CheckBox1.Font = New Font("Berlin Sans FB Demi", 12F)
+        CheckBox1.Location = New Point(352, 218)
+        CheckBox1.Name = "CheckBox1"
+        CheckBox1.Size = New Size(57, 22)
+        CheckBox1.TabIndex = 26
+        CheckBox1.Text = "PDF"
+        CheckBox1.UseVisualStyleBackColor = True
+        CheckBox1.Visible = False
+        ' 
+        ' CheckBox2
+        ' 
+        CheckBox2.AutoSize = True
+        CheckBox2.Font = New Font("Berlin Sans FB Demi", 12F)
+        CheckBox2.Location = New Point(415, 218)
+        CheckBox2.Name = "CheckBox2"
+        CheckBox2.Size = New Size(62, 22)
+        CheckBox2.TabIndex = 27
+        CheckBox2.Text = "XSLX"
+        CheckBox2.UseVisualStyleBackColor = True
+        CheckBox2.Visible = False
+        ' 
         ' frmProductos
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(629, 482)
+        ClientSize = New Size(629, 518)
+        Controls.Add(CheckBox2)
+        Controls.Add(CheckBox1)
+        Controls.Add(txtBuscar)
+        Controls.Add(btnexportar)
         Controls.Add(chkActivo)
         Controls.Add(btnFin)
         Controls.Add(btnNuevo)
         Controls.Add(btnok)
-        Controls.Add(txtBuscar)
         Controls.Add(btnBuscar)
         Controls.Add(Label6)
         Controls.Add(dgvProductos)
@@ -339,4 +380,7 @@ Partial Class frmProductos
     Friend WithEvents btnNuevo As Button
     Friend WithEvents btnFin As Button
     Friend WithEvents chkActivo As CheckBox
+    Friend WithEvents btnexportar As Button
+    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents CheckBox2 As CheckBox
 End Class
