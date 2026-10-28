@@ -85,4 +85,22 @@ Public Class frmMenuPrincipal
 
     Private m_ChildFormNumber As Integer
 
+    Private Sub ProductosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProductosToolStripMenuItem.Click
+        Dim f As New frmProductos
+        f.MdiParent = Me
+        f.Show()
+
+    End Sub
+
+    Private Sub ClientesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClientesToolStripMenuItem.Click
+        Dim f As New frmClientes
+        f.MdiParent = Me
+        f.Show()
+    End Sub
+
+    Private Sub VentasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VentasToolStripMenuItem.Click
+        Dim f As New frmVenta
+        f.MdiParent = Me
+        f.Show()
+    End Sub
 End Class

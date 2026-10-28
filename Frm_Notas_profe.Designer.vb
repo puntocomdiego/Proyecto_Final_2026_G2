@@ -27,17 +27,17 @@ Partial Class Frm_Notas_profe
         ' 
         ' Button1
         ' 
-        Button1.Location = New Point(168, 83)
+        Button1.Location = New Point(181, 58)
         Button1.Margin = New Padding(3, 2, 3, 2)
         Button1.Name = "Button1"
-        Button1.Size = New Size(415, 102)
+        Button1.Size = New Size(128, 39)
         Button1.TabIndex = 0
-        Button1.Text = "okok"
+        Button1.Text = "ok"
         Button1.UseVisualStyleBackColor = True
         ' 
         ' Frm_Notas_profe
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(868, 386)
         Controls.Add(Button1)
