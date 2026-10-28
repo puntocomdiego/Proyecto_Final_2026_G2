@@ -326,7 +326,8 @@ Public Class frmClientes
 
     Private Sub btnmail_Click(sender As Object, e As EventArgs) Handles btnmail.Click
         ' Abrimos la pantalla de Mailing
-        Dim ventanaMail As New Mailing()
+        Dim ventanaMail As New frmMailing()
+        ventanaMail.MdiParent = Me.MdiParent
         ventanaMail.Show()
 
         ' Ocultamos la pantalla actual de Clientes
