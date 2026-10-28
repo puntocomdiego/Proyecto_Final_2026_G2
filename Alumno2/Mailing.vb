@@ -1,7 +1,7 @@
 ﻿Imports System.Net.Mail
 Imports System.ComponentModel
 
-Public Class Mailing
+Public Class frmMailing
     ' Acceso a la base de datos
     Private datos As New Cliente_datos()
 
@@ -50,7 +50,7 @@ Public Class Mailing
 
         If IO.File.Exists(rutaDinamica) Then
             rutaAdjunto = rutaDinamica
-            lblAdjunto.Text = nombreArchivo
+            txtAdjunto.Text = nombreArchivo
             btnAdjuntar.Enabled = False
 
             ' Mostramos la explicación y el botón alternativo
@@ -58,7 +58,7 @@ Public Class Mailing
             btnCargarOtro.Visible = True
         Else
             rutaAdjunto = ""
-            lblAdjunto.Text = "Ningún archivo adjunto..."
+            txtAdjunto.Text = "Ningún archivo adjunto..."
             btnAdjuntar.Enabled = True
 
             ' Ocultamos la explicación y el botón extra si no hay archivo automático
@@ -75,8 +75,8 @@ Public Class Mailing
 
         If ofdPdf.ShowDialog() = DialogResult.OK Then
             rutaAdjunto = ofdPdf.FileName
-            ' Asumiendo que tu etiqueta debajo del botón se llama lblAdjunto
-            lblAdjunto.Text = ofdPdf.SafeFileName
+            ' Asumiendo que tu etiqueta debajo del botón se llama txtAdjunto
+            txtAdjunto.Text = ofdPdf.SafeFileName
         End If
     End Sub
 
@@ -199,6 +199,7 @@ Public Class Mailing
     Private Sub btnclientes_Click(sender As Object, e As EventArgs) Handles btnclientes.Click
         ' Volvemos a abrir la pantalla de Clientes
         Dim ventanaClientes As New frmClientes()
+        ventanaClientes.MdiParent = Me.MdiParent
         ventanaClientes.Show()
 
         ' Ocultamos la pantalla actual de Mailing
@@ -212,7 +213,7 @@ Public Class Mailing
 
         If ofdPdf.ShowDialog() = DialogResult.OK Then
             rutaAdjunto = ofdPdf.FileName
-            lblAdjunto.Text = ofdPdf.SafeFileName
+            txtAdjunto.Text = ofdPdf.SafeFileName
 
             ' Ocultamos el mensaje de automatización para no confundir al usuario
             lblInfoAuto.Visible = False
