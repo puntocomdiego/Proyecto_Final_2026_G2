@@ -18,15 +18,15 @@ Public Class TemporalDatos
     Public Function Agregar(t As Temporal) As Boolean
 
         Using cn As New OleDbConnection(cadenaConexion)
-            Dim sql As String = "INSERT INTO Temp (IdProducto, Descripcion, Cantidad) VALUES (?, ?, ?)"
-            '"INSERT INTO Temp (IdProducto, Descripcion, Cantidad, PrecioUnita, Subtotal) VALUES (?, ?, ?, ?, ?)"
+            Dim sql As String = "INSERT INTO Temp (IdProducto, Descripcion, Cantidad, PrecioUnita, subtotal) VALUES (?, ?, ?, ?, ?)"
 
             Using cmd As New OleDbCommand(sql, cn)
                 cmd.Parameters.AddWithValue("?", t.IdProducto)
                 cmd.Parameters.AddWithValue("?", t.Descripcion)
                 cmd.Parameters.AddWithValue("?", t.Cantidad)
-                'cmd.Parameters.AddWithValue("?", t.PrecioUnita)
-                'cmd.Parameters.AddWithValue("?", t.Subtotal)
+                cmd.Parameters.AddWithValue("?", t.PrecioUnita)
+                cmd.Parameters.AddWithValue("?", t.Subtotal)
+
                 cn.Open()
                 Return cmd.ExecuteNonQuery() > 0
             End Using
@@ -39,6 +39,16 @@ Public Class TemporalDatos
             Dim sql As String = "DELETE FROM Temp WHERE IdProducto = ?"
             Using cmd As New OleDbCommand(sql, cn)
                 cmd.Parameters.AddWithValue("?", idProducto)
+                cn.Open()
+                Return cmd.ExecuteNonQuery() > 0
+            End Using
+        End Using
+    End Function
+
+    Public Function Limpiar() As Boolean
+        Using cn As New OleDbConnection(CadenaConexion)
+            Dim sql As String = "DELETE FROM Temp"
+            Using cmd As New OleDbCommand(sql, cn)
                 cn.Open()
                 Return cmd.ExecuteNonQuery() > 0
             End Using

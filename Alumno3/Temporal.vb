@@ -17,8 +17,8 @@
         Me.IdProducto = IdProducto
         Me.Descripcion = Descripcion
         Me.Cantidad = Cantidad
-        'Me.PrecioUnita = PrecioUnita
-        'Me.Subtotal = Subtotal
+        Me.PrecioUnita = PrecioUnita
+        Me.Subtotal = Subtotal
 
     End Sub
 

@@ -35,6 +35,8 @@ Partial Class frmVenta
         cboDescripcion = New ComboBox()
         btnEditar = New Button()
         GroupBox1 = New GroupBox()
+        lblTotal = New Label()
+        Label5 = New Label()
         GroupBox2 = New GroupBox()
         RadioButton2 = New RadioButton()
         RadioButton1 = New RadioButton()
@@ -50,7 +52,7 @@ Partial Class frmVenta
         btnConfirmar.BackColor = SystemColors.GradientInactiveCaption
         btnConfirmar.Enabled = False
         btnConfirmar.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold)
-        btnConfirmar.Location = New Point(9, 123)
+        btnConfirmar.Location = New Point(8, 171)
         btnConfirmar.Name = "btnConfirmar"
         btnConfirmar.Size = New Size(143, 48)
         btnConfirmar.TabIndex = 0
@@ -139,9 +141,8 @@ Partial Class frmVenta
         ' btnEliminar
         ' 
         btnEliminar.BackColor = SystemColors.GradientInactiveCaption
-        btnEliminar.Enabled = False
         btnEliminar.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold)
-        btnEliminar.Location = New Point(9, 256)
+        btnEliminar.Location = New Point(8, 304)
         btnEliminar.Name = "btnEliminar"
         btnEliminar.Size = New Size(143, 48)
         btnEliminar.TabIndex = 10
@@ -163,7 +164,7 @@ Partial Class frmVenta
         btnEditar.DialogResult = DialogResult.Continue
         btnEditar.Enabled = False
         btnEditar.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold)
-        btnEditar.Location = New Point(9, 202)
+        btnEditar.Location = New Point(8, 250)
         btnEditar.Name = "btnEditar"
         btnEditar.Size = New Size(143, 48)
         btnEditar.TabIndex = 12
@@ -172,23 +173,45 @@ Partial Class frmVenta
         ' 
         ' GroupBox1
         ' 
+        GroupBox1.Controls.Add(lblTotal)
+        GroupBox1.Controls.Add(Label5)
         GroupBox1.Controls.Add(GroupBox2)
         GroupBox1.Controls.Add(btnEditar)
         GroupBox1.Controls.Add(btnConfirmar)
         GroupBox1.Controls.Add(btnEliminar)
-        GroupBox1.Location = New Point(593, 137)
+        GroupBox1.Location = New Point(593, 90)
         GroupBox1.Name = "GroupBox1"
-        GroupBox1.Size = New Size(158, 312)
+        GroupBox1.Size = New Size(158, 359)
         GroupBox1.TabIndex = 13
         GroupBox1.TabStop = False
+        ' 
+        ' lblTotal
+        ' 
+        lblTotal.Font = New Font("Segoe UI Semibold", 11F, FontStyle.Bold)
+        lblTotal.Location = New Point(14, 35)
+        lblTotal.Name = "lblTotal"
+        lblTotal.Size = New Size(135, 20)
+        lblTotal.TabIndex = 17
+        lblTotal.Text = "$ 00.0"
+        lblTotal.TextAlign = ContentAlignment.MiddleCenter
+        ' 
+        ' Label5
+        ' 
+        Label5.AutoSize = True
+        Label5.Font = New Font("Segoe UI Semibold", 11F, FontStyle.Bold)
+        Label5.Location = New Point(57, 1)
+        Label5.Name = "Label5"
+        Label5.Size = New Size(54, 20)
+        Label5.TabIndex = 17
+        Label5.Text = "TOTAL:"
         ' 
         ' GroupBox2
         ' 
         GroupBox2.Controls.Add(RadioButton2)
         GroupBox2.Controls.Add(RadioButton1)
-        GroupBox2.Location = New Point(9, 22)
+        GroupBox2.Location = New Point(8, 80)
         GroupBox2.Name = "GroupBox2"
-        GroupBox2.Size = New Size(141, 83)
+        GroupBox2.Size = New Size(141, 75)
         GroupBox2.TabIndex = 13
         GroupBox2.TabStop = False
         GroupBox2.Text = "Metodo de Pago"
@@ -255,6 +278,7 @@ Partial Class frmVenta
         Name = "frmVenta"
         Text = "frmVenta"
         GroupBox1.ResumeLayout(False)
+        GroupBox1.PerformLayout()
         GroupBox2.ResumeLayout(False)
         GroupBox2.PerformLayout()
         CType(dgvTemp, ComponentModel.ISupportInitialize).EndInit()
@@ -280,4 +304,6 @@ Partial Class frmVenta
     Friend WithEvents RadioButton2 As RadioButton
     Friend WithEvents RadioButton1 As RadioButton
     Friend WithEvents dgvTemp As DataGridView
+    Friend WithEvents lblTotal As Label
+    Friend WithEvents Label5 As Label
 End Class

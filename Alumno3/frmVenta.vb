@@ -16,6 +16,7 @@ Public Class frmVenta
     End Sub
 
     '== FUNCIONES ==
+
     Private Sub CargarClientes()
 
         cboCliente.Items.Clear()
@@ -125,7 +126,7 @@ Public Class frmVenta
                 Dim fila As DataRow = dt.NewRow()
                 fila("IdProducto") = 0
                 fila("Descripcion") = "-- Seleccione un producto --"
-                fila("Precio") = 0
+                fila("Precio") = 0D
                 dt.Rows.InsertAt(fila, 0)
 
                 cboDescripcion.DataSource = dt
@@ -168,20 +169,22 @@ Public Class frmVenta
         dgvTemp.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
     End Sub
 
-    Private Sub CalcularTotal()
+    Private Sub CalcularTotalVenta()
 
         Dim total As Decimal = 0
 
         For Each r As DataGridViewRow In dgvTemp.Rows
+
             If Not r.IsNewRow Then total += CDec(r.Cells("Subtotal").Value)
 
         Next
 
+        lblTotal.Text = total.ToString("C2")
+
     End Sub
 
 
-    '===========================
-
+    '== CONTROLES ==
 
     Private Sub cboCliente_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboCliente.SelectedIndexChanged
 
@@ -242,7 +245,7 @@ Public Class frmVenta
     Private Sub btnAgregar_Click(sender As Object, e As EventArgs) Handles btnAgregar.Click
 
         Try
-            If cboDescripcion.SelectedIndex = -1 Then
+            If cboDescripcion.SelectedIndex = 0 Then
                 MessageBox.Show("Seleccione un producto.") : Return
             End If
 
@@ -251,28 +254,35 @@ Public Class frmVenta
                 MessageBox.Show("Ingrese una cantidad válida.") : txtCantidad.Focus() : Return
             End If
 
-            Dim t As New Temporal(cboDescripcion.SelectedValue, cboDescripcion.Text, CDec(txtCantidad.Text), 0, 0)
-
             Dim fila As DataRowView = DirectCast(cboDescripcion.SelectedItem, DataRowView)
             Dim id As Integer = CInt(fila("IdProducto"))
             Dim nombre As String = fila("Descripcion").ToString()
+            Dim cantidadIngresada As Integer = CInt(txtCantidad.Text)
             Dim precio As Decimal = CDec(fila("Precio"))
 
+
+            Dim t As New Temporal(id, nombre, cantidadIngresada, precio, cantidadIngresada * precio)
+
             For Each r As DataGridViewRow In dgvTemp.Rows
-                If Not r.IsNewRow AndAlso CInt(r.Cells("IdProducto").Value) = id Then
-                    Dim nuevaCant As Integer = CInt(r.Cells("Cantidad").Value) + cantidad
-                    r.Cells("Cantidad").Value = nuevaCant
-                    r.Cells("Subtotal").Value = nuevaCant * precio
-                    CalcularTotal()
-                    Return
+
+                If CInt(r.Cells("IdProducto").Value) = id Then
+
+                    MessageBox.Show("El producto ya está en la lista.")
+
+                    Exit Sub
+
                 End If
+
             Next
+
 
             If temporal.Agregar(t) Then
 
                 MostrarCompras(temporal.Listar())
+                CalcularTotalVenta()
 
             End If
+
         Catch ex As Exception
             MessageBox.Show("No se pudo agregar el producto: " & ex.Message)
         End Try
@@ -281,19 +291,12 @@ Public Class frmVenta
 
     Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
 
-        If dgvTemp.SelectedRows.Count = 0 Then
-            MessageBox.Show("Seleccione un producto para eliminar.")
-            Return
-        End If
-
         Dim idProducto As Integer = CInt(dgvTemp.SelectedRows(0).Cells("IdProducto").Value)
 
         If temporal.Eliminar(idProducto) Then
-            MostrarCompras(temporal.Listar())
-        End If
 
-        If dgvTemp.SelectedRows.Count = 0 Then
-            btnEliminar.Enabled = False
+            MostrarCompras(temporal.Listar())
+
         End If
 
     End Sub
@@ -301,6 +304,7 @@ Public Class frmVenta
     Private Sub dgvTemp_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvTemp.CellContentClick
 
         If dgvTemp.SelectedRows.Count = 0 Then
+
             btnEliminar.Enabled = False
 
         Else
@@ -309,4 +313,22 @@ Public Class frmVenta
         End If
 
     End Sub
+
+    Private Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevo.Click
+
+        cboCliente.SelectedIndex = 0
+        cboCategoria.SelectedIndex = 0
+        txtCantidad.Text = ""
+
+
+        lblTotal.Text = "$0,00"
+        temporal.Limpiar()
+        MostrarCompras(temporal.Listar())
+
+        btnAgregar.Enabled = False
+        btnEditar.Enabled = False
+        'btnEliminar.Enabled = False
+
+    End Sub
+
 End Class
