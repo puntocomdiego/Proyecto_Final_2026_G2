@@ -45,16 +45,19 @@ Partial Class frmProductos
         btnNuevo = New Button()
         btnFin = New Button()
         chkActivo = New CheckBox()
+        FolderBrowserDialog1 = New FolderBrowserDialog()
         btnexportar = New Button()
-        CheckBox1 = New CheckBox()
-        CheckBox2 = New CheckBox()
+        rdpdf = New RadioButton()
+        rdexcel = New RadioButton()
+        GroupBox1 = New GroupBox()
         CType(dgvProductos, ComponentModel.ISupportInitialize).BeginInit()
+        GroupBox1.SuspendLayout()
         SuspendLayout()
         ' 
         ' txtCodigo
         ' 
         txtCodigo.Font = New Font("Segoe UI", 12F)
-        txtCodigo.Location = New Point(131, 62)
+        txtCodigo.Location = New Point(120, 65)
         txtCodigo.Name = "txtCodigo"
         txtCodigo.Size = New Size(205, 29)
         txtCodigo.TabIndex = 0
@@ -62,7 +65,7 @@ Partial Class frmProductos
         ' txtDescripcion
         ' 
         txtDescripcion.Font = New Font("Segoe UI", 12F)
-        txtDescripcion.Location = New Point(131, 97)
+        txtDescripcion.Location = New Point(120, 100)
         txtDescripcion.Name = "txtDescripcion"
         txtDescripcion.Size = New Size(205, 29)
         txtDescripcion.TabIndex = 1
@@ -70,7 +73,7 @@ Partial Class frmProductos
         ' txtPrecio
         ' 
         txtPrecio.Font = New Font("Segoe UI", 12F)
-        txtPrecio.Location = New Point(131, 132)
+        txtPrecio.Location = New Point(120, 135)
         txtPrecio.Name = "txtPrecio"
         txtPrecio.Size = New Size(205, 29)
         txtPrecio.TabIndex = 2
@@ -78,7 +81,7 @@ Partial Class frmProductos
         ' txtStock
         ' 
         txtStock.Font = New Font("Segoe UI", 12F)
-        txtStock.Location = New Point(131, 167)
+        txtStock.Location = New Point(120, 170)
         txtStock.Name = "txtStock"
         txtStock.Size = New Size(205, 29)
         txtStock.TabIndex = 3
@@ -87,7 +90,7 @@ Partial Class frmProductos
         ' 
         cmbCategorias.Font = New Font("Segoe UI", 12F)
         cmbCategorias.FormattingEnabled = True
-        cmbCategorias.Location = New Point(131, 25)
+        cmbCategorias.Location = New Point(120, 28)
         cmbCategorias.Name = "cmbCategorias"
         cmbCategorias.Size = New Size(205, 29)
         cmbCategorias.TabIndex = 4
@@ -95,7 +98,7 @@ Partial Class frmProductos
         ' txtStockminimo
         ' 
         txtStockminimo.Font = New Font("Segoe UI", 12F)
-        txtStockminimo.Location = New Point(131, 202)
+        txtStockminimo.Location = New Point(120, 205)
         txtStockminimo.Name = "txtStockminimo"
         txtStockminimo.Size = New Size(205, 29)
         txtStockminimo.TabIndex = 5
@@ -104,7 +107,7 @@ Partial Class frmProductos
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 12F)
-        Label1.Location = New Point(12, 65)
+        Label1.Location = New Point(1, 68)
         Label1.Name = "Label1"
         Label1.Size = New Size(63, 21)
         Label1.TabIndex = 6
@@ -114,7 +117,7 @@ Partial Class frmProductos
         ' 
         Label2.AutoSize = True
         Label2.Font = New Font("Segoe UI", 12F)
-        Label2.Location = New Point(11, 100)
+        Label2.Location = New Point(0, 103)
         Label2.Name = "Label2"
         Label2.Size = New Size(94, 21)
         Label2.TabIndex = 7
@@ -124,7 +127,7 @@ Partial Class frmProductos
         ' 
         Label3.AutoSize = True
         Label3.Font = New Font("Segoe UI", 12F)
-        Label3.Location = New Point(12, 135)
+        Label3.Location = New Point(1, 138)
         Label3.Name = "Label3"
         Label3.Size = New Size(56, 21)
         Label3.TabIndex = 8
@@ -134,7 +137,7 @@ Partial Class frmProductos
         ' 
         Label4.AutoSize = True
         Label4.Font = New Font("Segoe UI", 12F)
-        Label4.Location = New Point(12, 170)
+        Label4.Location = New Point(1, 173)
         Label4.Name = "Label4"
         Label4.Size = New Size(50, 21)
         Label4.TabIndex = 9
@@ -144,7 +147,7 @@ Partial Class frmProductos
         ' 
         Label5.AutoSize = True
         Label5.Font = New Font("Segoe UI", 12F)
-        Label5.Location = New Point(11, 205)
+        Label5.Location = New Point(0, 208)
         Label5.Name = "Label5"
         Label5.Size = New Size(108, 21)
         Label5.TabIndex = 10
@@ -154,7 +157,7 @@ Partial Class frmProductos
         ' 
         Label6.AutoSize = True
         Label6.Font = New Font("Segoe UI", 12F)
-        Label6.Location = New Point(12, 28)
+        Label6.Location = New Point(1, 31)
         Label6.Name = "Label6"
         Label6.Size = New Size(80, 21)
         Label6.TabIndex = 11
@@ -165,9 +168,9 @@ Partial Class frmProductos
         btnAgregar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnAgregar.Enabled = False
         btnAgregar.Font = New Font("Berlin Sans FB Demi", 12F)
-        btnAgregar.Location = New Point(483, 61)
+        btnAgregar.Location = New Point(488, 60)
         btnAgregar.Name = "btnAgregar"
-        btnAgregar.Size = New Size(125, 39)
+        btnAgregar.Size = New Size(120, 36)
         btnAgregar.TabIndex = 13
         btnAgregar.Text = "Agregar"
         btnAgregar.UseVisualStyleBackColor = True
@@ -177,9 +180,9 @@ Partial Class frmProductos
         btnModificar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnModificar.Enabled = False
         btnModificar.Font = New Font("Berlin Sans FB Demi", 12F)
-        btnModificar.Location = New Point(352, 106)
+        btnModificar.Location = New Point(357, 105)
         btnModificar.Name = "btnModificar"
-        btnModificar.Size = New Size(125, 39)
+        btnModificar.Size = New Size(120, 36)
         btnModificar.TabIndex = 14
         btnModificar.Text = "Modificar"
         btnModificar.UseVisualStyleBackColor = True
@@ -189,9 +192,9 @@ Partial Class frmProductos
         btnEliminar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnEliminar.Enabled = False
         btnEliminar.Font = New Font("Berlin Sans FB Demi", 12F)
-        btnEliminar.Location = New Point(483, 106)
+        btnEliminar.Location = New Point(488, 105)
         btnEliminar.Name = "btnEliminar"
-        btnEliminar.Size = New Size(125, 39)
+        btnEliminar.Size = New Size(120, 36)
         btnEliminar.TabIndex = 15
         btnEliminar.Text = "Eliminar"
         btnEliminar.UseVisualStyleBackColor = True
@@ -200,16 +203,16 @@ Partial Class frmProductos
         ' 
         btnLimpiar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnLimpiar.Font = New Font("Berlin Sans FB Demi", 12F)
-        btnLimpiar.Location = New Point(352, 61)
+        btnLimpiar.Location = New Point(357, 60)
         btnLimpiar.Name = "btnLimpiar"
-        btnLimpiar.Size = New Size(125, 39)
+        btnLimpiar.Size = New Size(120, 36)
         btnLimpiar.TabIndex = 16
         btnLimpiar.Text = "Limpiar"
         btnLimpiar.UseVisualStyleBackColor = True
         ' 
         ' dgvProductos
         ' 
-        dgvProductos.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        dgvProductos.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         dgvProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         dgvProductos.Location = New Point(11, 254)
         dgvProductos.Name = "dgvProductos"
@@ -220,9 +223,9 @@ Partial Class frmProductos
         ' 
         btnBuscar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnBuscar.Font = New Font("Berlin Sans FB Demi", 12F)
-        btnBuscar.Location = New Point(352, 16)
+        btnBuscar.Location = New Point(357, 15)
         btnBuscar.Name = "btnBuscar"
-        btnBuscar.Size = New Size(125, 39)
+        btnBuscar.Size = New Size(120, 36)
         btnBuscar.TabIndex = 19
         btnBuscar.Text = "Buscar"
         btnBuscar.UseVisualStyleBackColor = True
@@ -254,16 +257,16 @@ Partial Class frmProductos
         ' 
         btnNuevo.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnNuevo.Font = New Font("Berlin Sans FB Demi", 12F)
-        btnNuevo.Location = New Point(483, 16)
+        btnNuevo.Location = New Point(488, 15)
         btnNuevo.Name = "btnNuevo"
-        btnNuevo.Size = New Size(125, 39)
+        btnNuevo.Size = New Size(120, 36)
         btnNuevo.TabIndex = 22
         btnNuevo.Text = "Nuevo"
         btnNuevo.UseVisualStyleBackColor = True
         ' 
         ' btnFin
         ' 
-        btnFin.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        btnFin.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
         btnFin.Font = New Font("Berlin Sans FB Demi", 12F)
         btnFin.Location = New Point(482, 476)
         btnFin.Name = "btnFin"
@@ -287,45 +290,68 @@ Partial Class frmProductos
         ' btnexportar
         ' 
         btnexportar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        btnexportar.Enabled = False
         btnexportar.Font = New Font("Berlin Sans FB Demi", 12F)
-        btnexportar.Location = New Point(482, 209)
+        btnexportar.Location = New Point(488, 212)
         btnexportar.Name = "btnexportar"
-        btnexportar.Size = New Size(125, 39)
+        btnexportar.Size = New Size(120, 36)
         btnexportar.TabIndex = 25
         btnexportar.Text = "Exportar"
         btnexportar.UseVisualStyleBackColor = True
         ' 
-        ' CheckBox1
+        ' rdpdf
         ' 
-        CheckBox1.AutoSize = True
-        CheckBox1.Font = New Font("Berlin Sans FB Demi", 12F)
-        CheckBox1.Location = New Point(352, 218)
-        CheckBox1.Name = "CheckBox1"
-        CheckBox1.Size = New Size(57, 22)
-        CheckBox1.TabIndex = 26
-        CheckBox1.Text = "PDF"
-        CheckBox1.UseVisualStyleBackColor = True
-        CheckBox1.Visible = False
+        rdpdf.AutoSize = True
+        rdpdf.Font = New Font("Berlin Sans FB Demi", 12F)
+        rdpdf.Location = New Point(359, 217)
+        rdpdf.Name = "rdpdf"
+        rdpdf.Size = New Size(56, 22)
+        rdpdf.TabIndex = 28
+        rdpdf.TabStop = True
+        rdpdf.Text = "PDF"
+        rdpdf.UseVisualStyleBackColor = True
         ' 
-        ' CheckBox2
+        ' rdexcel
         ' 
-        CheckBox2.AutoSize = True
-        CheckBox2.Font = New Font("Berlin Sans FB Demi", 12F)
-        CheckBox2.Location = New Point(415, 218)
-        CheckBox2.Name = "CheckBox2"
-        CheckBox2.Size = New Size(62, 22)
-        CheckBox2.TabIndex = 27
-        CheckBox2.Text = "XSLX"
-        CheckBox2.UseVisualStyleBackColor = True
-        CheckBox2.Visible = False
+        rdexcel.AutoSize = True
+        rdexcel.Font = New Font("Berlin Sans FB Demi", 12F)
+        rdexcel.Location = New Point(421, 217)
+        rdexcel.Name = "rdexcel"
+        rdexcel.Size = New Size(61, 22)
+        rdexcel.TabIndex = 29
+        rdexcel.TabStop = True
+        rdexcel.Text = "XLSX"
+        rdexcel.UseVisualStyleBackColor = True
+        ' 
+        ' GroupBox1
+        ' 
+        GroupBox1.Controls.Add(cmbCategorias)
+        GroupBox1.Controls.Add(Label1)
+        GroupBox1.Controls.Add(Label2)
+        GroupBox1.Controls.Add(txtStockminimo)
+        GroupBox1.Controls.Add(txtStock)
+        GroupBox1.Controls.Add(Label3)
+        GroupBox1.Controls.Add(txtPrecio)
+        GroupBox1.Controls.Add(Label4)
+        GroupBox1.Controls.Add(txtDescripcion)
+        GroupBox1.Controls.Add(Label5)
+        GroupBox1.Controls.Add(Label6)
+        GroupBox1.Controls.Add(txtCodigo)
+        GroupBox1.Font = New Font("Segoe UI", 12F)
+        GroupBox1.Location = New Point(11, 0)
+        GroupBox1.Name = "GroupBox1"
+        GroupBox1.Size = New Size(335, 246)
+        GroupBox1.TabIndex = 30
+        GroupBox1.TabStop = False
+        GroupBox1.Text = "Datos del Producto:"
         ' 
         ' frmProductos
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(629, 518)
-        Controls.Add(CheckBox2)
-        Controls.Add(CheckBox1)
+        Controls.Add(rdexcel)
+        Controls.Add(rdpdf)
         Controls.Add(txtBuscar)
         Controls.Add(btnexportar)
         Controls.Add(chkActivo)
@@ -333,26 +359,17 @@ Partial Class frmProductos
         Controls.Add(btnNuevo)
         Controls.Add(btnok)
         Controls.Add(btnBuscar)
-        Controls.Add(Label6)
         Controls.Add(dgvProductos)
-        Controls.Add(txtCodigo)
         Controls.Add(btnLimpiar)
-        Controls.Add(Label5)
         Controls.Add(btnEliminar)
-        Controls.Add(txtDescripcion)
-        Controls.Add(Label4)
         Controls.Add(btnModificar)
-        Controls.Add(txtPrecio)
         Controls.Add(btnAgregar)
-        Controls.Add(Label3)
-        Controls.Add(txtStock)
-        Controls.Add(txtStockminimo)
-        Controls.Add(Label2)
-        Controls.Add(Label1)
-        Controls.Add(cmbCategorias)
+        Controls.Add(GroupBox1)
         Name = "frmProductos"
         Text = "frmProductos"
         CType(dgvProductos, ComponentModel.ISupportInitialize).EndInit()
+        GroupBox1.ResumeLayout(False)
+        GroupBox1.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
     End Sub
@@ -380,7 +397,9 @@ Partial Class frmProductos
     Friend WithEvents btnNuevo As Button
     Friend WithEvents btnFin As Button
     Friend WithEvents chkActivo As CheckBox
+    Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
     Friend WithEvents btnexportar As Button
-    Friend WithEvents CheckBox1 As CheckBox
-    Friend WithEvents CheckBox2 As CheckBox
+    Friend WithEvents rdpdf As RadioButton
+    Friend WithEvents rdexcel As RadioButton
+    Friend WithEvents GroupBox1 As GroupBox
 End Class
