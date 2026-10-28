@@ -35,6 +35,8 @@ Partial Class Mailing
         btnCancelar = New Button()
         lblEstado = New Label()
         btnclientes = New Button()
+        lblInfoAuto = New Label()
+        btnCargarOtro = New Button()
         SuspendLayout()
         ' 
         ' cmbClientes
@@ -84,7 +86,7 @@ Partial Class Mailing
         ' btnEnviar
         ' 
         btnEnviar.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        btnEnviar.Location = New Point(356, 258)
+        btnEnviar.Location = New Point(574, 165)
         btnEnviar.Name = "btnEnviar"
         btnEnviar.Size = New Size(212, 87)
         btnEnviar.TabIndex = 5
@@ -124,7 +126,7 @@ Partial Class Mailing
         ' btnCancelar
         ' 
         btnCancelar.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        btnCancelar.Location = New Point(356, 351)
+        btnCancelar.Location = New Point(576, 258)
         btnCancelar.Name = "btnCancelar"
         btnCancelar.Size = New Size(212, 87)
         btnCancelar.TabIndex = 9
@@ -133,10 +135,12 @@ Partial Class Mailing
         ' 
         ' lblEstado
         ' 
+        lblEstado.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left
         lblEstado.AutoSize = True
-        lblEstado.Location = New Point(24, 351)
+        lblEstado.Font = New Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        lblEstado.Location = New Point(12, 410)
         lblEstado.Name = "lblEstado"
-        lblEstado.Size = New Size(166, 20)
+        lblEstado.Size = New Size(257, 31)
         lblEstado.TabIndex = 10
         lblEstado.Text = "Esperando para enviar..."
         ' 
@@ -150,11 +154,34 @@ Partial Class Mailing
         btnclientes.Text = "Formulario Clientes"
         btnclientes.UseVisualStyleBackColor = True
         ' 
+        ' lblInfoAuto
+        ' 
+        lblInfoAuto.AutoSize = True
+        lblInfoAuto.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold Or FontStyle.Underline, GraphicsUnit.Point, CByte(0))
+        lblInfoAuto.Location = New Point(24, 319)
+        lblInfoAuto.Name = "lblInfoAuto"
+        lblInfoAuto.Size = New Size(474, 28)
+        lblInfoAuto.TabIndex = 12
+        lblInfoAuto.Text = "Catálogo de este mes cargado automáticamente."
+        lblInfoAuto.Visible = False
+        ' 
+        ' btnCargarOtro
+        ' 
+        btnCargarOtro.Location = New Point(217, 223)
+        btnCargarOtro.Name = "btnCargarOtro"
+        btnCargarOtro.Size = New Size(123, 60)
+        btnCargarOtro.TabIndex = 13
+        btnCargarOtro.Text = "Elegir otro"
+        btnCargarOtro.UseVisualStyleBackColor = True
+        btnCargarOtro.Visible = False
+        ' 
         ' Mailing
         ' 
         AutoScaleDimensions = New SizeF(8.0F, 20.0F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(800, 450)
+        Controls.Add(btnCargarOtro)
+        Controls.Add(lblInfoAuto)
         Controls.Add(btnclientes)
         Controls.Add(lblEstado)
         Controls.Add(btnCancelar)
@@ -186,4 +213,6 @@ Partial Class Mailing
     Friend WithEvents btnCancelar As Button
     Friend WithEvents lblEstado As Label
     Friend WithEvents btnclientes As Button
+    Friend WithEvents lblInfoAuto As Label
+    Friend WithEvents btnCargarOtro As Button
 End Class
