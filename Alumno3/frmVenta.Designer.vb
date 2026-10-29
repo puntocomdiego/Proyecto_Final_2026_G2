@@ -38,8 +38,10 @@ Partial Class frmVenta
         lblTotal = New Label()
         Label5 = New Label()
         GroupBox2 = New GroupBox()
-        RadioButton2 = New RadioButton()
-        RadioButton1 = New RadioButton()
+        rbtEfectivo = New RadioButton()
+        rbtTransf = New RadioButton()
+        rbdCredito = New RadioButton()
+        rbtDebito = New RadioButton()
         Label4 = New Label()
         dgvTemp = New DataGridView()
         GroupBox1.SuspendLayout()
@@ -52,7 +54,7 @@ Partial Class frmVenta
         btnConfirmar.BackColor = SystemColors.GradientInactiveCaption
         btnConfirmar.Enabled = False
         btnConfirmar.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold)
-        btnConfirmar.Location = New Point(8, 171)
+        btnConfirmar.Location = New Point(26, 171)
         btnConfirmar.Name = "btnConfirmar"
         btnConfirmar.Size = New Size(143, 48)
         btnConfirmar.TabIndex = 0
@@ -85,7 +87,7 @@ Partial Class frmVenta
         cboCategoria.Location = New Point(102, 59)
         cboCategoria.Name = "cboCategoria"
         cboCategoria.Size = New Size(164, 23)
-        cboCategoria.TabIndex = 4
+        cboCategoria.TabIndex = 3
         ' 
         ' Label2
         ' 
@@ -112,8 +114,8 @@ Partial Class frmVenta
         txtCantidad.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
         txtCantidad.Location = New Point(373, 90)
         txtCantidad.Name = "txtCantidad"
-        txtCantidad.Size = New Size(65, 23)
-        txtCantidad.TabIndex = 6
+        txtCantidad.Size = New Size(46, 23)
+        txtCantidad.TabIndex = 5
         ' 
         ' btnAgregar
         ' 
@@ -131,7 +133,7 @@ Partial Class frmVenta
         ' 
         btnNuevo.BackColor = SystemColors.GradientInactiveCaption
         btnNuevo.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold)
-        btnNuevo.Location = New Point(601, 24)
+        btnNuevo.Location = New Point(605, 24)
         btnNuevo.Name = "btnNuevo"
         btnNuevo.Size = New Size(143, 48)
         btnNuevo.TabIndex = 9
@@ -142,7 +144,7 @@ Partial Class frmVenta
         ' 
         btnEliminar.BackColor = SystemColors.GradientInactiveCaption
         btnEliminar.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold)
-        btnEliminar.Location = New Point(8, 304)
+        btnEliminar.Location = New Point(26, 304)
         btnEliminar.Name = "btnEliminar"
         btnEliminar.Size = New Size(143, 48)
         btnEliminar.TabIndex = 10
@@ -156,15 +158,14 @@ Partial Class frmVenta
         cboDescripcion.Location = New Point(102, 88)
         cboDescripcion.Name = "cboDescripcion"
         cboDescripcion.Size = New Size(164, 23)
-        cboDescripcion.TabIndex = 11
+        cboDescripcion.TabIndex = 4
         ' 
         ' btnEditar
         ' 
         btnEditar.BackColor = SystemColors.GradientInactiveCaption
         btnEditar.DialogResult = DialogResult.Continue
-        btnEditar.Enabled = False
         btnEditar.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold)
-        btnEditar.Location = New Point(8, 250)
+        btnEditar.Location = New Point(26, 250)
         btnEditar.Name = "btnEditar"
         btnEditar.Size = New Size(143, 48)
         btnEditar.TabIndex = 12
@@ -179,9 +180,9 @@ Partial Class frmVenta
         GroupBox1.Controls.Add(btnEditar)
         GroupBox1.Controls.Add(btnConfirmar)
         GroupBox1.Controls.Add(btnEliminar)
-        GroupBox1.Location = New Point(593, 90)
+        GroupBox1.Location = New Point(579, 90)
         GroupBox1.Name = "GroupBox1"
-        GroupBox1.Size = New Size(158, 359)
+        GroupBox1.Size = New Size(193, 359)
         GroupBox1.TabIndex = 13
         GroupBox1.TabStop = False
         ' 
@@ -207,36 +208,60 @@ Partial Class frmVenta
         ' 
         ' GroupBox2
         ' 
-        GroupBox2.Controls.Add(RadioButton2)
-        GroupBox2.Controls.Add(RadioButton1)
+        GroupBox2.Controls.Add(rbtEfectivo)
+        GroupBox2.Controls.Add(rbtTransf)
+        GroupBox2.Controls.Add(rbdCredito)
+        GroupBox2.Controls.Add(rbtDebito)
         GroupBox2.Location = New Point(8, 80)
         GroupBox2.Name = "GroupBox2"
-        GroupBox2.Size = New Size(141, 75)
+        GroupBox2.Size = New Size(179, 75)
         GroupBox2.TabIndex = 13
         GroupBox2.TabStop = False
         GroupBox2.Text = "Metodo de Pago"
         ' 
-        ' RadioButton2
+        ' rbtEfectivo
         ' 
-        RadioButton2.AutoSize = True
-        RadioButton2.Location = New Point(6, 47)
-        RadioButton2.Name = "RadioButton2"
-        RadioButton2.Size = New Size(97, 19)
-        RadioButton2.TabIndex = 1
-        RadioButton2.TabStop = True
-        RadioButton2.Text = "RadioButton2"
-        RadioButton2.UseVisualStyleBackColor = True
+        rbtEfectivo.AutoSize = True
+        rbtEfectivo.Location = New Point(79, 47)
+        rbtEfectivo.Name = "rbtEfectivo"
+        rbtEfectivo.Size = New Size(67, 19)
+        rbtEfectivo.TabIndex = 3
+        rbtEfectivo.TabStop = True
+        rbtEfectivo.Text = "Efectivo"
+        rbtEfectivo.UseVisualStyleBackColor = True
         ' 
-        ' RadioButton1
+        ' rbtTransf
         ' 
-        RadioButton1.AutoSize = True
-        RadioButton1.Location = New Point(6, 22)
-        RadioButton1.Name = "RadioButton1"
-        RadioButton1.Size = New Size(97, 19)
-        RadioButton1.TabIndex = 0
-        RadioButton1.TabStop = True
-        RadioButton1.Text = "RadioButton1"
-        RadioButton1.UseVisualStyleBackColor = True
+        rbtTransf.AutoSize = True
+        rbtTransf.Location = New Point(79, 22)
+        rbtTransf.Name = "rbtTransf"
+        rbtTransf.Size = New Size(94, 19)
+        rbtTransf.TabIndex = 2
+        rbtTransf.TabStop = True
+        rbtTransf.Text = "Transferencia"
+        rbtTransf.UseVisualStyleBackColor = True
+        ' 
+        ' rbdCredito
+        ' 
+        rbdCredito.AutoSize = True
+        rbdCredito.Location = New Point(10, 47)
+        rbdCredito.Name = "rbdCredito"
+        rbdCredito.Size = New Size(64, 19)
+        rbdCredito.TabIndex = 1
+        rbdCredito.TabStop = True
+        rbdCredito.Text = "Crédito"
+        rbdCredito.UseVisualStyleBackColor = True
+        ' 
+        ' rbtDebito
+        ' 
+        rbtDebito.AutoSize = True
+        rbtDebito.Location = New Point(10, 22)
+        rbtDebito.Name = "rbtDebito"
+        rbtDebito.Size = New Size(60, 19)
+        rbtDebito.TabIndex = 0
+        rbtDebito.TabStop = True
+        rbtDebito.Text = "Débito"
+        rbtDebito.UseVisualStyleBackColor = True
         ' 
         ' Label4
         ' 
@@ -275,7 +300,10 @@ Partial Class frmVenta
         Controls.Add(Label2)
         Controls.Add(cboCliente)
         Controls.Add(Label1)
+        FormBorderStyle = FormBorderStyle.FixedSingle
+        MaximizeBox = False
         Name = "frmVenta"
+        StartPosition = FormStartPosition.CenterScreen
         Text = "frmVenta"
         GroupBox1.ResumeLayout(False)
         GroupBox1.PerformLayout()
@@ -301,9 +329,11 @@ Partial Class frmVenta
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label4 As Label
     Friend WithEvents GroupBox2 As GroupBox
-    Friend WithEvents RadioButton2 As RadioButton
-    Friend WithEvents RadioButton1 As RadioButton
+    Friend WithEvents rbdCredito As RadioButton
+    Friend WithEvents rbtDebito As RadioButton
     Friend WithEvents dgvTemp As DataGridView
     Friend WithEvents lblTotal As Label
     Friend WithEvents Label5 As Label
+    Friend WithEvents rbtEfectivo As RadioButton
+    Friend WithEvents rbtTransf As RadioButton
 End Class

@@ -1,10 +1,12 @@
 ﻿Imports System.Data.OleDb
 Imports System.Runtime
+Imports System.Runtime.InteropServices.JavaScript.JSType
 
 Public Class frmVenta
 
     Private datos As New VentaDatos()
     Private temporal As New TemporalDatos()
+    Private detalle As New DetalleDatos()
 
     Private Sub frmVenta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -57,8 +59,6 @@ Public Class frmVenta
 
     Private Sub CargarCategorias()
 
-        cboCategoria.Items.Clear()
-
         Try
             Using cn As New OleDbConnection(CadenaConexion)
                 cn.Open()
@@ -77,6 +77,7 @@ Public Class frmVenta
                 dt.Rows.InsertAt(fila, 0)
 
                 ' Vincular los datos al ComboBox
+
                 cboCategoria.DataSource = dt
                 cboCategoria.DisplayMember = "Nombre"
                 cboCategoria.ValueMember = "IdCategoria"
@@ -183,7 +184,6 @@ Public Class frmVenta
 
     End Sub
 
-
     '== CONTROLES ==
 
     Private Sub cboCliente_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboCliente.SelectedIndexChanged
@@ -242,6 +242,8 @@ Public Class frmVenta
 
     End Sub
 
+    '== AGREGAR Y CONFIRMAR VENTA ==
+
     Private Sub btnAgregar_Click(sender As Object, e As EventArgs) Handles btnAgregar.Click
 
         Try
@@ -275,11 +277,20 @@ Public Class frmVenta
 
             Next
 
-
             If temporal.Agregar(t) Then
 
                 MostrarCompras(temporal.Listar())
                 CalcularTotalVenta()
+
+                If cboCliente.Enabled Then
+
+                    cboCliente.Enabled = False
+
+                End If
+
+                cboCategoria.SelectedIndex = 0
+                cboCategoria.Focus()
+                txtCantidad.Text = ""
 
             End If
 
@@ -289,6 +300,8 @@ Public Class frmVenta
 
     End Sub
 
+    '== EDITORES DE DATOS ==
+
     Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
 
         Dim idProducto As Integer = CInt(dgvTemp.SelectedRows(0).Cells("IdProducto").Value)
@@ -297,18 +310,7 @@ Public Class frmVenta
 
             MostrarCompras(temporal.Listar())
 
-        End If
-
-    End Sub
-
-    Private Sub dgvTemp_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvTemp.CellContentClick
-
-        If dgvTemp.SelectedRows.Count = 0 Then
-
-            btnEliminar.Enabled = False
-
-        Else
-            btnEliminar.Enabled = True
+            CalcularTotalVenta()
 
         End If
 
@@ -327,7 +329,11 @@ Public Class frmVenta
 
         btnAgregar.Enabled = False
         btnEditar.Enabled = False
-        'btnEliminar.Enabled = False
+
+    End Sub
+
+    Private Sub btnEditar_Click(sender As Object, e As EventArgs) Handles btnEditar.Click
+
 
     End Sub
 
