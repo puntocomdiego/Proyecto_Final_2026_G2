@@ -57,7 +57,7 @@ Partial Class frmProductos
         ' txtCodigo
         ' 
         txtCodigo.Font = New Font("Segoe UI", 12F)
-        txtCodigo.Location = New Point(120, 65)
+        txtCodigo.Location = New Point(151, 65)
         txtCodigo.Name = "txtCodigo"
         txtCodigo.Size = New Size(205, 29)
         txtCodigo.TabIndex = 0
@@ -65,7 +65,7 @@ Partial Class frmProductos
         ' txtDescripcion
         ' 
         txtDescripcion.Font = New Font("Segoe UI", 12F)
-        txtDescripcion.Location = New Point(120, 100)
+        txtDescripcion.Location = New Point(151, 100)
         txtDescripcion.Name = "txtDescripcion"
         txtDescripcion.Size = New Size(205, 29)
         txtDescripcion.TabIndex = 1
@@ -73,7 +73,7 @@ Partial Class frmProductos
         ' txtPrecio
         ' 
         txtPrecio.Font = New Font("Segoe UI", 12F)
-        txtPrecio.Location = New Point(120, 135)
+        txtPrecio.Location = New Point(524, 28)
         txtPrecio.Name = "txtPrecio"
         txtPrecio.Size = New Size(205, 29)
         txtPrecio.TabIndex = 2
@@ -81,7 +81,7 @@ Partial Class frmProductos
         ' txtStock
         ' 
         txtStock.Font = New Font("Segoe UI", 12F)
-        txtStock.Location = New Point(120, 170)
+        txtStock.Location = New Point(524, 63)
         txtStock.Name = "txtStock"
         txtStock.Size = New Size(205, 29)
         txtStock.TabIndex = 3
@@ -90,7 +90,7 @@ Partial Class frmProductos
         ' 
         cmbCategorias.Font = New Font("Segoe UI", 12F)
         cmbCategorias.FormattingEnabled = True
-        cmbCategorias.Location = New Point(120, 28)
+        cmbCategorias.Location = New Point(151, 28)
         cmbCategorias.Name = "cmbCategorias"
         cmbCategorias.Size = New Size(205, 29)
         cmbCategorias.TabIndex = 4
@@ -98,7 +98,7 @@ Partial Class frmProductos
         ' txtStockminimo
         ' 
         txtStockminimo.Font = New Font("Segoe UI", 12F)
-        txtStockminimo.Location = New Point(120, 205)
+        txtStockminimo.Location = New Point(524, 98)
         txtStockminimo.Name = "txtStockminimo"
         txtStockminimo.Size = New Size(205, 29)
         txtStockminimo.TabIndex = 5
@@ -107,7 +107,7 @@ Partial Class frmProductos
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 12F)
-        Label1.Location = New Point(1, 68)
+        Label1.Location = New Point(32, 68)
         Label1.Name = "Label1"
         Label1.Size = New Size(63, 21)
         Label1.TabIndex = 6
@@ -117,7 +117,7 @@ Partial Class frmProductos
         ' 
         Label2.AutoSize = True
         Label2.Font = New Font("Segoe UI", 12F)
-        Label2.Location = New Point(0, 103)
+        Label2.Location = New Point(31, 103)
         Label2.Name = "Label2"
         Label2.Size = New Size(94, 21)
         Label2.TabIndex = 7
@@ -127,7 +127,7 @@ Partial Class frmProductos
         ' 
         Label3.AutoSize = True
         Label3.Font = New Font("Segoe UI", 12F)
-        Label3.Location = New Point(1, 138)
+        Label3.Location = New Point(405, 31)
         Label3.Name = "Label3"
         Label3.Size = New Size(56, 21)
         Label3.TabIndex = 8
@@ -137,7 +137,7 @@ Partial Class frmProductos
         ' 
         Label4.AutoSize = True
         Label4.Font = New Font("Segoe UI", 12F)
-        Label4.Location = New Point(1, 173)
+        Label4.Location = New Point(405, 66)
         Label4.Name = "Label4"
         Label4.Size = New Size(50, 21)
         Label4.TabIndex = 9
@@ -147,7 +147,7 @@ Partial Class frmProductos
         ' 
         Label5.AutoSize = True
         Label5.Font = New Font("Segoe UI", 12F)
-        Label5.Location = New Point(0, 208)
+        Label5.Location = New Point(404, 101)
         Label5.Name = "Label5"
         Label5.Size = New Size(108, 21)
         Label5.TabIndex = 10
@@ -157,7 +157,7 @@ Partial Class frmProductos
         ' 
         Label6.AutoSize = True
         Label6.Font = New Font("Segoe UI", 12F)
-        Label6.Location = New Point(1, 31)
+        Label6.Location = New Point(32, 31)
         Label6.Name = "Label6"
         Label6.Size = New Size(80, 21)
         Label6.TabIndex = 11
@@ -168,7 +168,7 @@ Partial Class frmProductos
         btnAgregar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnAgregar.Enabled = False
         btnAgregar.Font = New Font("Berlin Sans FB Demi", 12F)
-        btnAgregar.Location = New Point(488, 60)
+        btnAgregar.Location = New Point(263, 424)
         btnAgregar.Name = "btnAgregar"
         btnAgregar.Size = New Size(120, 36)
         btnAgregar.TabIndex = 13
@@ -180,7 +180,7 @@ Partial Class frmProductos
         btnModificar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnModificar.Enabled = False
         btnModificar.Font = New Font("Berlin Sans FB Demi", 12F)
-        btnModificar.Location = New Point(357, 105)
+        btnModificar.Location = New Point(389, 424)
         btnModificar.Name = "btnModificar"
         btnModificar.Size = New Size(120, 36)
         btnModificar.TabIndex = 14
@@ -192,7 +192,7 @@ Partial Class frmProductos
         btnEliminar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnEliminar.Enabled = False
         btnEliminar.Font = New Font("Berlin Sans FB Demi", 12F)
-        btnEliminar.Location = New Point(488, 105)
+        btnEliminar.Location = New Point(641, 424)
         btnEliminar.Name = "btnEliminar"
         btnEliminar.Size = New Size(120, 36)
         btnEliminar.TabIndex = 15
@@ -203,7 +203,7 @@ Partial Class frmProductos
         ' 
         btnLimpiar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnLimpiar.Font = New Font("Berlin Sans FB Demi", 12F)
-        btnLimpiar.Location = New Point(357, 60)
+        btnLimpiar.Location = New Point(515, 424)
         btnLimpiar.Name = "btnLimpiar"
         btnLimpiar.Size = New Size(120, 36)
         btnLimpiar.TabIndex = 16
@@ -214,16 +214,16 @@ Partial Class frmProductos
         ' 
         dgvProductos.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         dgvProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        dgvProductos.Location = New Point(11, 254)
+        dgvProductos.Location = New Point(11, 147)
         dgvProductos.Name = "dgvProductos"
-        dgvProductos.Size = New Size(596, 216)
+        dgvProductos.Size = New Size(761, 259)
         dgvProductos.TabIndex = 18
         ' 
         ' btnBuscar
         ' 
         btnBuscar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnBuscar.Font = New Font("Berlin Sans FB Demi", 12F)
-        btnBuscar.Location = New Point(357, 15)
+        btnBuscar.Location = New Point(11, 424)
         btnBuscar.Name = "btnBuscar"
         btnBuscar.Size = New Size(120, 36)
         btnBuscar.TabIndex = 19
@@ -234,7 +234,7 @@ Partial Class frmProductos
         ' 
         txtBuscar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         txtBuscar.Font = New Font("Segoe UI", 12F)
-        txtBuscar.Location = New Point(403, 174)
+        txtBuscar.Location = New Point(58, 466)
         txtBuscar.Name = "txtBuscar"
         txtBuscar.Size = New Size(205, 29)
         txtBuscar.TabIndex = 20
@@ -245,7 +245,7 @@ Partial Class frmProductos
         btnok.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnok.BackColor = Color.FromArgb(CByte(192), CByte(255), CByte(192))
         btnok.Font = New Font("Berlin Sans FB Demi", 12F)
-        btnok.Location = New Point(357, 174)
+        btnok.Location = New Point(12, 466)
         btnok.Name = "btnok"
         btnok.Size = New Size(40, 29)
         btnok.TabIndex = 21
@@ -257,7 +257,7 @@ Partial Class frmProductos
         ' 
         btnNuevo.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnNuevo.Font = New Font("Berlin Sans FB Demi", 12F)
-        btnNuevo.Location = New Point(488, 15)
+        btnNuevo.Location = New Point(137, 424)
         btnNuevo.Name = "btnNuevo"
         btnNuevo.Size = New Size(120, 36)
         btnNuevo.TabIndex = 22
@@ -268,7 +268,7 @@ Partial Class frmProductos
         ' 
         btnFin.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
         btnFin.Font = New Font("Berlin Sans FB Demi", 12F)
-        btnFin.Location = New Point(482, 476)
+        btnFin.Location = New Point(647, 510)
         btnFin.Name = "btnFin"
         btnFin.Size = New Size(125, 39)
         btnFin.TabIndex = 23
@@ -279,7 +279,7 @@ Partial Class frmProductos
         ' 
         chkActivo.AutoSize = True
         chkActivo.Font = New Font("Berlin Sans FB Demi", 12F)
-        chkActivo.Location = New Point(373, 147)
+        chkActivo.Location = New Point(411, 466)
         chkActivo.Name = "chkActivo"
         chkActivo.Size = New Size(73, 22)
         chkActivo.TabIndex = 24
@@ -292,7 +292,7 @@ Partial Class frmProductos
         btnexportar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnexportar.Enabled = False
         btnexportar.Font = New Font("Berlin Sans FB Demi", 12F)
-        btnexportar.Location = New Point(488, 212)
+        btnexportar.Location = New Point(12, 501)
         btnexportar.Name = "btnexportar"
         btnexportar.Size = New Size(120, 36)
         btnexportar.TabIndex = 25
@@ -303,7 +303,7 @@ Partial Class frmProductos
         ' 
         rdpdf.AutoSize = True
         rdpdf.Font = New Font("Berlin Sans FB Demi", 12F)
-        rdpdf.Location = New Point(359, 217)
+        rdpdf.Location = New Point(138, 508)
         rdpdf.Name = "rdpdf"
         rdpdf.Size = New Size(56, 22)
         rdpdf.TabIndex = 28
@@ -315,7 +315,7 @@ Partial Class frmProductos
         ' 
         rdexcel.AutoSize = True
         rdexcel.Font = New Font("Berlin Sans FB Demi", 12F)
-        rdexcel.Location = New Point(421, 217)
+        rdexcel.Location = New Point(200, 508)
         rdexcel.Name = "rdexcel"
         rdexcel.Size = New Size(61, 22)
         rdexcel.TabIndex = 29
@@ -340,7 +340,7 @@ Partial Class frmProductos
         GroupBox1.Font = New Font("Segoe UI", 12F)
         GroupBox1.Location = New Point(11, 0)
         GroupBox1.Name = "GroupBox1"
-        GroupBox1.Size = New Size(335, 246)
+        GroupBox1.Size = New Size(761, 144)
         GroupBox1.TabIndex = 30
         GroupBox1.TabStop = False
         GroupBox1.Text = "Datos del Producto:"
@@ -349,7 +349,7 @@ Partial Class frmProductos
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(629, 518)
+        ClientSize = New Size(784, 561)
         Controls.Add(rdexcel)
         Controls.Add(rdpdf)
         Controls.Add(txtBuscar)
