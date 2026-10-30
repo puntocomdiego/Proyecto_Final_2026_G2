@@ -21,14 +21,14 @@ Public Class frmMailing
 
         BotonPrimario(btnEnviar)
         BotonSecundario(btnCancelar)
-        BotonSecundario(btnCerrar)
+        'BotonSecundario(btnCerrar)
         BotonSecundario(btnAdjuntar)
 
         ' Si nombraste a tu botón "Elegir otro" como btnCargarOtro, usa esta línea:
         ' BotonSecundario(btnCargarOtro)
 
         Me.AcceptButton = btnEnviar
-        Me.CancelButton = btnCerrar
+        'Me.CancelButton = btnCerrar
 
         ' 2. Lógica del formulario
         CargarClientes()
