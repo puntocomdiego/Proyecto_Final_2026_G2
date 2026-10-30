@@ -324,13 +324,14 @@ Public Class frmClientes
         End If
     End Function
 
-    'Private Sub btnmail_Click(sender As Object, e As EventArgs) Handles btnmail.Click
-    '    ' Abrimos la pantalla de Mailing
-    '    Dim ventanaMail As New frmMailing()
-    '    ventanaMail.MdiParent = Me.MdiParent
-    '    ventanaMail.Show()
 
-    '    ' Ocultamos la pantalla actual de Clientes
-    '    Me.Hide()
-    'End Sub
+    Private Sub btnmail_Click(sender As Object, e As EventArgs) Handles btnmail.Click
+        ' Abrimos la pantalla de Mailing
+        Dim ventanaMail As New frmMailing()
+        ventanaMail.MdiParent = Me.MdiParent
+        ventanaMail.Show()
+
+        ' Ocultamos la pantalla actual de Clientes
+        Me.Hide()
+    End Sub
 End Class

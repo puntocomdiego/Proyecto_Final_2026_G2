@@ -21,14 +21,14 @@ Public Class frmMailing
 
         BotonPrimario(btnEnviar)
         BotonSecundario(btnCancelar)
-        'BotonSecundario(btnCerrar)
+        BotonSecundario(btnCerrar)
         BotonSecundario(btnAdjuntar)
 
         ' Si nombraste a tu botón "Elegir otro" como btnCargarOtro, usa esta línea:
         ' BotonSecundario(btnCargarOtro)
 
         Me.AcceptButton = btnEnviar
-        'Me.CancelButton = btnCerrar
+        Me.CancelButton = btnCerrar
 
         ' 2. Lógica del formulario
         CargarClientes()
@@ -210,7 +210,7 @@ Public Class frmMailing
         End Try
     End Function
 
-    Private Sub btnclientes_Click(sender As Object, e As EventArgs) Handles btnclientes.Click
+    Private Sub btnclientes_Click(sender As Object, e As EventArgs) Handles btnCerrar.Click
         ' Volvemos a abrir la pantalla de Clientes
         Dim ventanaClientes As New frmClientes()
         ventanaClientes.MdiParent = Me.MdiParent
