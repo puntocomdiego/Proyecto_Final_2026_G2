@@ -45,11 +45,11 @@ Partial Class frmProductos
         btnNuevo = New Button()
         btnFin = New Button()
         chkActivo = New CheckBox()
-        FolderBrowserDialog1 = New FolderBrowserDialog()
         btnexportar = New Button()
         rdpdf = New RadioButton()
         rdexcel = New RadioButton()
         GroupBox1 = New GroupBox()
+        SaveFileDialog1 = New SaveFileDialog()
         CType(dgvProductos, ComponentModel.ISupportInitialize).BeginInit()
         GroupBox1.SuspendLayout()
         SuspendLayout()
@@ -168,7 +168,7 @@ Partial Class frmProductos
         btnAgregar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnAgregar.Enabled = False
         btnAgregar.Font = New Font("Berlin Sans FB Demi", 12F)
-        btnAgregar.Location = New Point(263, 424)
+        btnAgregar.Location = New Point(268, 424)
         btnAgregar.Name = "btnAgregar"
         btnAgregar.Size = New Size(120, 36)
         btnAgregar.TabIndex = 13
@@ -180,7 +180,7 @@ Partial Class frmProductos
         btnModificar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnModificar.Enabled = False
         btnModificar.Font = New Font("Berlin Sans FB Demi", 12F)
-        btnModificar.Location = New Point(389, 424)
+        btnModificar.Location = New Point(396, 424)
         btnModificar.Name = "btnModificar"
         btnModificar.Size = New Size(120, 36)
         btnModificar.TabIndex = 14
@@ -192,7 +192,7 @@ Partial Class frmProductos
         btnEliminar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnEliminar.Enabled = False
         btnEliminar.Font = New Font("Berlin Sans FB Demi", 12F)
-        btnEliminar.Location = New Point(641, 424)
+        btnEliminar.Location = New Point(652, 424)
         btnEliminar.Name = "btnEliminar"
         btnEliminar.Size = New Size(120, 36)
         btnEliminar.TabIndex = 15
@@ -203,7 +203,7 @@ Partial Class frmProductos
         ' 
         btnLimpiar.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnLimpiar.Font = New Font("Berlin Sans FB Demi", 12F)
-        btnLimpiar.Location = New Point(515, 424)
+        btnLimpiar.Location = New Point(524, 424)
         btnLimpiar.Name = "btnLimpiar"
         btnLimpiar.Size = New Size(120, 36)
         btnLimpiar.TabIndex = 16
@@ -214,7 +214,7 @@ Partial Class frmProductos
         ' 
         dgvProductos.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         dgvProductos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        dgvProductos.Location = New Point(11, 147)
+        dgvProductos.Location = New Point(11, 149)
         dgvProductos.Name = "dgvProductos"
         dgvProductos.Size = New Size(761, 259)
         dgvProductos.TabIndex = 18
@@ -257,7 +257,7 @@ Partial Class frmProductos
         ' 
         btnNuevo.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnNuevo.Font = New Font("Berlin Sans FB Demi", 12F)
-        btnNuevo.Location = New Point(137, 424)
+        btnNuevo.Location = New Point(139, 424)
         btnNuevo.Name = "btnNuevo"
         btnNuevo.Size = New Size(120, 36)
         btnNuevo.TabIndex = 22
@@ -279,7 +279,7 @@ Partial Class frmProductos
         ' 
         chkActivo.AutoSize = True
         chkActivo.Font = New Font("Berlin Sans FB Demi", 12F)
-        chkActivo.Location = New Point(411, 466)
+        chkActivo.Location = New Point(421, 466)
         chkActivo.Name = "chkActivo"
         chkActivo.Size = New Size(73, 22)
         chkActivo.TabIndex = 24
@@ -397,9 +397,9 @@ Partial Class frmProductos
     Friend WithEvents btnNuevo As Button
     Friend WithEvents btnFin As Button
     Friend WithEvents chkActivo As CheckBox
-    Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
     Friend WithEvents btnexportar As Button
     Friend WithEvents rdpdf As RadioButton
     Friend WithEvents rdexcel As RadioButton
     Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents SaveFileDialog1 As SaveFileDialog
 End Class
