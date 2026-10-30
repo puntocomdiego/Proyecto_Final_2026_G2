@@ -34,7 +34,7 @@ Partial Class frmMailing
         Label3 = New Label()
         btnCancelar = New Button()
         lblEstado = New Label()
-        btnclientes = New Button()
+        btnCerrar = New Button()
         lblInfoAuto = New Label()
         btnCargarOtro = New Button()
         Panel1 = New Panel()
@@ -103,7 +103,7 @@ Partial Class frmMailing
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.Font = New Font("Segoe UI", 12.0F)
+        Label1.Font = New Font("Segoe UI", 12F)
         Label1.Location = New Point(74, 103)
         Label1.Name = "Label1"
         Label1.Size = New Size(141, 28)
@@ -113,7 +113,7 @@ Partial Class frmMailing
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Font = New Font("Segoe UI", 12.0F)
+        Label2.Font = New Font("Segoe UI", 12F)
         Label2.Location = New Point(122, 137)
         Label2.Name = "Label2"
         Label2.Size = New Size(93, 28)
@@ -123,7 +123,7 @@ Partial Class frmMailing
         ' Label3
         ' 
         Label3.AutoSize = True
-        Label3.Font = New Font("Segoe UI", 12.0F)
+        Label3.Font = New Font("Segoe UI", 12F)
         Label3.Location = New Point(1, 170)
         Label3.Name = "Label3"
         Label3.Size = New Size(214, 28)
@@ -151,20 +151,20 @@ Partial Class frmMailing
         lblEstado.TabIndex = 10
         lblEstado.Text = "Esperando para enviar..."
         ' 
-        ' btnclientes
+        ' btnCerrar
         ' 
-        btnclientes.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        btnclientes.Location = New Point(490, 16)
-        btnclientes.Name = "btnclientes"
-        btnclientes.Size = New Size(120, 36)
-        btnclientes.TabIndex = 11
-        btnclientes.Text = "&Cerrar"
-        btnclientes.UseVisualStyleBackColor = True
+        btnCerrar.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
+        btnCerrar.Location = New Point(490, 16)
+        btnCerrar.Name = "btnCerrar"
+        btnCerrar.Size = New Size(120, 36)
+        btnCerrar.TabIndex = 11
+        btnCerrar.Text = "&Cerrar"
+        btnCerrar.UseVisualStyleBackColor = True
         ' 
         ' lblInfoAuto
         ' 
         lblInfoAuto.AutoSize = True
-        lblInfoAuto.Font = New Font("Segoe UI", 9.0F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        lblInfoAuto.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         lblInfoAuto.ForeColor = Color.FromArgb(CByte(90), CByte(90), CByte(102))
         lblInfoAuto.Location = New Point(12, 342)
         lblInfoAuto.Name = "lblInfoAuto"
@@ -197,7 +197,7 @@ Partial Class frmMailing
         ' 
         Label4.AutoSize = True
         Label4.BackColor = Color.White
-        Label4.Font = New Font("Segoe UI", 16.0F)
+        Label4.Font = New Font("Segoe UI", 16F)
         Label4.Location = New Point(12, 9)
         Label4.Name = "Label4"
         Label4.Size = New Size(107, 37)
@@ -219,7 +219,7 @@ Partial Class frmMailing
         Panel3.BackColor = Color.White
         Panel3.Controls.Add(btnEnviar)
         Panel3.Controls.Add(btnCancelar)
-        Panel3.Controls.Add(btnclientes)
+        Panel3.Controls.Add(btnCerrar)
         Panel3.Dock = DockStyle.Bottom
         Panel3.Location = New Point(0, 365)
         Panel3.Name = "Panel3"
@@ -228,7 +228,7 @@ Partial Class frmMailing
         ' 
         ' frmMailing
         ' 
-        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(622, 433)
         Controls.Add(Panel3)
@@ -267,7 +267,7 @@ Partial Class frmMailing
     Friend WithEvents Label3 As Label
     Friend WithEvents btnCancelar As Button
     Friend WithEvents lblEstado As Label
-    Friend WithEvents btnclientes As Button
+    Friend WithEvents btnCerrar As Button
     Friend WithEvents lblInfoAuto As Label
     Friend WithEvents btnCargarOtro As Button
     Friend WithEvents Panel1 As Panel

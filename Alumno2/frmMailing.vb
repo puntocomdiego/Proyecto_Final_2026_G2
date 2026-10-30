@@ -210,7 +210,7 @@ Public Class frmMailing
         End Try
     End Function
 
-    Private Sub btnclientes_Click(sender As Object, e As EventArgs) Handles btnclientes.Click
+    Private Sub btnclientes_Click(sender As Object, e As EventArgs) Handles btnCerrar.Click
         ' Volvemos a abrir la pantalla de Clientes
         Dim ventanaClientes As New frmClientes()
         ventanaClientes.MdiParent = Me.MdiParent

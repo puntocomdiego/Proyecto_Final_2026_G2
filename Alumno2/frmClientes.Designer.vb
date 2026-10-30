@@ -44,6 +44,7 @@ Partial Class frmClientes
         btnNuevo = New Button()
         GroupBox1 = New GroupBox()
         GroupBox2 = New GroupBox()
+        btnmail = New Button()
         CType(dgvClientes, ComponentModel.ISupportInitialize).BeginInit()
         GroupBox1.SuspendLayout()
         GroupBox2.SuspendLayout()
@@ -97,10 +98,10 @@ Partial Class frmClientes
         ' 
         dgvClientes.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         dgvClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        dgvClientes.Location = New Point(12, 419)
+        dgvClientes.Location = New Point(12, 370)
         dgvClientes.Name = "dgvClientes"
         dgvClientes.RowHeadersWidth = 51
-        dgvClientes.Size = New Size(596, 171)
+        dgvClientes.Size = New Size(758, 171)
         dgvClientes.TabIndex = 8
         ' 
         ' btnCancelar
@@ -219,7 +220,7 @@ Partial Class frmClientes
         GroupBox1.Controls.Add(btnAgregar)
         GroupBox1.Controls.Add(btnCancelar)
         GroupBox1.Controls.Add(btnFin)
-        GroupBox1.Location = New Point(420, 20)
+        GroupBox1.Location = New Point(582, -29)
         GroupBox1.Name = "GroupBox1"
         GroupBox1.Size = New Size(189, 393)
         GroupBox1.TabIndex = 23
@@ -243,16 +244,27 @@ Partial Class frmClientes
         GroupBox2.Controls.Add(txtNombre)
         GroupBox2.Location = New Point(12, 20)
         GroupBox2.Name = "GroupBox2"
-        GroupBox2.Size = New Size(400, 393)
+        GroupBox2.Size = New Size(400, 344)
         GroupBox2.TabIndex = 24
         GroupBox2.TabStop = False
         GroupBox2.Text = "Cliente"
         ' 
+        ' btnmail
+        ' 
+        btnmail.Font = New Font("Stencil", 13F, FontStyle.Bold)
+        btnmail.Location = New Point(436, 292)
+        btnmail.Name = "btnmail"
+        btnmail.Size = New Size(140, 40)
+        btnmail.TabIndex = 23
+        btnmail.Text = "Ma&iling"
+        btnmail.UseVisualStyleBackColor = True
+        ' 
         ' frmClientes
         ' 
-        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(620, 602)
+        ClientSize = New Size(782, 553)
+        Controls.Add(btnmail)
         Controls.Add(GroupBox2)
         Controls.Add(GroupBox1)
         Controls.Add(dgvClientes)
@@ -287,5 +299,6 @@ Partial Class frmClientes
     Friend WithEvents btnNuevo As Button
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents btnmail As Button
 
 End Class
