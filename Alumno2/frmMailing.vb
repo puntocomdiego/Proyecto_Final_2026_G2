@@ -15,12 +15,26 @@ Public Class frmMailing
     Private rutaAdjunto As String = ""
 
     ' ===== 1. CARGA INICIAL =====
-    Private Sub Mailing_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub frmMailing_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' 1. Magia de estilos del Instituto Puntocom
+        AplicarEstiloFormulario(Me, "Mailing")
+
+        BotonPrimario(btnEnviar)
+        BotonSecundario(btnCancelar)
+        BotonSecundario(btnCerrar)
+        BotonSecundario(btnAdjuntar)
+
+        ' Si nombraste a tu botón "Elegir otro" como btnCargarOtro, usa esta línea:
+        ' BotonSecundario(btnCargarOtro)
+
+        Me.AcceptButton = btnEnviar
+        Me.CancelButton = btnCerrar
+
+        ' 2. Lógica del formulario
         CargarClientes()
-        BuscarOfertaAutomatica() ' <--- Inicia la búsqueda automática aquí
+        BuscarOfertaAutomatica()
         lblEstado.Text = "Esperando para enviar..."
     End Sub
-
     Private Sub CargarClientes()
         Try
             cmbClientes.Items.Clear()
