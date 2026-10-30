@@ -34,6 +34,21 @@ Public Class TemporalDatos
 
     End Function
 
+    Public Function Editar(t As Temporal) As Boolean
+        Using cn As New OleDbConnection(CadenaConexion)
+            Dim sql As String = "UPDATE Temp SET Descripcion = ?, Cantidad = ?, PrecioUnita = ?, Subtotal = ? WHERE IdProducto = ?"
+            Using cmd As New OleDbCommand(sql, cn)
+                cmd.Parameters.AddWithValue("?", t.Descripcion)
+                cmd.Parameters.AddWithValue("?", t.Cantidad)
+                cmd.Parameters.AddWithValue("?", t.PrecioUnita)
+                cmd.Parameters.AddWithValue("?", t.Subtotal)
+                cmd.Parameters.AddWithValue("?", t.IdProducto)
+                cn.Open()
+                Return cmd.ExecuteNonQuery() > 0
+            End Using
+        End Using
+    End Function
+
     Public Function Eliminar(idProducto As Integer) As Boolean
         Using cn As New OleDbConnection(CadenaConexion)
             Dim sql As String = "DELETE FROM Temp WHERE IdProducto = ?"
