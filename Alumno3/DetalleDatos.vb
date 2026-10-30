@@ -1,23 +1,23 @@
-﻿Public Class DetalleDatos
+﻿Imports System.Data.OleDb
 
-    Public Property IdVenta As Integer
-    Public Property IdProducto As Integer
-    Public Property Cantidad As Decimal
-    Public Property PrecioUnita As Decimal
-    Public Property Subtotal As Decimal
+Public Class DetalleDatos
 
-    Public Sub New()
+    Public Function Agregar(d As Detalle, cn As OleDbConnection, trans As OleDbTransaction) As Boolean
 
-    End Sub
+        Dim sql As String = "INSERT INTO DetalleVentas " &
+                            "(IdVenta, IdProducto, Cantidad, PrecioUnitario, Subtotal) " &
+                            "VALUES (?, ?, ?, ?, ?)"
 
-    Public Sub New(IdVenta As Integer, IdProducto As Integer, Cantidad As Decimal, PrecioUnita As Decimal, Subtotal As Decimal)
+        Using cmd As New OleDbCommand(sql, cn, trans)
+            cmd.Parameters.AddWithValue("?", d.IdVenta)
+            cmd.Parameters.AddWithValue("?", d.IdProducto)
+            cmd.Parameters.AddWithValue("?", d.Cantidad)
+            cmd.Parameters.AddWithValue("?", d.PrecioUnita)
+            cmd.Parameters.AddWithValue("?", d.Subtotal)
 
-        Me.IdVenta = IdVenta
-        Me.IdProducto = IdProducto
-        Me.Cantidad = Cantidad
-        Me.PrecioUnita = PrecioUnita
-        Me.Subtotal = Subtotal
+            Return cmd.ExecuteNonQuery() > 0
+        End Using
 
-    End Sub
+    End Function
 
 End Class
