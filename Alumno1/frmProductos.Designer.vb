@@ -349,6 +349,7 @@ Partial Class frmProductos
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
+        CancelButton = btnFin
         ClientSize = New Size(784, 561)
         Controls.Add(rdexcel)
         Controls.Add(rdpdf)

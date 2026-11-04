@@ -18,7 +18,9 @@ Public Class frmProductos
         MostrarProductos(datos.ListarProductos())
         BotonPrimario(Me.btnAgregar)
         BotonSecundario(Me.btnModificar)
-
+        BotonPeligro(Me.btnEliminar)
+        AplicarEstiloGrilla(dgvProductos)
+        AplicarEstiloFormulario(Me, "Gestión de Productos")
     End Sub
     Private Sub CargarCategorias()
         Try
@@ -266,26 +268,6 @@ Public Class frmProductos
     End Sub
 
     Private Sub txtBuscar_TextChanged(sender As Object, e As EventArgs) Handles txtBuscar.TextChanged
-        'opción 1: Filtrar la grilla directamente
-
-        'Try
-        '    If dgvProductos.DataSource IsNot Nothing Then
-        '        Dim dt As DataTable = CType(dgvProductos.DataSource, DataTable)
-        '        Dim dv As DataView = dt.DefaultView
-        '        Dim filtro As String = txtBuscar.Text.Trim()
-
-        '        If filtro = "" Then
-        '            dv.RowFilter = String.Empty
-        '        Else
-        '            dv.RowFilter = "Descripcion LIKE '%" & filtro & "%' OR Codigo LIKE '%" & filtro & "%'"
-        '        End If
-        '    End If
-        'Catch ex As Exception
-        '    MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
-        'End Try
-
-        '---------------------------------------------------------------------------------------------------------
-
         'opcion 2: Buscar en la base de datos y actualizar la grilla
 
         Try
@@ -339,6 +321,8 @@ Public Class frmProductos
     End Sub
 
     Private Sub btnFin_Click(sender As Object, e As EventArgs) Handles btnFin.Click
+        If MessageBox.Show("¿Desea salir del Programa?", "Confirmar",
+                          MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then Exit Sub
         Close()
         MsgBox("Gracias por utilizar el programa!", MsgBoxStyle.Information, "Fin del programa")
     End Sub
@@ -671,4 +655,5 @@ Public Class frmProductos
 
         Return valor.ToString()
     End Function
+
 End Class
