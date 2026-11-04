@@ -74,7 +74,7 @@
         dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         dgv.EnableHeadersVisualStyles = False
         dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        dgv.ColumnHeadersHeight = 36
+        dgv.ColumnHeadersHeight = 46
         dgv.RowTemplate.Height = 32
         With dgv.ColumnHeadersDefaultCellStyle
             .BackColor = ColorNegro
