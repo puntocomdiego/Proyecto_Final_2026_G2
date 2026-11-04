@@ -10,9 +10,12 @@ Public Class frmVenta
 
     Private Sub frmVenta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        AplicarEstiloFormulario(Me, "Venta")
+        AplicarEstiloGrilla(dgvTemp)
+
         CargarClientes()
         CargarCategorias()
-        ConfigurarGrilla()
+        'ConfigurarGrilla()
         MostrarCompras(temporal.Listar())
 
     End Sub
@@ -309,6 +312,28 @@ Public Class frmVenta
         End Try
     End Sub
 
+    Private Function ObtenerStockDisponible(idProducto As Integer) As Integer
+        Try
+            Using cn As New OleDbConnection(CadenaConexion)
+                cn.Open()
+                Dim sql As String = "SELECT Stock FROM Productos WHERE IdProducto = ?"
+                Using cmd As New OleDbCommand(sql, cn)
+                    cmd.Parameters.AddWithValue("?", idProducto)
+                    Dim stock As Object = cmd.ExecuteScalar()
+                    If stock IsNot Nothing AndAlso IsNumeric(stock) Then
+                        Return Convert.ToInt32(stock)
+                    Else
+                        Return 0
+                    End If
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Error al obtener stock disponible: " & ex.Message, "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return 0
+        End Try
+    End Function
+
     '== CONTROLES ==
 
     Private Sub cboCliente_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboCliente.SelectedIndexChanged
@@ -374,7 +399,7 @@ Public Class frmVenta
 
     End Sub
 
-    '== AGREGAR Y CONFIRMAR VENTA ==
+    '== VENTAS ==
 
     Private Sub btnAgregar_Click(sender As Object, e As EventArgs) Handles btnAgregar.Click
 
@@ -394,8 +419,15 @@ Public Class frmVenta
             Dim cantidadIngresada As Integer = CInt(txtCantidad.Text)
             Dim precio As Decimal = CDec(fila("Precio"))
 
+            Dim stockDisponible As Integer = ObtenerStockDisponible(id)
 
-            Dim t As New Temporal(id, nombre, cantidadIngresada, precio, cantidadIngresada * precio)
+            If cantidadIngresada > stockDisponible Then
+                MessageBox.Show("No hay suficiente stock." & vbCrLf &
+                                "Stock disponible: " & stockDisponible,
+                                "Stock insuficiente", MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning)
+                Return
+            End If
 
             For Each r As DataGridViewRow In dgvTemp.Rows
 
@@ -408,6 +440,8 @@ Public Class frmVenta
                 End If
 
             Next
+
+            Dim t As New Temporal(id, nombre, cantidadIngresada, precio, cantidadIngresada * precio)
 
             If temporal.Agregar(t) Then
 
@@ -519,6 +553,12 @@ Public Class frmVenta
 
     End Sub
 
+    Private Sub btnConsulta_Click(sender As Object, e As EventArgs) Handles btnConsulta.Click
+
+        frmConsultaVentas.Show()
+
+    End Sub
+
     '== EDITORES DE DATOS ==
 
     Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
@@ -544,11 +584,8 @@ Public Class frmVenta
 
         LimpiarMetodoPago()
         lblTotal.Text = "$0,00"
-
-        CargarClientes()
-        CargarCategorias()
         temporal.Limpiar()
-        MostrarCompras(temporal.Listar())
+        MostrarCompras(temporal.Listar)
 
 
     End Sub
