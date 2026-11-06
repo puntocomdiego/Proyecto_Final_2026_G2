@@ -1,7 +1,7 @@
 ﻿Imports System.Net.Mail
 Imports System.ComponentModel
 
-Public Class Mailing
+Public Class frmMailing
     ' Acceso a la base de datos
     Private datos As New Cliente_datos()
 
@@ -15,11 +15,26 @@ Public Class Mailing
     Private rutaAdjunto As String = ""
 
     ' ===== 1. CARGA INICIAL =====
-    Private Sub Mailing_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub frmMailing_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' 1. Magia de estilos del Instituto Puntocom
+        AplicarEstiloFormulario(Me, "Mailing")
+
+        BotonPrimario(btnEnviar)
+        BotonSecundario(btnCancelar)
+        BotonSecundario(btnCerrar)
+        BotonSecundario(btnAdjuntar)
+
+        ' Si nombraste a tu botón "Elegir otro" como btnCargarOtro, usa esta línea:
+        ' BotonSecundario(btnCargarOtro)
+
+        Me.AcceptButton = btnEnviar
+        Me.CancelButton = btnCerrar
+
+        ' 2. Lógica del formulario
         CargarClientes()
+        BuscarOfertaAutomatica()
         lblEstado.Text = "Esperando para enviar..."
     End Sub
-
     Private Sub CargarClientes()
         Try
             cmbClientes.Items.Clear()
@@ -43,6 +58,28 @@ Public Class Mailing
             MessageBox.Show("Error al cargar clientes: " & ex.Message, "Error BD", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Private Sub BuscarOfertaAutomatica()
+        Dim nombreArchivo As String = "Ofertasdelmes" & Now.ToString("MMyyyy") & ".pdf"
+        Dim rutaDinamica As String = IO.Path.Combine(Application.StartupPath, nombreArchivo)
+
+        If IO.File.Exists(rutaDinamica) Then
+            rutaAdjunto = rutaDinamica
+            txtAdjunto.Text = nombreArchivo
+            btnAdjuntar.Enabled = False
+
+            ' Mostramos la explicación y el botón alternativo
+            lblInfoAuto.Visible = True
+            btnCargarOtro.Visible = True
+        Else
+            rutaAdjunto = ""
+            txtAdjunto.Text = "Ningún archivo adjunto..."
+            btnAdjuntar.Enabled = True
+
+            ' Ocultamos la explicación y el botón extra si no hay archivo automático
+            lblInfoAuto.Visible = False
+            btnCargarOtro.Visible = False
+        End If
+    End Sub
 
     ' ===== 2. ADJUNTAR PDF =====
     Private Sub btnAdjuntar_Click(sender As Object, e As EventArgs) Handles btnAdjuntar.Click
@@ -52,8 +89,8 @@ Public Class Mailing
 
         If ofdPdf.ShowDialog() = DialogResult.OK Then
             rutaAdjunto = ofdPdf.FileName
-            ' Asumiendo que tu etiqueta debajo del botón se llama lblAdjunto
-            lblAdjunto.Text = ofdPdf.SafeFileName
+            ' Asumiendo que tu etiqueta debajo del botón se llama txtAdjunto
+            txtAdjunto.Text = ofdPdf.SafeFileName
         End If
     End Sub
 
@@ -138,9 +175,10 @@ Public Class Mailing
             ' Limpiamos los campos tras el éxito
             txtAsunto.Clear()
             txtCuerpo.Clear()
-            rutaAdjunto = ""
-            lblAdjunto.Text = "Ningún archivo adjunto..."
             cmbClientes.SelectedIndex = 0
+
+            ' Volvemos a chequear el PDF automático en lugar de vaciarlo a ciegas
+            BuscarOfertaAutomatica()
         End If
 
         ' Rehabilitar botones y limpiar memoria
@@ -171,4 +209,28 @@ Public Class Mailing
             Return False
         End Try
     End Function
+
+    Private Sub btnclientes_Click(sender As Object, e As EventArgs) Handles btnCerrar.Click
+        ' Volvemos a abrir la pantalla de Clientes
+        Dim ventanaClientes As New frmClientes()
+        ventanaClientes.MdiParent = Me.MdiParent
+        ventanaClientes.Show()
+
+        ' Ocultamos la pantalla actual de Mailing
+        Me.Hide()
+    End Sub
+
+    Private Sub btnCargarOtro_Click(sender As Object, e As EventArgs) Handles btnCargarOtro.Click
+        Dim ofdPdf As New OpenFileDialog()
+        ofdPdf.Filter = "Archivos PDF (*.pdf)|*.pdf"
+        ofdPdf.Title = "Seleccionar PDF de ofertas manual"
+
+        If ofdPdf.ShowDialog() = DialogResult.OK Then
+            rutaAdjunto = ofdPdf.FileName
+            txtAdjunto.Text = ofdPdf.SafeFileName
+
+            ' Ocultamos el mensaje de automatización para no confundir al usuario
+            lblInfoAuto.Visible = False
+        End If
+    End Sub
 End Class

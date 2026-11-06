@@ -7,6 +7,19 @@ Public Class Cls_ProductoDatos
         $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={ruta};"
     Public Function Agregar(p As Cls_Producto) As Boolean
         Using cn As New OleDbConnection(cadenaConexion)
+            cn.Open()
+
+            Dim sqlVerificar As String = "SELECT COUNT(*) FROM Productos WHERE Codigo = ?"
+            Using cmdVerificar As New OleDbCommand(sqlVerificar, cn)
+                cmdVerificar.Parameters.AddWithValue("?", p.Codigo)
+                Dim existe As Integer = Convert.ToInt32(cmdVerificar.ExecuteScalar())
+
+                If existe > 0 Then
+                    MessageBox.Show("Ya existe un producto registrado con el código ingresado.", "Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    Return False
+                End If
+            End Using
+
             Dim sql As String =
                 "INSERT INTO Productos ( Descripcion, Codigo, Precio, Stock, StockMinimo, IdCategoria, Activo) VALUES (?, ?, ?, ?, ?, ?, ?)"
             Using cmd As New OleDbCommand(sql, cn)
@@ -17,7 +30,6 @@ Public Class Cls_ProductoDatos
                 cmd.Parameters.AddWithValue("?", p.StockMinimo)
                 cmd.Parameters.AddWithValue("?", p.IdCategoria)
                 cmd.Parameters.AddWithValue("?", p.Activo)
-                cn.Open()
                 Return cmd.ExecuteNonQuery() > 0
             End Using
         End Using
@@ -55,13 +67,15 @@ Public Class Cls_ProductoDatos
         Dim dt As New DataTable()
         Using cn As New OleDbConnection(cadenaConexion)
             Dim sql As String =
-                "SELECT Productos.IdProducto, Productos.Codigo, Productos.Descripcion, Productos.Precio, Productos.Stock, Productos.StockMinimo, Productos.IdCategoria, Productos.Activo " &
-            "FROM Productos " &
-            "WHERE Productos.Descripcion LIKE ? " &
-            "ORDER BY Productos.Descripcion, Productos.Codigo, Productos.IdCategoria, Productos.IdProducto;"
+        "SELECT Productos.IdProducto, Productos.Codigo, Productos.Descripcion, Productos.Precio, Productos.Stock, Productos.StockMinimo, Productos.IdCategoria, Categorias.Nombre, Productos.Activo " &
+        "FROM Categorias INNER JOIN Productos ON Categorias.IdCategoria = Productos.IdCategoria " &
+        "WHERE Productos.Descripcion LIKE ? OR Productos.Codigo LIKE ? " &
+        "ORDER BY Productos.Descripcion, Productos.Codigo, Productos.IdCategoria, Productos.IdProducto;"
 
             Using cmd As New OleDbCommand(sql, cn)
                 cmd.Parameters.AddWithValue("?", "%" & texto & "%")
+                cmd.Parameters.AddWithValue("?", "%" & texto & "%")
+
                 Using da As New OleDbDataAdapter(cmd)
                     da.Fill(dt)
                 End Using
