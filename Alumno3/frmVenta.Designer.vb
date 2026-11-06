@@ -135,7 +135,7 @@ Partial Class frmVenta
         ' 
         btnNuevo.BackColor = SystemColors.GradientInactiveCaption
         btnNuevo.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold)
-        btnNuevo.Location = New Point(595, 32)
+        btnNuevo.Location = New Point(597, 12)
         btnNuevo.Name = "btnNuevo"
         btnNuevo.Size = New Size(160, 50)
         btnNuevo.TabIndex = 1
@@ -185,7 +185,7 @@ Partial Class frmVenta
         GroupBox1.Controls.Add(btnEditar)
         GroupBox1.Controls.Add(btnConfirmar)
         GroupBox1.Controls.Add(btnEliminar)
-        GroupBox1.Location = New Point(579, 155)
+        GroupBox1.Location = New Point(581, 135)
         GroupBox1.Name = "GroupBox1"
         GroupBox1.Size = New Size(193, 419)
         GroupBox1.TabIndex = 13
@@ -310,14 +310,14 @@ Partial Class frmVenta
         dgvTemp.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing
         dgvTemp.RowTemplate.Height = 32
         dgvTemp.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        dgvTemp.Size = New Size(561, 467)
+        dgvTemp.Size = New Size(561, 394)
         dgvTemp.TabIndex = 16
         ' 
         ' btnConsulta
         ' 
         btnConsulta.BackColor = SystemColors.GradientInactiveCaption
         btnConsulta.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold)
-        btnConsulta.Location = New Point(595, 88)
+        btnConsulta.Location = New Point(597, 68)
         btnConsulta.Name = "btnConsulta"
         btnConsulta.Size = New Size(160, 50)
         btnConsulta.TabIndex = 17
@@ -331,7 +331,7 @@ Partial Class frmVenta
         AutoScaleMode = AutoScaleMode.Font
         BackColor = SystemColors.Control
         CancelButton = btnCerrar
-        ClientSize = New Size(784, 636)
+        ClientSize = New Size(784, 561)
         Controls.Add(btnConsulta)
         Controls.Add(dgvTemp)
         Controls.Add(Label4)
