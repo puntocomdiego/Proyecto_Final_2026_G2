@@ -45,6 +45,7 @@ Partial Class frmVenta
         rbtDebito = New RadioButton()
         Label4 = New Label()
         dgvTemp = New DataGridView()
+        btnConsulta = New Button()
         GroupBox1.SuspendLayout()
         GroupBox2.SuspendLayout()
         CType(dgvTemp, ComponentModel.ISupportInitialize).BeginInit()
@@ -312,6 +313,17 @@ Partial Class frmVenta
         dgvTemp.Size = New Size(561, 467)
         dgvTemp.TabIndex = 16
         ' 
+        ' btnConsulta
+        ' 
+        btnConsulta.BackColor = SystemColors.GradientInactiveCaption
+        btnConsulta.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold)
+        btnConsulta.Location = New Point(595, 88)
+        btnConsulta.Name = "btnConsulta"
+        btnConsulta.Size = New Size(160, 50)
+        btnConsulta.TabIndex = 17
+        btnConsulta.Text = "Consultar Ventas"
+        btnConsulta.UseVisualStyleBackColor = False
+        ' 
         ' frmVenta
         ' 
         AcceptButton = btnAgregar
@@ -320,6 +332,7 @@ Partial Class frmVenta
         BackColor = SystemColors.Control
         CancelButton = btnCerrar
         ClientSize = New Size(784, 636)
+        Controls.Add(btnConsulta)
         Controls.Add(dgvTemp)
         Controls.Add(Label4)
         Controls.Add(GroupBox1)
@@ -370,4 +383,5 @@ Partial Class frmVenta
     Friend WithEvents rbtEfectivo As RadioButton
     Friend WithEvents rbtTransf As RadioButton
     Friend WithEvents btnCerrar As Button
+    Friend WithEvents btnConsulta As Button
 End Class
