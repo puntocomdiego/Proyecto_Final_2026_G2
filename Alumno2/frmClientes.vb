@@ -202,9 +202,9 @@ Public Class frmClientes
     End Sub
 
     ' ===== BOTÓN FIN =====
-    Private Sub btnFin_Click(sender As Object, e As EventArgs) Handles btnFin.Click
+    Private Sub btnFin_Click(sender As Object, e As EventArgs)
         MsgBox("¡Gracias por usar el sistema!", MsgBoxStyle.Information, "Cierre de la aplicación")
-        Me.Close()
+        Close()
     End Sub
 
     ' ===== FUNCIÓN PRINCIPAL DE VALIDACIÓN =====
@@ -323,4 +323,13 @@ Public Class frmClientes
             Return True
         End If
     End Function
+    Private Sub btnmail_Click(sender As Object, e As EventArgs) Handles btnmail.Click
+        ' Abrimos la pantalla de Mailing
+        Dim ventanaMail As New frmMailing()
+        ventanaMail.MdiParent = Me.MdiParent
+        ventanaMail.Show()
+
+        ' Ocultamos la pantalla actual de Clientes
+        Me.Hide()
+    End Sub
 End Class
