@@ -23,6 +23,42 @@ Public Class VentaDatos
         End Using
 
     End Function
+    Public Function ObtenerVentasFecha(fechaInicio As Date, fechaFin As Date) As DataTable
+        Dim dt As New DataTable()
+        Dim sql As String = "SELECT IdVenta, Fecha, IdCliente, Total, FormaPago " &
+                            "FROM Ventas " &
+                            "WHERE Ventas.Fecha BETWEEN ? AND ? " &
+                            "ORDER BY Ventas.Fecha DESC;"
 
+        Using cn As New OleDbConnection(CadenaConexion)
+            cn.Open()
+            Using cmd As New OleDbCommand(sql, cn)
+                cmd.Parameters.Add("?", OleDbType.Date).Value = fechaInicio
+                cmd.Parameters.Add("?", OleDbType.Date).Value = fechaFin
+                Using da As New OleDbDataAdapter(cmd)
+                    da.Fill(dt)
+                End Using
+            End Using
+        End Using
+        Return dt
+    End Function
+
+    Public Function ObtenerVentasCliente(idCliente As Integer) As DataTable
+        Dim dt As New DataTable()
+        Dim sql As String = "SELECT IdVenta, Fecha, IdCliente, Total, FormaPago " &
+                            "FROM Ventas " &
+                            "WHERE Ventas.IdCliente = ? " &
+                            "ORDER BY Ventas.Fecha DESC;"
+        Using cn As New OleDbConnection(CadenaConexion)
+            cn.Open()
+            Using cmd As New OleDbCommand(sql, cn)
+                cmd.Parameters.Add("?", OleDbType.Integer).Value = idCliente
+                Using da As New OleDbDataAdapter(cmd)
+                    da.Fill(dt)
+                End Using
+            End Using
+        End Using
+        Return dt
+    End Function
 
 End Class

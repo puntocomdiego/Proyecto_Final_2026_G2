@@ -15,7 +15,6 @@ Public Class frmVenta
 
         CargarClientes()
         CargarCategorias()
-        'ConfigurarGrilla()
         MostrarCompras(temporal.Listar())
 
     End Sub
@@ -184,31 +183,6 @@ Public Class frmVenta
         MetodoPagoVisible()
     End Sub
 
-    Private Sub ConfigurarGrilla()
-        dgvTemp.BackgroundColor = Color.White
-        dgvTemp.BorderStyle = BorderStyle.None
-        dgvTemp.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
-        dgvTemp.GridColor = Color.FromArgb(208, 213, 221)
-        dgvTemp.RowHeadersVisible = False
-        dgvTemp.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        dgvTemp.MultiSelect = False
-        dgvTemp.ReadOnly = True
-        dgvTemp.AllowUserToAddRows = False
-        dgvTemp.AllowUserToDeleteRows = False
-        dgvTemp.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-        dgvTemp.EnableHeadersVisualStyles = False
-
-        dgvTemp.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(33, 37, 41)
-        dgvTemp.ColumnHeadersDefaultCellStyle.ForeColor = Color.White
-        dgvTemp.ColumnHeadersDefaultCellStyle.Font = New Font("Segoe UI semibold", 10, FontStyle.Bold, GraphicsUnit.Point, 36)
-
-        dgvTemp.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(244, 246, 248)
-        dgvTemp.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 157, 255)
-        dgvTemp.DefaultCellStyle.SelectionForeColor = Color.Black
-        dgvTemp.RowTemplate.Height = 32
-
-    End Sub
-
     Private Function CalcularTotalVenta() As Decimal
 
         Dim total As Decimal = 0D
@@ -335,7 +309,6 @@ Public Class frmVenta
     End Function
 
     '== CONTROLES ==
-
     Private Sub cboCliente_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboCliente.SelectedIndexChanged
 
         If cboCliente.SelectedIndex = 0 Then
