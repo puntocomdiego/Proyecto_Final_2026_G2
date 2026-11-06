@@ -5,6 +5,8 @@ Public Class frmConsultaVentas
     Private datos As New VentaDatos()
     Private detalle As New DetalleDatos()
 
+    Dim bcerrar As Boolean = False
+
     Private Sub frmConsultaVentas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         AplicarEstiloFormulario(Me, "Consultar Ventas")
@@ -119,25 +121,6 @@ Public Class frmConsultaVentas
 
     '== CONTROLES ==
 
-    Private Sub btnCerrar_Click(sender As Object, e As EventArgs) Handles btnCerrar.Click
-
-        Try
-
-            Dim respuesta As DialogResult
-
-            respuesta = MessageBox.Show("¿Estás seguro que deseas salir?", "Confirmar cierre", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-
-            If respuesta = DialogResult.Yes Then
-                Me.Close()
-
-            End If
-
-        Catch ex As Exception
-
-            MsgBox("Error al cerrar la venta: " & ex.Message, MsgBoxStyle.Critical, "Error")
-        End Try
-
-    End Sub
 
     Private Sub btnConsultar_Click(sender As Object, e As EventArgs) Handles btnConsultar.Click
 
@@ -201,6 +184,54 @@ Public Class frmConsultaVentas
 
         dgvBase(New DataTable())
 
+
+    End Sub
+
+    '== CERRAR ==
+
+    Private Sub frmConsultaVentas_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+
+        If bcerrar = False Then
+
+            Dim respuesta As DialogResult
+
+            respuesta = MessageBox.Show("¿Estás seguro que deseas salir?",
+                                    "Confirmar cierre",
+                                    MessageBoxButtons.YesNo,
+                                    MessageBoxIcon.Question)
+
+            If respuesta = DialogResult.No Then
+
+                e.Cancel = True
+
+            End If
+
+        End If
+
+    End Sub
+
+    Private Sub btnCerrar_Click(sender As Object, e As EventArgs) Handles btnCerrar.Click
+
+        Try
+
+            Dim respuesta As DialogResult
+
+            respuesta = MessageBox.Show("¿Estás seguro que deseas salir?", "Confirmar cierre", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+            If respuesta = DialogResult.Yes Then
+                bcerrar = True
+                Me.Close()
+
+            Else
+
+                bcerrar = False
+
+            End If
+
+        Catch ex As Exception
+
+            MsgBox("Error al cerrar la venta: " & ex.Message, MsgBoxStyle.Critical, "Error")
+        End Try
 
     End Sub
 End Class
