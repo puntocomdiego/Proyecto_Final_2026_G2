@@ -5,6 +5,12 @@
     Private Sub frmCategorias_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ConfigurarGrilla()
         MostrarCategorias(datos.Listar())
+        BotonPrimario(Me.btnAgregar)
+        BotonSecundario(Me.btnModificar)
+        BotonSecundario(Me.btnLimpiar)
+        BotonPeligro(Me.btnEliminar)
+        AplicarEstiloGrilla(dgvCategorias)
+
     End Sub
 
     Private Sub ConfigurarGrilla()

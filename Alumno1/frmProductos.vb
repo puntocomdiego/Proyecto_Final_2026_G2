@@ -11,6 +11,7 @@ Public Class frmProductos
     Private datos As New Cls_ProductoDatos()
     Private ruta As String = String.Empty
     Private tablaActual As DataTable
+    Dim bcerrar As Boolean = False
 
     Private Sub frmProductos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CargarCategorias()
@@ -18,9 +19,15 @@ Public Class frmProductos
         MostrarProductos(datos.ListarProductos())
         BotonPrimario(Me.btnAgregar)
         BotonSecundario(Me.btnModificar)
+        BotonSecundario(Me.btnNuevo)
+        BotonSecundario(Me.btnBuscar)
+        BotonSecundario(Me.btnLimpiar)
+        BotonSecundario(Me.btnexportar)
         BotonPeligro(Me.btnEliminar)
+        BotonPeligro(Me.btnFin)
         AplicarEstiloGrilla(dgvProductos)
         AplicarEstiloFormulario(Me, "Gestión de Productos")
+
     End Sub
     Private Sub CargarCategorias()
         Try
@@ -268,7 +275,6 @@ Public Class frmProductos
     End Sub
 
     Private Sub txtBuscar_TextChanged(sender As Object, e As EventArgs) Handles txtBuscar.TextChanged
-        'opcion 2: Buscar en la base de datos y actualizar la grilla
 
         Try
             Dim dt As DataTable = datos.Buscar(txtBuscar.Text.Trim())
@@ -321,10 +327,17 @@ Public Class frmProductos
     End Sub
 
     Private Sub btnFin_Click(sender As Object, e As EventArgs) Handles btnFin.Click
-        If MessageBox.Show("¿Desea salir del Programa?", "Confirmar",
-                          MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then Exit Sub
-        Close()
-        MsgBox("Gracias por utilizar el programa!", MsgBoxStyle.Information, "Fin del programa")
+        Dim respuesta As DialogResult = MessageBox.Show("¿Desea salir del Programa?", "Confirmar",
+                          MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+        bcerrar = True
+        If respuesta = DialogResult.Yes Then
+            bcerrar = True
+            Me.Close()
+            MsgBox("Gracias por utilizar el programa!", MsgBoxStyle.Information, "Fin del programa")
+        Else
+            bcerrar = False
+        End If
     End Sub
 
     Private Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevo.Click
@@ -656,4 +669,15 @@ Public Class frmProductos
         Return valor.ToString()
     End Function
 
+    Private Sub frmProductos_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        If bcerrar = False Then
+            Dim respuesta As DialogResult = MessageBox.Show("¿Desea salir del Programa?", "Confirmar",
+                          MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If respuesta = DialogResult.No Then
+                e.Cancel = True
+            Else
+                MsgBox("Gracias por utilizar el programa!", MsgBoxStyle.Information, "Fin del programa")
+            End If
+        End If
+    End Sub
 End Class

@@ -367,6 +367,7 @@ Partial Class frmProductos
         Controls.Add(btnAgregar)
         Controls.Add(GroupBox1)
         Name = "frmProductos"
+        StartPosition = FormStartPosition.CenterScreen
         Text = "frmProductos"
         CType(dgvProductos, ComponentModel.ISupportInitialize).EndInit()
         GroupBox1.ResumeLayout(False)
