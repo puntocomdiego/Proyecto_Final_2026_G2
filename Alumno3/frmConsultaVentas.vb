@@ -10,8 +10,12 @@ Public Class frmConsultaVentas
         AplicarEstiloFormulario(Me, "Consultar Ventas")
         AplicarEstiloGrilla(dgvConsulta)
 
+        CargarClientes()
+        dgvBase(New DataTable())
 
     End Sub
+
+    '== FUNCIONES ==
 
     Private Sub CargarClientes()
 
@@ -65,6 +69,56 @@ Public Class frmConsultaVentas
 
     End Sub
 
+    Private Sub MostrarDatos(dt As DataTable)
+
+        dgvConsulta.DataSource = dt
+        dgvConsulta.Columns("IdVenta").HeaderText = "ID"
+        dgvConsulta.Columns("IdVenta").Visible = False
+
+        dgvConsulta.Columns("Fecha").HeaderText = "Fecha"
+        dgvConsulta.Columns("IdCliente").HeaderText = "Nombre"
+
+        dgvConsulta.Columns("Total").HeaderText = "Total"
+        dgvConsulta.Columns("Total").DefaultCellStyle.Format = "C2"
+        dgvConsulta.Columns("Total").DefaultCellStyle.FormatProvider =
+        Globalization.CultureInfo.GetCultureInfo("es-UY")
+
+        dgvConsulta.Columns("FormaPago").HeaderText = "Forma de Pago"
+
+    End Sub
+
+    Private Sub CargarVenta(idVenta As Integer)
+        Try
+
+            If cboCliente.SelectedIndex <= 0 Then
+
+                dgvConsulta.DataSource = Nothing
+
+                Return
+            End If
+
+            Dim idCliente As Integer = CInt(cboCliente.SelectedValue)
+            MostrarDatos(datos.ObtenerVentasCliente(idCliente))
+
+        Catch ex As Exception
+            MessageBox.Show("Error al cargar el detalle de la venta: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
+
+    Private Sub dgvBase(dt As DataTable)
+
+        dt.Columns.Add("Fecha", GetType(Date))
+        dt.Columns.Add("Nombre", GetType(Integer))
+        dt.Columns.Add("Total", GetType(Decimal))
+        dt.Columns.Add("Forma de Pago", GetType(String))
+
+        dgvConsulta.DataSource = dt
+
+    End Sub
+
+    '== CONTROLES ==
+
     Private Sub btnCerrar_Click(sender As Object, e As EventArgs) Handles btnCerrar.Click
 
         Try
@@ -85,4 +139,68 @@ Public Class frmConsultaVentas
 
     End Sub
 
+    Private Sub btnConsultar_Click(sender As Object, e As EventArgs) Handles btnConsultar.Click
+
+
+        Dim fechaInicio As Date = dtpFecha1.Value.Date
+        Dim fechaFin As Date = dtpFecha2.Value.Date
+
+        MostrarDatos(datos.ObtenerVentasFecha(fechaInicio, fechaFin))
+
+
+    End Sub
+
+    Private Sub cboCliente_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboCliente.SelectedIndexChanged
+
+        If cboCliente.SelectedIndex = 0 Then
+
+            dtpFecha1.Enabled = True
+            dtpFecha2.Enabled = True
+
+        Else
+
+            dtpFecha1.Enabled = False
+            dtpFecha2.Enabled = False
+
+        End If
+
+    End Sub
+
+    Private Sub dtpFecha1_ValueChanged(sender As Object, e As EventArgs) Handles dtpFecha1.ValueChanged
+
+        'If dtpFecha1 IsNot Nothing AndAlso dtpFecha2 IsNot Nothing Then
+
+        '    If dtpFecha1.Value > dtpFecha2.Value Then
+        '        MessageBox.Show("La fecha de inicio no puede ser mayor que la fecha de fin.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '        dtpFecha1.Value = dtpFecha2.Value
+        '    End If
+        'End If
+
+    End Sub
+
+    Private Sub btnCliente_Click(sender As Object, e As EventArgs) Handles btnCliente.Click
+
+        If cboCliente.SelectedIndex = 0 Then
+            MessageBox.Show("Por favor, seleccione un cliente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
+
+        dgvConsulta.DataSource = Nothing
+        CargarVenta(CInt(cboCliente.SelectedValue))
+
+
+    End Sub
+
+    Private Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevo.Click
+
+
+        cboCliente.SelectedIndex = 0
+
+        dtpFecha1.Value = DateTime.Now
+        dtpFecha2.Value = DateTime.Now
+
+        dgvBase(New DataTable())
+
+
+    End Sub
 End Class
