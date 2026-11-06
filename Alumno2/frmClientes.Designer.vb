@@ -47,6 +47,7 @@ Partial Class frmClientes
         Panel1 = New Panel()
         Panel2 = New Panel()
         Panel3 = New Panel()
+        btnCerrar = New Button()
         GroupBox2.SuspendLayout()
         CType(dgvClientes, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
@@ -239,7 +240,7 @@ Partial Class frmClientes
         ' btnCancelar
         ' 
         btnCancelar.Font = New Font("Segoe UI", 10.2F)
-        btnCancelar.Location = New Point(650, 20)
+        btnCancelar.Location = New Point(516, 20)
         btnCancelar.Name = "btnCancelar"
         btnCancelar.Size = New Size(120, 36)
         btnCancelar.TabIndex = 10
@@ -259,8 +260,9 @@ Partial Class frmClientes
         ' Label7
         ' 
         Label7.AutoSize = True
-        Label7.BackColor = Color.White
+        Label7.BackColor = Color.Transparent
         Label7.Font = New Font("Segoe UI", 16F)
+        Label7.ForeColor = Color.White
         Label7.Location = New Point(12, 9)
         Label7.Name = "Label7"
         Label7.Size = New Size(111, 37)
@@ -272,7 +274,7 @@ Partial Class frmClientes
         Panel1.BackColor = Color.Black
         Panel1.Controls.Add(Label7)
         Panel1.Dock = DockStyle.Top
-        Panel1.Location = New Point(0, 3)
+        Panel1.Location = New Point(0, 0)
         Panel1.Name = "Panel1"
         Panel1.Size = New Size(782, 56)
         Panel1.TabIndex = 30
@@ -282,7 +284,7 @@ Partial Class frmClientes
         Panel2.BackColor = Color.FromArgb(CByte(0), CByte(192), CByte(192))
         Panel2.Dock = DockStyle.Top
         Panel2.ForeColor = SystemColors.ActiveCaption
-        Panel2.Location = New Point(0, 0)
+        Panel2.Location = New Point(0, 56)
         Panel2.Name = "Panel2"
         Panel2.Size = New Size(782, 3)
         Panel2.TabIndex = 31
@@ -290,6 +292,7 @@ Partial Class frmClientes
         ' Panel3
         ' 
         Panel3.BackColor = Color.White
+        Panel3.Controls.Add(btnCerrar)
         Panel3.Controls.Add(btnCancelar)
         Panel3.Controls.Add(btnEliminar)
         Panel3.Controls.Add(btnNuevo)
@@ -301,17 +304,29 @@ Partial Class frmClientes
         Panel3.Size = New Size(782, 68)
         Panel3.TabIndex = 32
         ' 
+        ' btnCerrar
+        ' 
+        btnCerrar.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
+        btnCerrar.Location = New Point(650, 20)
+        btnCerrar.Name = "btnCerrar"
+        btnCerrar.Size = New Size(120, 36)
+        btnCerrar.TabIndex = 12
+        btnCerrar.Text = "&Cerrar"
+        btnCerrar.UseVisualStyleBackColor = True
+        ' 
         ' frmClientes
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(782, 553)
         Controls.Add(btnmail)
+        Controls.Add(Panel2)
         Controls.Add(Panel3)
         Controls.Add(Panel1)
-        Controls.Add(Panel2)
         Controls.Add(GroupBox2)
         Controls.Add(dgvClientes)
+        FormBorderStyle = FormBorderStyle.FixedSingle
+        MaximizeBox = False
         Name = "frmClientes"
         Text = "frmClientes"
         GroupBox2.ResumeLayout(False)
@@ -347,5 +362,6 @@ Partial Class frmClientes
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Panel3 As Panel
+    Friend WithEvents btnCerrar As Button
 
 End Class
