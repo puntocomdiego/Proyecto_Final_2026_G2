@@ -20,7 +20,7 @@
 
     Public Sub AplicarEstiloFormulario(frm As Form, titulo As String)
         frm.BackColor = ColorFondo
-        frm.Font = FuenteBase
+        'frm.Font = FuenteBase
         frm.Text = "Comercial · " & titulo
         frm.StartPosition = FormStartPosition.CenterScreen
         frm.FormBorderStyle = FormBorderStyle.FixedSingle
