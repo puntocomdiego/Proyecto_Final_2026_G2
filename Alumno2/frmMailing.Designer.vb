@@ -28,10 +28,10 @@ Partial Class frmMailing
         btnCerrar = New Button()
         Label4 = New Label()
         Panel1 = New Panel()
+        Panel2 = New Panel()
         btnCargarOtro = New Button()
         lblInfoAuto = New Label()
         lblEstado = New Label()
-        Panel2 = New Panel()
         Label3 = New Label()
         Label1 = New Label()
         ofdPdf = New OpenFileDialog()
@@ -90,8 +90,9 @@ Partial Class frmMailing
         ' Label4
         ' 
         Label4.AutoSize = True
-        Label4.BackColor = Color.White
+        Label4.BackColor = Color.Transparent
         Label4.Font = New Font("Segoe UI", 16F)
+        Label4.ForeColor = Color.White
         Label4.Location = New Point(12, 9)
         Label4.Name = "Label4"
         Label4.Size = New Size(107, 37)
@@ -102,11 +103,22 @@ Partial Class frmMailing
         ' 
         Panel1.BackColor = Color.Black
         Panel1.Controls.Add(Label4)
+        Panel1.Controls.Add(Panel2)
         Panel1.Dock = DockStyle.Top
-        Panel1.Location = New Point(0, 3)
+        Panel1.Location = New Point(0, 0)
         Panel1.Name = "Panel1"
         Panel1.Size = New Size(622, 56)
         Panel1.TabIndex = 28
+        ' 
+        ' Panel2
+        ' 
+        Panel2.BackColor = Color.FromArgb(CByte(0), CByte(192), CByte(192))
+        Panel2.Dock = DockStyle.Bottom
+        Panel2.ForeColor = SystemColors.ActiveCaption
+        Panel2.Location = New Point(0, 53)
+        Panel2.Name = "Panel2"
+        Panel2.Size = New Size(622, 3)
+        Panel2.TabIndex = 29
         ' 
         ' btnCargarOtro
         ' 
@@ -140,16 +152,6 @@ Partial Class frmMailing
         lblEstado.Size = New Size(257, 31)
         lblEstado.TabIndex = 25
         lblEstado.Text = "Esperando para enviar..."
-        ' 
-        ' Panel2
-        ' 
-        Panel2.BackColor = Color.FromArgb(CByte(0), CByte(192), CByte(192))
-        Panel2.Dock = DockStyle.Top
-        Panel2.ForeColor = SystemColors.ActiveCaption
-        Panel2.Location = New Point(0, 0)
-        Panel2.Name = "Panel2"
-        Panel2.Size = New Size(622, 3)
-        Panel2.TabIndex = 29
         ' 
         ' Label3
         ' 
@@ -235,7 +237,6 @@ Partial Class frmMailing
         Controls.Add(btnCargarOtro)
         Controls.Add(lblInfoAuto)
         Controls.Add(lblEstado)
-        Controls.Add(Panel2)
         Controls.Add(Label3)
         Controls.Add(Label1)
         Controls.Add(Label2)
@@ -245,7 +246,8 @@ Partial Class frmMailing
         Controls.Add(txtAsunto)
         Controls.Add(cmbClientes)
         Controls.Add(Panel3)
-        FormBorderStyle = FormBorderStyle.FixedToolWindow
+        FormBorderStyle = FormBorderStyle.FixedSingle
+        MaximizeBox = False
         Name = "frmMailing"
         Text = "frmMailing"
         Panel3.ResumeLayout(False)

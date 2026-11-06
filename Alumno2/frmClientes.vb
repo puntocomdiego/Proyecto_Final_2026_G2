@@ -10,6 +10,15 @@ Public Class frmClientes
 
     ' ===== CARGA DEL FORMULARIO =====
     Private Sub frmClientes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        AplicarEstiloFormulario(Me, "Clientes")
+
+        BotonPrimario(btnNuevo)
+        BotonSecundario(btnAgregar)
+        BotonSecundario(btnCancelar)
+        BotonSecundario(btnCerrar)
+        BotonSecundario(btnEliminar)
+        BotonSecundario(btnmail)
+        BotonSecundario(btnModificar)
         System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance)
         ConfigurarGrilla()
         MostrarClientes(datos.Listar())
@@ -331,5 +340,21 @@ Public Class frmClientes
 
         ' Ocultamos la pantalla actual de Clientes
         Me.Hide()
+    End Sub
+
+    Private Sub btnCerrar_Click(sender As Object, e As EventArgs) Handles btnCerrar.Click
+        ' Muestra un cuadro de mensaje pidiendo confirmación
+        Dim resultado As DialogResult = MessageBox.Show(
+        "¿Estás seguro de que deseas cerrar el formulario?",
+        "Puntocom · Clientes",
+        MessageBoxButtons.YesNo,
+        MessageBoxIcon.Question,
+        MessageBoxDefaultButton.Button2
+    )
+
+        ' Si el usuario presiona "Sí", cerramos la ventana
+        If resultado = DialogResult.Yes Then
+            Me.Close()
+        End If
     End Sub
 End Class

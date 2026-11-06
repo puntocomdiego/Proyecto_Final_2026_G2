@@ -47,6 +47,7 @@ Partial Class frmClientes
         Panel1 = New Panel()
         Panel2 = New Panel()
         Panel3 = New Panel()
+        btnCerrar = New Button()
         GroupBox2.SuspendLayout()
         CType(dgvClientes, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
@@ -260,8 +261,9 @@ Partial Class frmClientes
         ' Label7
         ' 
         Label7.AutoSize = True
-        Label7.BackColor = Color.White
-        Label7.Font = New Font("Segoe UI", 16F)
+        Label7.BackColor = Color.Transparent
+        Label7.Font = New Font("Segoe UI", 16.0F)
+        Label7.ForeColor = Color.White
         Label7.Location = New Point(12, 9)
         Label7.Name = "Label7"
         Label7.Size = New Size(111, 37)
@@ -291,6 +293,7 @@ Partial Class frmClientes
         ' Panel3
         ' 
         Panel3.BackColor = Color.White
+        Panel3.Controls.Add(btnCerrar)
         Panel3.Controls.Add(btnCancelar)
         Panel3.Controls.Add(btnEliminar)
         Panel3.Controls.Add(btnNuevo)
@@ -302,17 +305,29 @@ Partial Class frmClientes
         Panel3.Size = New Size(912, 68)
         Panel3.TabIndex = 32
         ' 
+        ' btnCerrar
+        ' 
+        btnCerrar.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
+        btnCerrar.Location = New Point(650, 20)
+        btnCerrar.Name = "btnCerrar"
+        btnCerrar.Size = New Size(120, 36)
+        btnCerrar.TabIndex = 12
+        btnCerrar.Text = "&Cerrar"
+        btnCerrar.UseVisualStyleBackColor = True
+        ' 
         ' frmClientes
         ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(912, 553)
+        ClientSize = New Size(782, 553)
+        Controls.Add(btnmail)
+        Controls.Add(Panel2)
         Controls.Add(Panel3)
+        Controls.Add(Panel1)
         Controls.Add(Panel2)
         Controls.Add(GroupBox2)
         Controls.Add(Panel1)
         Controls.Add(dgvClientes)
-        FormBorderStyle = FormBorderStyle.FixedSingle
         Name = "frmClientes"
         Text = "frmClientes"
         GroupBox2.ResumeLayout(False)
@@ -348,5 +363,6 @@ Partial Class frmClientes
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Panel3 As Panel
+    Friend WithEvents btnCerrar As Button
 
 End Class
