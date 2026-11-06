@@ -189,7 +189,7 @@ Partial Class frmClientes
         ' btnmail
         ' 
         btnmail.Font = New Font("Segoe UI", 10.2F)
-        btnmail.Location = New Point(650, 323)
+        btnmail.Location = New Point(650, 10)
         btnmail.Name = "btnmail"
         btnmail.Size = New Size(120, 36)
         btnmail.TabIndex = 12
@@ -272,6 +272,7 @@ Partial Class frmClientes
         ' Panel1
         ' 
         Panel1.BackColor = Color.Black
+        Panel1.Controls.Add(btnmail)
         Panel1.Controls.Add(Label7)
         Panel1.Dock = DockStyle.Top
         Panel1.Location = New Point(0, 0)
@@ -319,7 +320,6 @@ Partial Class frmClientes
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(782, 553)
-        Controls.Add(btnmail)
         Controls.Add(Panel2)
         Controls.Add(Panel3)
         Controls.Add(Panel1)
@@ -328,6 +328,7 @@ Partial Class frmClientes
         FormBorderStyle = FormBorderStyle.FixedSingle
         MaximizeBox = False
         Name = "frmClientes"
+        StartPosition = FormStartPosition.CenterScreen
         Text = "frmClientes"
         GroupBox2.ResumeLayout(False)
         GroupBox2.PerformLayout()
