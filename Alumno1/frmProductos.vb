@@ -16,6 +16,11 @@ Public Class frmProductos
         CargarCategorias()
         ConfigurarGrilla()
         MostrarProductos(datos.ListarProductos())
+        BotonPrimario(Me.btnAgregar)
+        BotonSecundario(Me.btnModificar)
+        BotonPeligro(Me.btnEliminar)
+        AplicarEstiloGrilla(dgvProductos)
+        AplicarEstiloFormulario(Me, "Gestión de Productos")
     End Sub
     Private Sub CargarCategorias()
         Try
@@ -263,26 +268,6 @@ Public Class frmProductos
     End Sub
 
     Private Sub txtBuscar_TextChanged(sender As Object, e As EventArgs) Handles txtBuscar.TextChanged
-        'opción 1: Filtrar la grilla directamente
-
-        'Try
-        '    If dgvProductos.DataSource IsNot Nothing Then
-        '        Dim dt As DataTable = CType(dgvProductos.DataSource, DataTable)
-        '        Dim dv As DataView = dt.DefaultView
-        '        Dim filtro As String = txtBuscar.Text.Trim()
-
-        '        If filtro = "" Then
-        '            dv.RowFilter = String.Empty
-        '        Else
-        '            dv.RowFilter = "Descripcion LIKE '%" & filtro & "%' OR Codigo LIKE '%" & filtro & "%'"
-        '        End If
-        '    End If
-        'Catch ex As Exception
-        '    MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
-        'End Try
-
-        '---------------------------------------------------------------------------------------------------------
-
         'opcion 2: Buscar en la base de datos y actualizar la grilla
 
         Try
@@ -336,6 +321,8 @@ Public Class frmProductos
     End Sub
 
     Private Sub btnFin_Click(sender As Object, e As EventArgs) Handles btnFin.Click
+        If MessageBox.Show("¿Desea salir del Programa?", "Confirmar",
+                          MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then Exit Sub
         Close()
         MsgBox("Gracias por utilizar el programa!", MsgBoxStyle.Information, "Fin del programa")
     End Sub
@@ -431,86 +418,81 @@ Public Class frmProductos
 
     Private Sub btnexportar_Click(sender As Object, e As EventArgs) Handles btnexportar.Click
 
-        If rdpdf.Checked = True Then
-
-            ' A4 en HORIZONTAL: para 10 columnas se lee mucho mejor que en vertical.
-            ' Márgenes: izq, der, sup, inf.
-            Dim document As New Document(PageSize.A4.Rotate(), 36, 36, 50, 55)
-
-            Dim ruta As String
-
-            FolderBrowserDialog1.ShowDialog()
-            ruta = FolderBrowserDialog1.SelectedPath()
-            ruta = ruta + "\datos.pdf"
-            Dim f As String = Format(Now.Date, "dd-MM-yy")
-            'filename = ruta + "\" + ComboBox1.Text + "-" + f + ".pdf"
-
-            Try
-                Using fs As New FileStream(ruta, FileMode.Create)
-                    Dim writer As PdfWriter = PdfWriter.GetInstance(document, fs)
-                    writer.PageEvent = New piedepagina()   ' <- activa el pie con numeración
-                    document.Open()
-
-                    ExportarDatosPDF(document)
-
-                    document.Close()
-                End Using
-
-                MsgBox("PDF generado correctamente.", MsgBoxStyle.Information)
-                Process.Start(ruta)  ' abre el PDF (opcional)
-            Catch ex As Exception
-                MsgBox(ex.Message)
-            End Try
+        If dgvProductos.Rows.Count <= 1 Then
+            MessageBox.Show("No hay datos en la grilla para exportar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
         End If
 
-        If rdexcel.Checked = True Then
+        If rdexcel.Checked = False AndAlso rdpdf.Checked = False Then
+            MessageBox.Show("Seleccione una opción para Exportar.", "Aviso",
+                 MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        If rdpdf.Checked = True Then
             Using sfd As New SaveFileDialog()
-                sfd.Filter = "Archivo de Excel (*.xlsx)|*.xlsx"
-                sfd.FileName = cmbCategorias.SelectedItem.ToString() & ".xlsx"
+                sfd.Filter = "Archivo PDF (*.pdf)|*.pdf"
+                sfd.FileName = "ListadoProductos.pdf"
 
                 If sfd.ShowDialog() = DialogResult.OK Then
-                    ExportarAExcel(tablaActual, sfd.FileName)
+                    Try
+                        Dim ruta As String = sfd.FileName
+                        Dim document As New Document(PageSize.A4.Rotate(), 36, 36, 50, 55)
+
+                        Using fs As New FileStream(ruta, FileMode.Create)
+                            Dim writer As PdfWriter = PdfWriter.GetInstance(document, fs)
+                            writer.PageEvent = New piedepagina()   ' Activa el pie con numeración
+                            document.Open()
+
+                            ExportarDatosPDF(document)
+
+                            document.Close()
+                        End Using
+
+                        MsgBox("PDF generado correctamente.", MsgBoxStyle.Information)
+                    Catch ex As Exception
+                        MsgBox("Error al generar el PDF: " & ex.Message)
+                    End Try
+                End If
+            End Using
+
+            'Guardar como .csv Compatible con Excel
+        ElseIf rdexcel.Checked = True Then
+            Using sfd As New SaveFileDialog()
+                sfd.Filter = "Archivo CSV compatible con Excel (*.csv)|*.csv"
+                sfd.FileName = cmbCategorias.Text & ".csv"
+
+                If sfd.ShowDialog() = DialogResult.OK Then
+                    ExportarAExcel(sfd.FileName) ' <-- Ya lee directo de la pantalla
                 End If
             End Using
         End If
 
-        If tablaActual Is Nothing OrElse tablaActual.Rows.Count = 0 Then
-            MessageBox.Show("Seleccione una opción para Exportar.", "Aviso",
-                     MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return
-        End If
     End Sub
 
     Public Sub ExportarDatosPDF(ByVal document As Document)
         Try
-
             ' ---- Paleta ----
             Dim colorTitulo As New BaseColor(41, 84, 148)     ' azul
             Dim colorHeader As New BaseColor(41, 84, 148)
             Dim colorZebra As New BaseColor(238, 242, 248)    ' gris muy claro
             Dim colorBorde As New BaseColor(210, 210, 210)
-            Dim colorTotalBg As New BaseColor(222, 230, 242)
 
-            ' ---- Fuentes reutilizables (esto reemplaza el Font.Name = "Tahoma" roto) ----
-
-
+            ' ---- Fuentes reutilizables ----
             Dim fTitulo As iFont = FontFactory.GetFont("Helvetica", 20, iFont.BOLD, colorTitulo)
             Dim fSub As iFont = FontFactory.GetFont("Helvetica", 11, iFont.NORMAL, BaseColor.GRAY)
             Dim fHeader As iFont = FontFactory.GetFont("Helvetica", 9, iFont.BOLD, BaseColor.WHITE)
             Dim fCelda As iFont = FontFactory.GetFont("Helvetica", 9, iFont.NORMAL, New BaseColor(40, 40, 40))
-            Dim fTotal As iFont = FontFactory.GetFont("Helvetica", 9, iFont.BOLD, colorTitulo)
 
-            ' ---- Configuración: qué columnas sumar y cuáles son dinero ----
-            '      (se comparan contra el HeaderText de cada columna)
-            Dim columnasTotal As String() = {"Cantidad", "Importe", "Costo"}
-            Dim columnasMoneda As String() = {"Importe", "Costo"}
+            ' ---- Configuración de columnas que son dinero ----
+            Dim columnasMoneda As String() = {"Precio"}
 
             ' ---- Encabezado del documento ----
-            Dim encabezado As New Paragraph("Listado de ventas", fTitulo)
+            Dim encabezado As New Paragraph("Listado de Productos", fTitulo)
             encabezado.SpacingAfter = 4
             document.Add(encabezado)
 
-            document.Add(New Paragraph("Ventas de: " & cmbCategorias.Text, fSub))
+            document.Add(New Paragraph("Categoría / Filtro: " & If(String.IsNullOrEmpty(cmbCategorias.Text), "Todos", cmbCategorias.Text), fSub))
 
             Dim texto As New Paragraph("Fecha de exportación: " & Now.ToString("dd/MM/yyyy"), fSub)
             texto.SpacingAfter = 14
@@ -522,12 +504,10 @@ Public Class frmProductos
             datatable.WidthPercentage = 100
             datatable.SpacingBefore = 4
 
-            ' Precalcular banderas por columna
-            Dim esTotalizable(dgvProductos.ColumnCount - 1) As Boolean
+            ' Precalcular banderas de moneda por columna
             Dim esMoneda(dgvProductos.ColumnCount - 1) As Boolean
             For j As Integer = 0 To dgvProductos.ColumnCount - 1
                 Dim h As String = dgvProductos.Columns(j).HeaderText
-                esTotalizable(j) = Array.IndexOf(columnasTotal, h) >= 0
                 esMoneda(j) = Array.IndexOf(columnasMoneda, h) >= 0
             Next
 
@@ -541,49 +521,37 @@ Public Class frmProductos
                 c.BorderColor = BaseColor.WHITE
                 datatable.AddCell(c)
             Next
-            datatable.HeaderRows = 1   ' se repite el encabezado en cada página
+            datatable.HeaderRows = 1   ' Se repite el encabezado en cada página
+
             ' ---- Filas de datos ----
-            Dim sumas(dgvProductos.ColumnCount - 1) As Double
-            For i As Integer = 0 To dgvProductos.RowCount - 2   ' -2: se saltea la fila nueva vacía del grid
+            For i As Integer = 0 To dgvProductos.Rows.Count - 1
+                ' Salta la fila vacía del final del DataGridView si existe
+                If dgvProductos.Rows(i).IsNewRow Then Continue For
+
                 Dim fondo As BaseColor = If(i Mod 2 = 0, BaseColor.WHITE, colorZebra)
 
                 For j As Integer = 0 To dgvProductos.ColumnCount - 1
                     Dim valor As Object = dgvProductos(j, i).Value
+                    Dim textoCelda As String = ""
 
-                    Dim c As New PdfPCell(New Phrase(FormatearValor(valor, esMoneda(j)), fCelda))
+                    If dgvProductos.Columns(j).HeaderText.ToLower() = "activo" Then
+                        If valor IsNot Nothing AndAlso CBool(valor) = True Then
+                            textoCelda = "SÍ"
+                        Else
+                            textoCelda = "NO"
+                        End If
+                    Else
+                        textoCelda = FormatearValor(valor, esMoneda(j))
+                    End If
+
+                    Dim c As New PdfPCell(New Phrase(textoCelda, fCelda))
                     c.BackgroundColor = fondo
                     c.Padding = 5
                     c.HorizontalAlignment = AlinearPorTipo(valor)
                     c.VerticalAlignment = Element.ALIGN_MIDDLE
                     c.BorderColor = colorBorde
                     datatable.AddCell(c)
-                    ' Acumular para el total
-                    If esTotalizable(j) Then
-                        Dim n As Double
-                        If valor IsNot Nothing AndAlso Double.TryParse(valor.ToString(), n) Then
-                            sumas(j) += n
-                        End If
-                    End If
                 Next
-            Next
-            ' ---- Fila de TOTAL (una celda por columna, así siempre cuadra) ----
-            Dim primeraTotal As Integer = Array.FindIndex(esTotalizable, Function(x) x)
-            Dim idxEtiqueta As Integer = If(primeraTotal > 0, primeraTotal - 1, 0)
-
-            For j As Integer = 0 To dgvProductos.ColumnCount - 1
-                Dim txt As String = ""
-                If esTotalizable(j) Then
-                    txt = If(esMoneda(j), Format(sumas(j), "$ #,##0.00"), Format(sumas(j), "#,##0"))
-                ElseIf j = idxEtiqueta Then
-                    txt = "TOTAL"
-                End If
-
-                Dim c As New PdfPCell(New Phrase(txt, fTotal))
-                c.BackgroundColor = colorTotalBg
-                c.HorizontalAlignment = Element.ALIGN_RIGHT
-                c.Padding = 6
-                c.BorderColor = colorBorde
-                datatable.AddCell(c)
             Next
 
             document.Add(datatable)
@@ -592,48 +560,63 @@ Public Class frmProductos
         End Try
     End Sub
 
-    Private Sub ExportarAExcel(dt As DataTable, rutaDestino As String)
-        Dim excelApp As Excel.Application = Nothing
-        Dim libro As Excel.Workbook = Nothing
-        Dim hoja As Excel.Worksheet = Nothing
+    Private Sub ExportarAExcel(rutaDestino As String)
+        ' 1. Validar que la grilla tenga filas (excluyendo la de nueva entrada si la hubiera)
+        If dgvProductos Is Nothing OrElse dgvProductos.Rows.Count <= 1 Then
+            MessageBox.Show("No hay datos en la grilla para exportar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
 
         Try
-            excelApp = New Excel.Application()
-            libro = excelApp.Workbooks.Add()
-            hoja = CType(libro.Worksheets(1), Excel.Worksheet)
+            Dim sb As New System.Text.StringBuilder()
 
-            ' Encabezados de columnas
-            For col As Integer = 0 To dt.Columns.Count - 1
-                hoja.Cells(1, col + 1) = dt.Columns(col).ColumnName
+            ' 2. Generar los encabezados de las columnas
+            Dim nombresColumna As New List(Of String)()
+            For col As Integer = 0 To dgvProductos.ColumnCount - 1
+                nombresColumna.Add(dgvProductos.Columns(col).HeaderText)
             Next
+            sb.AppendLine(String.Join(";", nombresColumna))
 
-            ' Datos
-            For fila As Integer = 0 To dt.Rows.Count - 1
-                For col As Integer = 0 To dt.Columns.Count - 1
-                    hoja.Cells(fila + 2, col + 1) = dt.Rows(fila)(col).ToString()
+            ' 3. Recorrer las filas del DataGridView
+            For fila As Integer = 0 To dgvProductos.Rows.Count - 1
+                ' Salta la fila vacía del final del DataGridView si existe
+                If dgvProductos.Rows(fila).IsNewRow Then Continue For
+
+                Dim valoresFila As New List(Of String)()
+
+                For col As Integer = 0 To dgvProductos.ColumnCount - 1
+                    Dim valor As Object = dgvProductos(col, fila).Value
+                    Dim textoCelda As String = ""
+
+                    If dgvProductos.Columns(col).HeaderText.ToLower() = "activo" Then
+                        If valor IsNot Nothing AndAlso CBool(valor) = True Then
+                            textoCelda = "SÍ"
+                        Else
+                            textoCelda = "NO"
+                        End If
+                    Else
+                        ' Limpia caracteres especiales para que no rompan el formato CSV/Excel
+                        textoCelda = If(valor IsNot Nothing, valor.ToString().Replace(";", ","), "")
+                    End If
+
+                    valoresFila.Add(textoCelda)
                 Next
-                Application.DoEvents()
+
+                sb.AppendLine(String.Join(";", valoresFila))
             Next
 
-            hoja.Columns.AutoFit()
+            ' 4. Guardar el archivo usando codificación UTF-8 para las tildes
+            System.IO.File.WriteAllText(rutaDestino, sb.ToString(), System.Text.Encoding.UTF8)
 
-            libro.SaveAs(rutaDestino)
-            MessageBox.Show("Datos exportados correctamente a: " & rutaDestino,
-                         "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("Datos exportados correctamente a Excel en: " & rutaDestino,
+                     "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
         Catch ex As Exception
             MessageBox.Show("Error al exportar a Excel: " & ex.Message, "Error",
-                         MessageBoxButtons.OK, MessageBoxIcon.Error)
-        Finally
-
-            libro?.Close()
-            excelApp?.Quit()
-
-            If hoja IsNot Nothing Then ReleaseObject(hoja)
-            If libro IsNot Nothing Then ReleaseObject(libro)
-            If excelApp IsNot Nothing Then ReleaseObject(excelApp)
+                     MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
     Public Function GetColumnasSize(ByVal dg As DataGridView) As Single()
         Dim values As Single() = New Single(dg.ColumnCount - 1) {}
         For i As Integer = 0 To dg.ColumnCount - 1
@@ -672,4 +655,5 @@ Public Class frmProductos
 
         Return valor.ToString()
     End Function
+
 End Class

@@ -30,6 +30,7 @@ Partial Class frmCategorias
         btnEliminar = New Button()
         btnLimpiar = New Button()
         dgvCategorias = New DataGridView()
+        btnfin = New Button()
         GroupBox1.SuspendLayout()
         CType(dgvCategorias, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -66,7 +67,7 @@ Partial Class frmCategorias
         ' btnAgregar
         ' 
         btnAgregar.Font = New Font("Segoe UI", 12F)
-        btnAgregar.Location = New Point(28, 144)
+        btnAgregar.Location = New Point(28, 348)
         btnAgregar.Name = "btnAgregar"
         btnAgregar.Size = New Size(89, 39)
         btnAgregar.TabIndex = 14
@@ -76,7 +77,7 @@ Partial Class frmCategorias
         ' btnModificar
         ' 
         btnModificar.Font = New Font("Segoe UI", 12F)
-        btnModificar.Location = New Point(155, 144)
+        btnModificar.Location = New Point(155, 348)
         btnModificar.Name = "btnModificar"
         btnModificar.Size = New Size(89, 39)
         btnModificar.TabIndex = 15
@@ -86,7 +87,7 @@ Partial Class frmCategorias
         ' btnEliminar
         ' 
         btnEliminar.Font = New Font("Segoe UI", 12F)
-        btnEliminar.Location = New Point(282, 144)
+        btnEliminar.Location = New Point(282, 348)
         btnEliminar.Name = "btnEliminar"
         btnEliminar.Size = New Size(89, 39)
         btnEliminar.TabIndex = 16
@@ -96,7 +97,7 @@ Partial Class frmCategorias
         ' btnLimpiar
         ' 
         btnLimpiar.Font = New Font("Segoe UI", 12F)
-        btnLimpiar.Location = New Point(402, 144)
+        btnLimpiar.Location = New Point(402, 348)
         btnLimpiar.Name = "btnLimpiar"
         btnLimpiar.Size = New Size(89, 39)
         btnLimpiar.TabIndex = 17
@@ -106,16 +107,27 @@ Partial Class frmCategorias
         ' dgvCategorias
         ' 
         dgvCategorias.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        dgvCategorias.Location = New Point(28, 210)
+        dgvCategorias.Location = New Point(28, 126)
         dgvCategorias.Name = "dgvCategorias"
         dgvCategorias.Size = New Size(463, 216)
         dgvCategorias.TabIndex = 18
+        ' 
+        ' btnfin
+        ' 
+        btnfin.Font = New Font("Segoe UI", 12F)
+        btnfin.Location = New Point(423, 399)
+        btnfin.Name = "btnfin"
+        btnfin.Size = New Size(89, 39)
+        btnfin.TabIndex = 19
+        btnfin.Text = "Fin"
+        btnfin.UseVisualStyleBackColor = True
         ' 
         ' frmCategorias
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(524, 450)
+        Controls.Add(btnfin)
         Controls.Add(dgvCategorias)
         Controls.Add(btnLimpiar)
         Controls.Add(btnEliminar)
@@ -138,4 +150,5 @@ Partial Class frmCategorias
     Friend WithEvents btnEliminar As Button
     Friend WithEvents btnLimpiar As Button
     Friend WithEvents dgvCategorias As DataGridView
+    Friend WithEvents btnfin As Button
 End Class

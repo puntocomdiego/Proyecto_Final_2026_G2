@@ -103,4 +103,8 @@
             MessageBox.Show("No se pudo eliminar la categoría (puede tener productos asociados): " & ex.Message)
         End Try
     End Sub
+
+    Private Sub btnfin_Click(sender As Object, e As EventArgs) Handles btnfin.Click
+        Close()
+    End Sub
 End Class
