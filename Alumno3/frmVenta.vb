@@ -8,6 +8,8 @@ Public Class frmVenta
     Private temporal As New TemporalDatos()
     Private detalle As New DetalleDatos()
 
+    Dim bcerrar As Boolean = False
+
     Private Sub frmVenta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         AplicarEstiloFormulario(Me, "Venta")
@@ -618,7 +620,7 @@ Public Class frmVenta
 
     End Sub
 
-    '== BOTON CERRAR ==
+    '== CERRAR ==
 
     Private Sub btnCerrar_Click(sender As Object, e As EventArgs) Handles btnCerrar.Click
 
@@ -629,7 +631,12 @@ Public Class frmVenta
             respuesta = MessageBox.Show("¿Estás seguro que deseas salir?", "Confirmar cierre", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
             If respuesta = DialogResult.Yes Then
+                bcerrar = True
                 Me.Close()
+
+            Else
+
+                bcerrar = False
 
             End If
 
@@ -638,6 +645,26 @@ Public Class frmVenta
             MsgBox("Error al cerrar la venta: " & ex.Message, MsgBoxStyle.Critical, "Error")
         End Try
 
+    End Sub
+
+    Private Sub frmVenta_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+
+        If bcerrar = False Then
+
+            Dim respuesta As DialogResult
+
+        respuesta = MessageBox.Show("¿Estás seguro que deseas salir?",
+                                    "Confirmar cierre",
+                                    MessageBoxButtons.YesNo,
+                                    MessageBoxIcon.Question)
+
+            If respuesta = DialogResult.No Then
+
+                e.Cancel = True
+
+            End If
+
+        End If
     End Sub
 
 End Class
