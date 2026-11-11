@@ -125,8 +125,8 @@ Public Class frmConsultaVentas
     Private Sub btnConsultar_Click(sender As Object, e As EventArgs) Handles btnConsultar.Click
 
 
-        Dim fechaInicio As Date = dtpFecha1.Value.Date
-        Dim fechaFin As Date = dtpFecha2.Value.Date
+        Dim fechaInicio As Date = dtpFecha1.Value
+        Dim fechaFin As Date = dtpFecha2.Value
 
         MostrarDatos(datos.ObtenerVentasFecha(fechaInicio, fechaFin))
 
