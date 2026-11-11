@@ -27,14 +27,14 @@ Public Class VentaDatos
         Dim dt As New DataTable()
         Dim sql As String = "SELECT IdVenta, Fecha, IdCliente, Total, FormaPago " &
                             "FROM Ventas " &
-                            "WHERE Ventas.Fecha BETWEEN ? AND ? " &
+                            "WHERE Ventas.Fecha >= ? AND Ventas.Fecha < ? " &
                             "ORDER BY Ventas.Fecha DESC;"
 
         Using cn As New OleDbConnection(CadenaConexion)
             cn.Open()
             Using cmd As New OleDbCommand(sql, cn)
-                cmd.Parameters.Add("?", OleDbType.Date).Value = fechaInicio
-                cmd.Parameters.Add("?", OleDbType.Date).Value = fechaFin
+                cmd.Parameters.Add("?", OleDbType.Date).Value = fechaInicio.Date
+                cmd.Parameters.Add("?", OleDbType.Date).Value = fechaFin.Date.AddDays(1) ' Agregar un día para incluir la fecha de fin
                 Using da As New OleDbDataAdapter(cmd)
                     da.Fill(dt)
                 End Using

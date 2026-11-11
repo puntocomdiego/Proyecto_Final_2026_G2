@@ -35,7 +35,6 @@ Partial Class frmVenta
         cboDescripcion = New ComboBox()
         btnEditar = New Button()
         GroupBox1 = New GroupBox()
-        btnCerrar = New Button()
         lblTotal = New Label()
         Label5 = New Label()
         GroupBox2 = New GroupBox()
@@ -43,22 +42,32 @@ Partial Class frmVenta
         rbtTransf = New RadioButton()
         rbtCredito = New RadioButton()
         rbtDebito = New RadioButton()
+        btnCerrar = New Button()
         Label4 = New Label()
         dgvTemp = New DataGridView()
         btnConsulta = New Button()
+        Panel1 = New Panel()
+        GroupBox3 = New GroupBox()
+        Panel2 = New Panel()
+        Panel3 = New Panel()
+        Label6 = New Label()
         GroupBox1.SuspendLayout()
         GroupBox2.SuspendLayout()
         CType(dgvTemp, ComponentModel.ISupportInitialize).BeginInit()
+        Panel1.SuspendLayout()
+        GroupBox3.SuspendLayout()
+        Panel2.SuspendLayout()
+        Panel3.SuspendLayout()
         SuspendLayout()
         ' 
         ' btnConfirmar
         ' 
-        btnConfirmar.BackColor = SystemColors.GradientInactiveCaption
+        btnConfirmar.BackColor = SystemColors.ButtonHighlight
         btnConfirmar.Enabled = False
         btnConfirmar.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold)
         btnConfirmar.Location = New Point(16, 182)
         btnConfirmar.Name = "btnConfirmar"
-        btnConfirmar.Size = New Size(160, 50)
+        btnConfirmar.Size = New Size(160, 44)
         btnConfirmar.TabIndex = 11
         btnConfirmar.Text = "Confirmar Venta"
         btnConfirmar.UseVisualStyleBackColor = False
@@ -67,7 +76,7 @@ Partial Class frmVenta
         ' 
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI Semibold", 11F, FontStyle.Bold)
-        Label1.Location = New Point(36, 27)
+        Label1.Location = New Point(28, 21)
         Label1.Name = "Label1"
         Label1.Size = New Size(60, 20)
         Label1.TabIndex = 1
@@ -77,7 +86,7 @@ Partial Class frmVenta
         ' 
         cboCliente.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
         cboCliente.FormattingEnabled = True
-        cboCliente.Location = New Point(102, 24)
+        cboCliente.Location = New Point(94, 18)
         cboCliente.Name = "cboCliente"
         cboCliente.Size = New Size(164, 23)
         cboCliente.TabIndex = 2
@@ -86,7 +95,7 @@ Partial Class frmVenta
         ' 
         cboCategoria.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
         cboCategoria.FormattingEnabled = True
-        cboCategoria.Location = New Point(102, 67)
+        cboCategoria.Location = New Point(362, 15)
         cboCategoria.Name = "cboCategoria"
         cboCategoria.Size = New Size(164, 23)
         cboCategoria.TabIndex = 3
@@ -95,7 +104,7 @@ Partial Class frmVenta
         ' 
         Label2.AutoSize = True
         Label2.Font = New Font("Segoe UI Semibold", 11F, FontStyle.Bold)
-        Label2.Location = New Point(17, 70)
+        Label2.Location = New Point(277, 18)
         Label2.Name = "Label2"
         Label2.Size = New Size(79, 20)
         Label2.TabIndex = 3
@@ -105,7 +114,7 @@ Partial Class frmVenta
         ' 
         Label3.AutoSize = True
         Label3.Font = New Font("Segoe UI Semibold", 11F, FontStyle.Bold)
-        Label3.Location = New Point(299, 103)
+        Label3.Location = New Point(282, 86)
         Label3.Name = "Label3"
         Label3.Size = New Size(74, 20)
         Label3.TabIndex = 5
@@ -114,42 +123,42 @@ Partial Class frmVenta
         ' txtCantidad
         ' 
         txtCantidad.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
-        txtCantidad.Location = New Point(373, 102)
+        txtCantidad.Location = New Point(362, 86)
         txtCantidad.Name = "txtCantidad"
         txtCantidad.Size = New Size(46, 23)
         txtCantidad.TabIndex = 5
         ' 
         ' btnAgregar
         ' 
-        btnAgregar.BackColor = SystemColors.GradientInactiveCaption
+        btnAgregar.BackColor = SystemColors.ButtonHighlight
         btnAgregar.Enabled = False
         btnAgregar.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold)
-        btnAgregar.Location = New Point(299, 36)
+        btnAgregar.Location = New Point(598, 24)
         btnAgregar.Name = "btnAgregar"
-        btnAgregar.Size = New Size(120, 41)
+        btnAgregar.Size = New Size(120, 36)
         btnAgregar.TabIndex = 6
         btnAgregar.Text = "Agregar"
         btnAgregar.UseVisualStyleBackColor = False
         ' 
         ' btnNuevo
         ' 
-        btnNuevo.BackColor = SystemColors.GradientInactiveCaption
+        btnNuevo.BackColor = SystemColors.ButtonHighlight
         btnNuevo.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold)
-        btnNuevo.Location = New Point(597, 12)
+        btnNuevo.Location = New Point(12, 15)
         btnNuevo.Name = "btnNuevo"
-        btnNuevo.Size = New Size(160, 50)
+        btnNuevo.Size = New Size(120, 36)
         btnNuevo.TabIndex = 1
         btnNuevo.Text = "Nuevo"
         btnNuevo.UseVisualStyleBackColor = False
         ' 
         ' btnEliminar
         ' 
-        btnEliminar.BackColor = SystemColors.GradientInactiveCaption
+        btnEliminar.BackColor = SystemColors.ButtonHighlight
         btnEliminar.Enabled = False
         btnEliminar.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold)
-        btnEliminar.Location = New Point(36, 287)
+        btnEliminar.Location = New Point(264, 15)
         btnEliminar.Name = "btnEliminar"
-        btnEliminar.Size = New Size(120, 41)
+        btnEliminar.Size = New Size(120, 36)
         btnEliminar.TabIndex = 13
         btnEliminar.Text = "Eliminar"
         btnEliminar.UseVisualStyleBackColor = False
@@ -158,69 +167,55 @@ Partial Class frmVenta
         ' 
         cboDescripcion.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold)
         cboDescripcion.FormattingEnabled = True
-        cboDescripcion.Location = New Point(102, 100)
+        cboDescripcion.Location = New Point(362, 48)
         cboDescripcion.Name = "cboDescripcion"
         cboDescripcion.Size = New Size(164, 23)
         cboDescripcion.TabIndex = 4
         ' 
         ' btnEditar
         ' 
-        btnEditar.BackColor = SystemColors.GradientInactiveCaption
+        btnEditar.BackColor = SystemColors.ButtonHighlight
         btnEditar.DialogResult = DialogResult.Continue
         btnEditar.Enabled = False
         btnEditar.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold)
-        btnEditar.Location = New Point(36, 239)
+        btnEditar.Location = New Point(138, 15)
         btnEditar.Name = "btnEditar"
-        btnEditar.Size = New Size(120, 41)
+        btnEditar.Size = New Size(120, 36)
         btnEditar.TabIndex = 12
         btnEditar.Text = "Editar"
         btnEditar.UseVisualStyleBackColor = False
         ' 
         ' GroupBox1
         ' 
-        GroupBox1.Controls.Add(btnCerrar)
         GroupBox1.Controls.Add(lblTotal)
         GroupBox1.Controls.Add(Label5)
         GroupBox1.Controls.Add(GroupBox2)
-        GroupBox1.Controls.Add(btnEditar)
         GroupBox1.Controls.Add(btnConfirmar)
-        GroupBox1.Controls.Add(btnEliminar)
-        GroupBox1.Location = New Point(581, 135)
+        GroupBox1.Location = New Point(581, 192)
         GroupBox1.Name = "GroupBox1"
-        GroupBox1.Size = New Size(193, 419)
+        GroupBox1.Size = New Size(193, 242)
         GroupBox1.TabIndex = 13
         GroupBox1.TabStop = False
-        ' 
-        ' btnCerrar
-        ' 
-        btnCerrar.BackColor = SystemColors.GradientInactiveCaption
-        btnCerrar.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold)
-        btnCerrar.Location = New Point(36, 372)
-        btnCerrar.Name = "btnCerrar"
-        btnCerrar.Size = New Size(120, 41)
-        btnCerrar.TabIndex = 14
-        btnCerrar.Text = "Cerrar"
-        btnCerrar.UseVisualStyleBackColor = False
         ' 
         ' lblTotal
         ' 
         lblTotal.Font = New Font("Segoe UI Semibold", 14F, FontStyle.Bold)
-        lblTotal.Location = New Point(29, 40)
+        lblTotal.Location = New Point(6, 60)
         lblTotal.Name = "lblTotal"
-        lblTotal.Size = New Size(135, 23)
+        lblTotal.Size = New Size(181, 23)
         lblTotal.TabIndex = 17
         lblTotal.Text = "$ 00.0"
         lblTotal.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' Label5
         ' 
-        Label5.AutoSize = True
         Label5.Font = New Font("Segoe UI Semibold", 11F, FontStyle.Bold)
-        Label5.Location = New Point(69, 1)
+        Label5.Location = New Point(6, 21)
         Label5.Name = "Label5"
-        Label5.Size = New Size(54, 20)
+        Label5.Size = New Size(181, 20)
         Label5.TabIndex = 17
         Label5.Text = "TOTAL:"
+        Label5.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' GroupBox2
         ' 
@@ -249,7 +244,6 @@ Partial Class frmVenta
         ' 
         ' rbtTransf
         ' 
-        rbtTransf.AutoSize = True
         rbtTransf.Enabled = False
         rbtTransf.Location = New Point(79, 25)
         rbtTransf.Name = "rbtTransf"
@@ -283,11 +277,22 @@ Partial Class frmVenta
         rbtDebito.Text = "Débito"
         rbtDebito.UseVisualStyleBackColor = True
         ' 
+        ' btnCerrar
+        ' 
+        btnCerrar.BackColor = SystemColors.ButtonHighlight
+        btnCerrar.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold)
+        btnCerrar.Location = New Point(654, 15)
+        btnCerrar.Name = "btnCerrar"
+        btnCerrar.Size = New Size(120, 36)
+        btnCerrar.TabIndex = 14
+        btnCerrar.Text = "Cerrar"
+        btnCerrar.UseVisualStyleBackColor = False
+        ' 
         ' Label4
         ' 
         Label4.AutoSize = True
         Label4.Font = New Font("Segoe UI Semibold", 11F, FontStyle.Bold)
-        Label4.Location = New Point(20, 103)
+        Label4.Location = New Point(280, 51)
         Label4.Name = "Label4"
         Label4.Size = New Size(76, 20)
         Label4.TabIndex = 14
@@ -302,7 +307,7 @@ Partial Class frmVenta
         dgvTemp.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
         dgvTemp.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         dgvTemp.EnableHeadersVisualStyles = False
-        dgvTemp.Location = New Point(12, 155)
+        dgvTemp.Location = New Point(12, 192)
         dgvTemp.MultiSelect = False
         dgvTemp.Name = "dgvTemp"
         dgvTemp.ReadOnly = True
@@ -310,19 +315,82 @@ Partial Class frmVenta
         dgvTemp.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing
         dgvTemp.RowTemplate.Height = 32
         dgvTemp.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        dgvTemp.Size = New Size(561, 394)
+        dgvTemp.Size = New Size(561, 305)
         dgvTemp.TabIndex = 16
         ' 
         ' btnConsulta
         ' 
-        btnConsulta.BackColor = SystemColors.GradientInactiveCaption
+        btnConsulta.BackColor = SystemColors.ButtonHighlight
         btnConsulta.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold)
-        btnConsulta.Location = New Point(597, 68)
+        btnConsulta.Location = New Point(390, 15)
         btnConsulta.Name = "btnConsulta"
-        btnConsulta.Size = New Size(160, 50)
+        btnConsulta.Size = New Size(140, 36)
         btnConsulta.TabIndex = 17
         btnConsulta.Text = "Consultar Ventas"
         btnConsulta.UseVisualStyleBackColor = False
+        ' 
+        ' Panel1
+        ' 
+        Panel1.BackColor = SystemColors.ButtonHighlight
+        Panel1.Controls.Add(btnConsulta)
+        Panel1.Controls.Add(btnCerrar)
+        Panel1.Controls.Add(btnNuevo)
+        Panel1.Controls.Add(btnEditar)
+        Panel1.Controls.Add(btnEliminar)
+        Panel1.Dock = DockStyle.Bottom
+        Panel1.Location = New Point(0, 500)
+        Panel1.Name = "Panel1"
+        Panel1.Size = New Size(784, 61)
+        Panel1.TabIndex = 18
+        ' 
+        ' GroupBox3
+        ' 
+        GroupBox3.Controls.Add(btnAgregar)
+        GroupBox3.Controls.Add(Label4)
+        GroupBox3.Controls.Add(Label1)
+        GroupBox3.Controls.Add(cboCliente)
+        GroupBox3.Controls.Add(cboDescripcion)
+        GroupBox3.Controls.Add(Label2)
+        GroupBox3.Controls.Add(cboCategoria)
+        GroupBox3.Controls.Add(txtCantidad)
+        GroupBox3.Controls.Add(Label3)
+        GroupBox3.Location = New Point(12, 62)
+        GroupBox3.Name = "GroupBox3"
+        GroupBox3.Size = New Size(762, 124)
+        GroupBox3.TabIndex = 19
+        GroupBox3.TabStop = False
+        ' 
+        ' Panel2
+        ' 
+        Panel2.BackColor = SystemColors.Highlight
+        Panel2.Controls.Add(Panel3)
+        Panel2.Dock = DockStyle.Top
+        Panel2.ForeColor = SystemColors.MenuHighlight
+        Panel2.Location = New Point(0, 0)
+        Panel2.Name = "Panel2"
+        Panel2.Size = New Size(784, 59)
+        Panel2.TabIndex = 20
+        ' 
+        ' Panel3
+        ' 
+        Panel3.BackColor = SystemColors.ActiveCaptionText
+        Panel3.Controls.Add(Label6)
+        Panel3.Dock = DockStyle.Top
+        Panel3.Location = New Point(0, 0)
+        Panel3.Name = "Panel3"
+        Panel3.Size = New Size(784, 56)
+        Panel3.TabIndex = 0
+        ' 
+        ' Label6
+        ' 
+        Label6.AutoSize = True
+        Label6.Font = New Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label6.ForeColor = SystemColors.HighlightText
+        Label6.Location = New Point(12, 9)
+        Label6.Name = "Label6"
+        Label6.Size = New Size(67, 30)
+        Label6.TabIndex = 21
+        Label6.Text = "Venta"
         ' 
         ' frmVenta
         ' 
@@ -332,19 +400,11 @@ Partial Class frmVenta
         BackColor = SystemColors.Control
         CancelButton = btnCerrar
         ClientSize = New Size(784, 561)
-        Controls.Add(btnConsulta)
+        Controls.Add(Panel2)
         Controls.Add(dgvTemp)
-        Controls.Add(Label4)
         Controls.Add(GroupBox1)
-        Controls.Add(cboDescripcion)
-        Controls.Add(btnNuevo)
-        Controls.Add(btnAgregar)
-        Controls.Add(txtCantidad)
-        Controls.Add(Label3)
-        Controls.Add(cboCategoria)
-        Controls.Add(Label2)
-        Controls.Add(cboCliente)
-        Controls.Add(Label1)
+        Controls.Add(Panel1)
+        Controls.Add(GroupBox3)
         Font = New Font("Segoe UI", 10F)
         FormBorderStyle = FormBorderStyle.FixedSingle
         MaximizeBox = False
@@ -352,12 +412,16 @@ Partial Class frmVenta
         StartPosition = FormStartPosition.CenterScreen
         Text = "Ventas"
         GroupBox1.ResumeLayout(False)
-        GroupBox1.PerformLayout()
         GroupBox2.ResumeLayout(False)
         GroupBox2.PerformLayout()
         CType(dgvTemp, ComponentModel.ISupportInitialize).EndInit()
+        Panel1.ResumeLayout(False)
+        GroupBox3.ResumeLayout(False)
+        GroupBox3.PerformLayout()
+        Panel2.ResumeLayout(False)
+        Panel3.ResumeLayout(False)
+        Panel3.PerformLayout()
         ResumeLayout(False)
-        PerformLayout()
     End Sub
 
     Friend WithEvents btnConfirmar As Button
@@ -384,4 +448,9 @@ Partial Class frmVenta
     Friend WithEvents rbtTransf As RadioButton
     Friend WithEvents btnCerrar As Button
     Friend WithEvents btnConsulta As Button
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents GroupBox3 As GroupBox
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents Label6 As Label
 End Class

@@ -97,6 +97,7 @@ Partial Class frmConsultaVentas
         dtpFecha1.Name = "dtpFecha1"
         dtpFecha1.Size = New Size(117, 23)
         dtpFecha1.TabIndex = 5
+        dtpFecha1.Value = New Date(2026, 11, 10, 21, 23, 46, 0)
         ' 
         ' dtpFecha2
         ' 
