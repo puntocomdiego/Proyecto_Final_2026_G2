@@ -24,7 +24,7 @@ Public Class frmProductos
         BotonSecundario(Me.btnLimpiar)
         BotonSecundario(Me.btnexportar)
         BotonPeligro(Me.btnEliminar)
-        BotonPeligro(Me.btnFin)
+        BotonSecundario(Me.btnFin)
         AplicarEstiloGrilla(dgvProductos)
         AplicarEstiloFormulario(Me, "Gestión de Productos")
 
@@ -120,6 +120,8 @@ Public Class frmProductos
     End Sub
 
     Private Sub btnLimpiar_Click(sender As Object, e As EventArgs) Handles btnLimpiar.Click
+        dgvProductos.ClearSelection()
+        idProductoSeleccionado = -1
         txtBuscar.Clear()
         txtBuscar.Visible = False
         btnok.Visible = False
