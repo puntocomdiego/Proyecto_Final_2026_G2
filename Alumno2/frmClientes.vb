@@ -7,6 +7,7 @@ Public Class frmClientes
     Private idClienteSeleccionado As Integer = 0
     ' Estado interno de la pantalla: "" | "NUEVO" | "MODIFICAR"
     Private _modo As String = ""
+    Dim bcerrar As Boolean = False
 
     ' ===== CARGA DEL FORMULARIO =====
     Private Sub frmClientes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -19,6 +20,7 @@ Public Class frmClientes
         BotonSecundario(btnEliminar)
         BotonSecundario(btnmail)
         BotonSecundario(btnModificar)
+        BotonPeligro(btnEliminar)
         System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance)
         ConfigurarGrilla()
         MostrarClientes(datos.Listar())
@@ -346,7 +348,7 @@ Public Class frmClientes
         ' Muestra un cuadro de mensaje pidiendo confirmación
         Dim resultado As DialogResult = MessageBox.Show(
         "¿Estás seguro de que deseas cerrar el formulario?",
-        "Puntocom · Clientes",
+        "Comercial · Clientes",
         MessageBoxButtons.YesNo,
         MessageBoxIcon.Question,
         MessageBoxDefaultButton.Button2
@@ -354,7 +356,28 @@ Public Class frmClientes
 
         ' Si el usuario presiona "Sí", cerramos la ventana
         If resultado = DialogResult.Yes Then
+            bcerrar = True
             Me.Close()
+        Else
+            bcerrar = False
+
         End If
+    End Sub
+
+    Private Sub frmClientes_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        If bcerrar = False Then
+            Dim resultado As DialogResult = MessageBox.Show(
+                 "¿Estás seguro de que deseas cerrar el formulario?",
+                 "Comercial · Clientes",
+                 MessageBoxButtons.YesNo,
+                 MessageBoxIcon.Question,
+                 MessageBoxDefaultButton.Button2
+             )
+            ' Si el usuario presiona "Sí", cerramos la ventana
+            If resultado = DialogResult.No Then
+                e.Cancel = True ' Cancela el cierre del formulario
+            End If
+        End If
+
     End Sub
 End Class

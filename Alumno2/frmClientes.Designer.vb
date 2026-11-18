@@ -57,6 +57,7 @@ Partial Class frmClientes
         ' GroupBox2
         ' 
         GroupBox2.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left
+        GroupBox2.Controls.Add(btnmail)
         GroupBox2.Controls.Add(txtDocumento)
         GroupBox2.Controls.Add(Label6)
         GroupBox2.Controls.Add(Label5)
@@ -70,9 +71,9 @@ Partial Class frmClientes
         GroupBox2.Controls.Add(txtApellido)
         GroupBox2.Controls.Add(txtNombre)
         GroupBox2.Font = New Font("Segoe UI", 10.2F)
-        GroupBox2.Location = New Point(12, 65)
+        GroupBox2.Location = New Point(25, 78)
         GroupBox2.Name = "GroupBox2"
-        GroupBox2.Size = New Size(413, 300)
+        GroupBox2.Size = New Size(875, 300)
         GroupBox2.TabIndex = 27
         GroupBox2.TabStop = False
         GroupBox2.Text = "Cliente"
@@ -80,7 +81,7 @@ Partial Class frmClientes
         ' txtDocumento
         ' 
         txtDocumento.Font = New Font("Segoe UI", 10.2F)
-        txtDocumento.Location = New Point(142, 32)
+        txtDocumento.Location = New Point(140, 42)
         txtDocumento.Mask = "0.000.000-0"
         txtDocumento.Name = "txtDocumento"
         txtDocumento.Size = New Size(265, 30)
@@ -189,7 +190,7 @@ Partial Class frmClientes
         ' btnmail
         ' 
         btnmail.Font = New Font("Segoe UI", 10.2F)
-        btnmail.Location = New Point(650, 323)
+        btnmail.Location = New Point(740, 252)
         btnmail.Name = "btnmail"
         btnmail.Size = New Size(120, 36)
         btnmail.TabIndex = 12
@@ -251,17 +252,17 @@ Partial Class frmClientes
         ' 
         dgvClientes.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         dgvClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        dgvClientes.Location = New Point(12, 371)
+        dgvClientes.Location = New Point(12, 376)
         dgvClientes.Name = "dgvClientes"
         dgvClientes.RowHeadersWidth = 51
-        dgvClientes.Size = New Size(758, 108)
+        dgvClientes.Size = New Size(888, 108)
         dgvClientes.TabIndex = 25
         ' 
         ' Label7
         ' 
         Label7.AutoSize = True
         Label7.BackColor = Color.Transparent
-        Label7.Font = New Font("Segoe UI", 16F)
+        Label7.Font = New Font("Segoe UI", 16.0F)
         Label7.ForeColor = Color.White
         Label7.Location = New Point(12, 9)
         Label7.Name = "Label7"
@@ -272,11 +273,12 @@ Partial Class frmClientes
         ' Panel1
         ' 
         Panel1.BackColor = Color.Black
+        Panel1.Controls.Add(btnmail)
         Panel1.Controls.Add(Label7)
         Panel1.Dock = DockStyle.Top
         Panel1.Location = New Point(0, 0)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(782, 56)
+        Panel1.Size = New Size(912, 56)
         Panel1.TabIndex = 30
         ' 
         ' Panel2
@@ -286,7 +288,7 @@ Partial Class frmClientes
         Panel2.ForeColor = SystemColors.ActiveCaption
         Panel2.Location = New Point(0, 56)
         Panel2.Name = "Panel2"
-        Panel2.Size = New Size(782, 3)
+        Panel2.Size = New Size(912, 16)
         Panel2.TabIndex = 31
         ' 
         ' Panel3
@@ -301,7 +303,7 @@ Partial Class frmClientes
         Panel3.Dock = DockStyle.Bottom
         Panel3.Location = New Point(0, 485)
         Panel3.Name = "Panel3"
-        Panel3.Size = New Size(782, 68)
+        Panel3.Size = New Size(912, 68)
         Panel3.TabIndex = 32
         ' 
         ' btnCerrar
@@ -316,18 +318,18 @@ Partial Class frmClientes
         ' 
         ' frmClientes
         ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(782, 553)
-        Controls.Add(btnmail)
         Controls.Add(Panel2)
         Controls.Add(Panel3)
         Controls.Add(Panel1)
+        Controls.Add(Panel2)
         Controls.Add(GroupBox2)
+        Controls.Add(Panel1)
         Controls.Add(dgvClientes)
-        FormBorderStyle = FormBorderStyle.FixedSingle
-        MaximizeBox = False
         Name = "frmClientes"
+        StartPosition = FormStartPosition.CenterScreen
         Text = "frmClientes"
         GroupBox2.ResumeLayout(False)
         GroupBox2.PerformLayout()

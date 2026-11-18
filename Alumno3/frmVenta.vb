@@ -8,14 +8,32 @@ Public Class frmVenta
     Private temporal As New TemporalDatos()
     Private detalle As New DetalleDatos()
 
+    Dim bcerrar As Boolean = False
+
     Private Sub frmVenta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        '== ESTILOS ==
 
         AplicarEstiloFormulario(Me, "Venta")
         AplicarEstiloGrilla(dgvTemp)
 
+        BotonPrimario(btnAgregar)
+        BotonPeligro(btnEliminar)
+        BotonPrimario(btnConfirmar)
+
+        BotonSecundario(btnNuevo)
+        BotonSecundario(btnEditar)
+        BotonSecundario(btnConsulta)
+        btnConsulta.Size = New Size(140, 36)
+        BotonSecundario(btnCerrar)
+
+        Panel1.BackColor = Color.White
+        Panel2.BackColor = ColorCeleste
+        Panel3.BackColor = ColorNegro
+
+        '= CARGA DE DATOS ==
+
         CargarClientes()
         CargarCategorias()
-        'ConfigurarGrilla()
         MostrarCompras(temporal.Listar())
 
     End Sub
@@ -184,31 +202,6 @@ Public Class frmVenta
         MetodoPagoVisible()
     End Sub
 
-    Private Sub ConfigurarGrilla()
-        dgvTemp.BackgroundColor = Color.White
-        dgvTemp.BorderStyle = BorderStyle.None
-        dgvTemp.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
-        dgvTemp.GridColor = Color.FromArgb(208, 213, 221)
-        dgvTemp.RowHeadersVisible = False
-        dgvTemp.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        dgvTemp.MultiSelect = False
-        dgvTemp.ReadOnly = True
-        dgvTemp.AllowUserToAddRows = False
-        dgvTemp.AllowUserToDeleteRows = False
-        dgvTemp.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-        dgvTemp.EnableHeadersVisualStyles = False
-
-        dgvTemp.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(33, 37, 41)
-        dgvTemp.ColumnHeadersDefaultCellStyle.ForeColor = Color.White
-        dgvTemp.ColumnHeadersDefaultCellStyle.Font = New Font("Segoe UI semibold", 10, FontStyle.Bold, GraphicsUnit.Point, 36)
-
-        dgvTemp.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(244, 246, 248)
-        dgvTemp.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 157, 255)
-        dgvTemp.DefaultCellStyle.SelectionForeColor = Color.Black
-        dgvTemp.RowTemplate.Height = 32
-
-    End Sub
-
     Private Function CalcularTotalVenta() As Decimal
 
         Dim total As Decimal = 0D
@@ -335,7 +328,6 @@ Public Class frmVenta
     End Function
 
     '== CONTROLES ==
-
     Private Sub cboCliente_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboCliente.SelectedIndexChanged
 
         If cboCliente.SelectedIndex = 0 Then
@@ -489,14 +481,14 @@ Public Class frmVenta
             Dim formaPago As String = MetodoPago()
             If formaPago = "" Then Return
 
-            'Calcular el total de la venta
+            'Calcula el total de la venta
             Dim totalVenta As Decimal = CalcularTotalVenta()
             If totalVenta <= 0 Then
                 MessageBox.Show("El total de la venta debe ser mayor a cero.")
                 Return
             End If
 
-            'Mostrar un mensaje de confirmación con el total y el método de pago
+            'Mostra un mensaje de confirmación con el total y el método de pago
             Dim respuesta As DialogResult = MessageBox.Show(
             "¿Desea confirmar esta venta?" & vbCrLf &
             "Total: " & totalVenta.ToString("C2", Globalization.CultureInfo.GetCultureInfo("es-UY")) & vbCrLf &
@@ -508,7 +500,7 @@ Public Class frmVenta
             If respuesta <> DialogResult.Yes Then Return
 
 
-            ' Crear la venta y los detalles de la venta en la base de datos
+            ' Crea la venta y los detalles de la venta en la base de datos
 
             Using cn As New OleDbConnection(CadenaConexion)
                 cn.Open()
@@ -645,7 +637,7 @@ Public Class frmVenta
 
     End Sub
 
-    '== BOTON CERRAR ==
+    '== CERRAR ==
 
     Private Sub btnCerrar_Click(sender As Object, e As EventArgs) Handles btnCerrar.Click
 
@@ -656,7 +648,12 @@ Public Class frmVenta
             respuesta = MessageBox.Show("¿Estás seguro que deseas salir?", "Confirmar cierre", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
             If respuesta = DialogResult.Yes Then
+                bcerrar = True
                 Me.Close()
+
+            Else
+
+                bcerrar = False
 
             End If
 
@@ -665,6 +662,26 @@ Public Class frmVenta
             MsgBox("Error al cerrar la venta: " & ex.Message, MsgBoxStyle.Critical, "Error")
         End Try
 
+    End Sub
+
+    Private Sub frmVenta_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+
+        If bcerrar = False Then
+
+            Dim respuesta As DialogResult
+
+            respuesta = MessageBox.Show("¿Estás seguro que deseas salir?",
+                                    "Confirmar cierre",
+                                    MessageBoxButtons.YesNo,
+                                    MessageBoxIcon.Question)
+
+            If respuesta = DialogResult.No Then
+
+                e.Cancel = True
+
+            End If
+
+        End If
     End Sub
 
 End Class
