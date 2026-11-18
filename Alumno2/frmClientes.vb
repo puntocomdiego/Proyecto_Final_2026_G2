@@ -20,6 +20,7 @@ Public Class frmClientes
         BotonSecundario(btnEliminar)
         BotonSecundario(btnmail)
         BotonSecundario(btnModificar)
+        BotonPeligro(btnEliminar)
         System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance)
         ConfigurarGrilla()
         MostrarClientes(datos.Listar())
