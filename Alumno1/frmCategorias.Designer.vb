@@ -68,7 +68,7 @@ Partial Class frmCategorias
         GroupBox1.Font = New Font("Segoe UI", 12F)
         GroupBox1.Location = New Point(12, 66)
         GroupBox1.Name = "GroupBox1"
-        GroupBox1.Size = New Size(600, 71)
+        GroupBox1.Size = New Size(634, 71)
         GroupBox1.TabIndex = 2
         GroupBox1.TabStop = False
         GroupBox1.Text = "Datos de la Categoría:"
@@ -76,7 +76,7 @@ Partial Class frmCategorias
         ' txtID
         ' 
         txtID.Font = New Font("Segoe UI", 12F)
-        txtID.Location = New Point(393, 26)
+        txtID.Location = New Point(446, 26)
         txtID.Name = "txtID"
         txtID.ReadOnly = True
         txtID.Size = New Size(101, 29)
@@ -85,7 +85,7 @@ Partial Class frmCategorias
         ' Label2
         ' 
         Label2.AutoSize = True
-        Label2.Location = New Point(359, 29)
+        Label2.Location = New Point(412, 29)
         Label2.Name = "Label2"
         Label2.Size = New Size(28, 21)
         Label2.TabIndex = 2
@@ -94,7 +94,7 @@ Partial Class frmCategorias
         ' btnAgregar
         ' 
         btnAgregar.Font = New Font("Segoe UI", 12F)
-        btnAgregar.Location = New Point(130, 348)
+        btnAgregar.Location = New Point(140, 346)
         btnAgregar.Name = "btnAgregar"
         btnAgregar.Size = New Size(120, 36)
         btnAgregar.TabIndex = 14
@@ -104,7 +104,7 @@ Partial Class frmCategorias
         ' btnModificar
         ' 
         btnModificar.Font = New Font("Segoe UI", 12F)
-        btnModificar.Location = New Point(252, 348)
+        btnModificar.Location = New Point(269, 346)
         btnModificar.Name = "btnModificar"
         btnModificar.Size = New Size(120, 36)
         btnModificar.TabIndex = 15
@@ -114,7 +114,7 @@ Partial Class frmCategorias
         ' btnEliminar
         ' 
         btnEliminar.Font = New Font("Segoe UI", 12F)
-        btnEliminar.Location = New Point(374, 348)
+        btnEliminar.Location = New Point(398, 346)
         btnEliminar.Name = "btnEliminar"
         btnEliminar.Size = New Size(120, 36)
         btnEliminar.TabIndex = 16
@@ -124,7 +124,7 @@ Partial Class frmCategorias
         ' btnLimpiar
         ' 
         btnLimpiar.Font = New Font("Segoe UI", 12F)
-        btnLimpiar.Location = New Point(496, 348)
+        btnLimpiar.Location = New Point(527, 346)
         btnLimpiar.Name = "btnLimpiar"
         btnLimpiar.Size = New Size(120, 36)
         btnLimpiar.TabIndex = 17
@@ -136,13 +136,13 @@ Partial Class frmCategorias
         dgvCategorias.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         dgvCategorias.Location = New Point(12, 146)
         dgvCategorias.Name = "dgvCategorias"
-        dgvCategorias.Size = New Size(600, 194)
+        dgvCategorias.Size = New Size(634, 194)
         dgvCategorias.TabIndex = 18
         ' 
         ' btnfin
         ' 
         btnfin.Font = New Font("Segoe UI", 12F)
-        btnfin.Location = New Point(496, 393)
+        btnfin.Location = New Point(527, 393)
         btnfin.Name = "btnfin"
         btnfin.Size = New Size(120, 36)
         btnfin.TabIndex = 19
@@ -156,7 +156,7 @@ Partial Class frmCategorias
         Panel1.Controls.Add(Label3)
         Panel1.Location = New Point(-2, 0)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(627, 56)
+        Panel1.Size = New Size(661, 56)
         Panel1.TabIndex = 32
         ' 
         ' Label3
@@ -175,13 +175,13 @@ Partial Class frmCategorias
         Panel2.BackColor = SystemColors.Highlight
         Panel2.Location = New Point(-2, 55)
         Panel2.Name = "Panel2"
-        Panel2.Size = New Size(627, 3)
+        Panel2.Size = New Size(663, 3)
         Panel2.TabIndex = 33
         ' 
         ' btnNuevo
         ' 
         btnNuevo.Font = New Font("Segoe UI", 12F)
-        btnNuevo.Location = New Point(8, 348)
+        btnNuevo.Location = New Point(11, 346)
         btnNuevo.Name = "btnNuevo"
         btnNuevo.Size = New Size(120, 36)
         btnNuevo.TabIndex = 34
@@ -193,7 +193,7 @@ Partial Class frmCategorias
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         CancelButton = btnfin
-        ClientSize = New Size(624, 441)
+        ClientSize = New Size(658, 441)
         Controls.Add(btnNuevo)
         Controls.Add(Panel2)
         Controls.Add(Panel1)
