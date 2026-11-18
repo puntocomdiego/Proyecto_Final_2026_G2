@@ -8,10 +8,29 @@ Public Class frmVenta
     Private temporal As New TemporalDatos()
     Private detalle As New DetalleDatos()
 
+    Dim bcerrar As Boolean = False
+
     Private Sub frmVenta_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        '== ESTILOS ==
 
         AplicarEstiloFormulario(Me, "Venta")
         AplicarEstiloGrilla(dgvTemp)
+
+        BotonPrimario(btnAgregar)
+        BotonPeligro(btnEliminar)
+        BotonPrimario(btnConfirmar)
+
+        BotonSecundario(btnNuevo)
+        BotonSecundario(btnEditar)
+        BotonSecundario(btnConsulta)
+        btnConsulta.Size = New Size(140, 36)
+        BotonSecundario(btnCerrar)
+
+        Panel1.BackColor = Color.White
+        Panel2.BackColor = ColorCeleste
+        Panel3.BackColor = ColorNegro
+
+        '= CARGA DE DATOS ==
 
         CargarClientes()
         CargarCategorias()
@@ -462,14 +481,14 @@ Public Class frmVenta
             Dim formaPago As String = MetodoPago()
             If formaPago = "" Then Return
 
-            'Calcular el total de la venta
+            'Calcula el total de la venta
             Dim totalVenta As Decimal = CalcularTotalVenta()
             If totalVenta <= 0 Then
                 MessageBox.Show("El total de la venta debe ser mayor a cero.")
                 Return
             End If
 
-            'Mostrar un mensaje de confirmación con el total y el método de pago
+            'Mostra un mensaje de confirmación con el total y el método de pago
             Dim respuesta As DialogResult = MessageBox.Show(
             "¿Desea confirmar esta venta?" & vbCrLf &
             "Total: " & totalVenta.ToString("C2", Globalization.CultureInfo.GetCultureInfo("es-UY")) & vbCrLf &
@@ -481,7 +500,7 @@ Public Class frmVenta
             If respuesta <> DialogResult.Yes Then Return
 
 
-            ' Crear la venta y los detalles de la venta en la base de datos
+            ' Crea la venta y los detalles de la venta en la base de datos
 
             Using cn As New OleDbConnection(CadenaConexion)
                 cn.Open()
@@ -618,7 +637,7 @@ Public Class frmVenta
 
     End Sub
 
-    '== BOTON CERRAR ==
+    '== CERRAR ==
 
     Private Sub btnCerrar_Click(sender As Object, e As EventArgs) Handles btnCerrar.Click
 
@@ -629,7 +648,12 @@ Public Class frmVenta
             respuesta = MessageBox.Show("¿Estás seguro que deseas salir?", "Confirmar cierre", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
             If respuesta = DialogResult.Yes Then
+                bcerrar = True
                 Me.Close()
+
+            Else
+
+                bcerrar = False
 
             End If
 
@@ -638,6 +662,26 @@ Public Class frmVenta
             MsgBox("Error al cerrar la venta: " & ex.Message, MsgBoxStyle.Critical, "Error")
         End Try
 
+    End Sub
+
+    Private Sub frmVenta_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+
+        If bcerrar = False Then
+
+            Dim respuesta As DialogResult
+
+            respuesta = MessageBox.Show("¿Estás seguro que deseas salir?",
+                                    "Confirmar cierre",
+                                    MessageBoxButtons.YesNo,
+                                    MessageBoxIcon.Question)
+
+            If respuesta = DialogResult.No Then
+
+                e.Cancel = True
+
+            End If
+
+        End If
     End Sub
 
 End Class

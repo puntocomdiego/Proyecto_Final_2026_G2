@@ -249,6 +249,7 @@ Partial Class frmMailing
         FormBorderStyle = FormBorderStyle.FixedSingle
         MaximizeBox = False
         Name = "frmMailing"
+        StartPosition = FormStartPosition.CenterScreen
         Text = "frmMailing"
         Panel3.ResumeLayout(False)
         Panel1.ResumeLayout(False)
