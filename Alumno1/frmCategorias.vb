@@ -47,11 +47,27 @@
     Private Sub btnAgregar_Click(sender As Object, e As EventArgs) Handles btnAgregar.Click
         If Not DatosValidos() Then Exit Sub
         Try
-            Dim c As New Cls_Categorias(txtNombre.Text.Trim())
-            If datos.Agregar(c) Then
-                MostrarCategorias(datos.Listar())
-                Limpiar()
-                MessageBox.Show("Categoría agregada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Dim existe As Boolean = False
+            For Each row As DataGridViewRow In dgvCategorias.Rows
+                If row.Cells("Nombre").Value IsNot Nothing AndAlso
+                   row.Cells("Nombre").Value.ToString().Trim().ToLower() = txtNombre.Text.Trim().ToLower() Then
+                    existe = True
+                    Exit For
+                End If
+            Next
+
+            If existe Then
+                MessageBox.Show("La categoría ya existe en el sistema.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                txtNombre.Focus()
+                txtNombre.SelectAll()
+            Else
+                Dim c As New Cls_Categorias(txtNombre.Text.Trim())
+
+                If datos.Agregar(c) Then
+                    MostrarCategorias(datos.Listar())
+                    Limpiar()
+                    MessageBox.Show("Categoría agregada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                End If
             End If
         Catch ex As Exception
             MessageBox.Show("No se pudo agregar la categoría: " & ex.Message)
