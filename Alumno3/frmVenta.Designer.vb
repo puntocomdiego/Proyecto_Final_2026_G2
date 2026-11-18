@@ -200,9 +200,9 @@ Partial Class frmVenta
         ' lblTotal
         ' 
         lblTotal.Font = New Font("Segoe UI Semibold", 14F, FontStyle.Bold)
-        lblTotal.Location = New Point(6, 60)
+        lblTotal.Location = New Point(6, 41)
         lblTotal.Name = "lblTotal"
-        lblTotal.Size = New Size(181, 23)
+        lblTotal.Size = New Size(181, 32)
         lblTotal.TabIndex = 17
         lblTotal.Text = "$ 00.0"
         lblTotal.TextAlign = ContentAlignment.MiddleCenter
