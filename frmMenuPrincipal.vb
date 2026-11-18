@@ -103,4 +103,16 @@ Public Class frmMenuPrincipal
         f.MdiParent = Me
         f.Show()
     End Sub
+
+    Private Sub CategoriasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CategoriasToolStripMenuItem.Click
+        Dim f As New frmCategorias
+        f.MdiParent = Me
+        f.Show()
+    End Sub
+
+    Private Sub ConsultaDeVentasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConsultaDeVentasToolStripMenuItem.Click
+        Dim f As New frmConsultaVentas
+        f.MdiParent = Me
+        f.Show()
+    End Sub
 End Class
