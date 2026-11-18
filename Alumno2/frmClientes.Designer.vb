@@ -273,6 +273,7 @@ Partial Class frmClientes
         ' Panel1
         ' 
         Panel1.BackColor = Color.Black
+        Panel1.Controls.Add(btnmail)
         Panel1.Controls.Add(Label7)
         Panel1.Dock = DockStyle.Top
         Panel1.Location = New Point(0, 0)
@@ -320,7 +321,6 @@ Partial Class frmClientes
         AutoScaleDimensions = New SizeF(8.0F, 20.0F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(782, 553)
-        Controls.Add(btnmail)
         Controls.Add(Panel2)
         Controls.Add(Panel3)
         Controls.Add(Panel1)
@@ -329,6 +329,7 @@ Partial Class frmClientes
         Controls.Add(Panel1)
         Controls.Add(dgvClientes)
         Name = "frmClientes"
+        StartPosition = FormStartPosition.CenterScreen
         Text = "frmClientes"
         GroupBox2.ResumeLayout(False)
         GroupBox2.PerformLayout()
