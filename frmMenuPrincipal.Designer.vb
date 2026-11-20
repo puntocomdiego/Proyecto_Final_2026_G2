@@ -47,9 +47,6 @@ Partial Class frmMenuPrincipal
         PasteToolStripMenuItem = New ToolStripMenuItem()
         ToolStripSeparator7 = New ToolStripSeparator()
         SelectAllToolStripMenuItem = New ToolStripMenuItem()
-        ViewMenu = New ToolStripMenuItem()
-        ToolBarToolStripMenuItem = New ToolStripMenuItem()
-        StatusBarToolStripMenuItem = New ToolStripMenuItem()
         MenuToolStripMenuItem = New ToolStripMenuItem()
         ProductosToolStripMenuItem = New ToolStripMenuItem()
         ClientesToolStripMenuItem = New ToolStripMenuItem()
@@ -68,7 +65,7 @@ Partial Class frmMenuPrincipal
         ' MenuStrip
         ' 
         MenuStrip.ImageScalingSize = New Size(20, 20)
-        MenuStrip.Items.AddRange(New ToolStripItem() {FileMenu, EditMenu, ViewMenu, MenuToolStripMenuItem})
+        MenuStrip.Items.AddRange(New ToolStripItem() {FileMenu, EditMenu, MenuToolStripMenuItem})
         MenuStrip.Location = New Point(0, 0)
         MenuStrip.Name = "MenuStrip"
         MenuStrip.Padding = New Padding(8, 3, 0, 3)
@@ -230,31 +227,6 @@ Partial Class frmMenuPrincipal
         SelectAllToolStripMenuItem.Size = New Size(206, 26)
         SelectAllToolStripMenuItem.Text = "Select &All"
         ' 
-        ' ViewMenu
-        ' 
-        ViewMenu.DropDownItems.AddRange(New ToolStripItem() {ToolBarToolStripMenuItem, StatusBarToolStripMenuItem})
-        ViewMenu.Name = "ViewMenu"
-        ViewMenu.Size = New Size(55, 24)
-        ViewMenu.Text = "&View"
-        ' 
-        ' ToolBarToolStripMenuItem
-        ' 
-        ToolBarToolStripMenuItem.Checked = True
-        ToolBarToolStripMenuItem.CheckOnClick = True
-        ToolBarToolStripMenuItem.CheckState = CheckState.Checked
-        ToolBarToolStripMenuItem.Name = "ToolBarToolStripMenuItem"
-        ToolBarToolStripMenuItem.Size = New Size(158, 26)
-        ToolBarToolStripMenuItem.Text = "&Toolbar"
-        ' 
-        ' StatusBarToolStripMenuItem
-        ' 
-        StatusBarToolStripMenuItem.Checked = True
-        StatusBarToolStripMenuItem.CheckOnClick = True
-        StatusBarToolStripMenuItem.CheckState = CheckState.Checked
-        StatusBarToolStripMenuItem.Name = "StatusBarToolStripMenuItem"
-        StatusBarToolStripMenuItem.Size = New Size(158, 26)
-        StatusBarToolStripMenuItem.Text = "&Status Bar"
-        ' 
         ' MenuToolStripMenuItem
         ' 
         MenuToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ProductosToolStripMenuItem, ClientesToolStripMenuItem, VentasToolStripMenuItem, CategoriasToolStripMenuItem, ConsultaDeVentasToolStripMenuItem, RespaldarYRestaurarToolStripMenuItem, RestaurarToolStripMenuItem})
@@ -367,9 +339,6 @@ Partial Class frmMenuPrincipal
     Friend WithEvents PasteToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator7 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents SelectAllToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ViewMenu As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ToolBarToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents StatusBarToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MenuToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ProductosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ClientesToolStripMenuItem As ToolStripMenuItem
