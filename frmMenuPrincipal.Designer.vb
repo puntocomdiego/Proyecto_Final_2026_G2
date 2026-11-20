@@ -38,15 +38,6 @@ Partial Class frmMenuPrincipal
         PrintSetupToolStripMenuItem = New ToolStripMenuItem()
         ToolStripSeparator5 = New ToolStripSeparator()
         ExitToolStripMenuItem = New ToolStripMenuItem()
-        EditMenu = New ToolStripMenuItem()
-        UndoToolStripMenuItem = New ToolStripMenuItem()
-        RedoToolStripMenuItem = New ToolStripMenuItem()
-        ToolStripSeparator6 = New ToolStripSeparator()
-        CutToolStripMenuItem = New ToolStripMenuItem()
-        CopyToolStripMenuItem = New ToolStripMenuItem()
-        PasteToolStripMenuItem = New ToolStripMenuItem()
-        ToolStripSeparator7 = New ToolStripSeparator()
-        SelectAllToolStripMenuItem = New ToolStripMenuItem()
         MenuToolStripMenuItem = New ToolStripMenuItem()
         ProductosToolStripMenuItem = New ToolStripMenuItem()
         ClientesToolStripMenuItem = New ToolStripMenuItem()
@@ -65,7 +56,7 @@ Partial Class frmMenuPrincipal
         ' MenuStrip
         ' 
         MenuStrip.ImageScalingSize = New Size(20, 20)
-        MenuStrip.Items.AddRange(New ToolStripItem() {FileMenu, EditMenu, MenuToolStripMenuItem})
+        MenuStrip.Items.AddRange(New ToolStripItem() {FileMenu, MenuToolStripMenuItem})
         MenuStrip.Location = New Point(0, 0)
         MenuStrip.Name = "MenuStrip"
         MenuStrip.Padding = New Padding(8, 3, 0, 3)
@@ -157,75 +148,6 @@ Partial Class frmMenuPrincipal
         ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
         ExitToolStripMenuItem.Size = New Size(181, 26)
         ExitToolStripMenuItem.Text = "E&xit"
-        ' 
-        ' EditMenu
-        ' 
-        EditMenu.DropDownItems.AddRange(New ToolStripItem() {UndoToolStripMenuItem, RedoToolStripMenuItem, ToolStripSeparator6, CutToolStripMenuItem, CopyToolStripMenuItem, PasteToolStripMenuItem, ToolStripSeparator7, SelectAllToolStripMenuItem})
-        EditMenu.Name = "EditMenu"
-        EditMenu.Size = New Size(49, 24)
-        EditMenu.Text = "&Edit"
-        ' 
-        ' UndoToolStripMenuItem
-        ' 
-        UndoToolStripMenuItem.Image = CType(resources.GetObject("UndoToolStripMenuItem.Image"), Image)
-        UndoToolStripMenuItem.ImageTransparentColor = Color.Black
-        UndoToolStripMenuItem.Name = "UndoToolStripMenuItem"
-        UndoToolStripMenuItem.ShortcutKeys = Keys.Control Or Keys.Z
-        UndoToolStripMenuItem.Size = New Size(206, 26)
-        UndoToolStripMenuItem.Text = "&Undo"
-        ' 
-        ' RedoToolStripMenuItem
-        ' 
-        RedoToolStripMenuItem.Image = CType(resources.GetObject("RedoToolStripMenuItem.Image"), Image)
-        RedoToolStripMenuItem.ImageTransparentColor = Color.Black
-        RedoToolStripMenuItem.Name = "RedoToolStripMenuItem"
-        RedoToolStripMenuItem.ShortcutKeys = Keys.Control Or Keys.Y
-        RedoToolStripMenuItem.Size = New Size(206, 26)
-        RedoToolStripMenuItem.Text = "&Redo"
-        ' 
-        ' ToolStripSeparator6
-        ' 
-        ToolStripSeparator6.Name = "ToolStripSeparator6"
-        ToolStripSeparator6.Size = New Size(203, 6)
-        ' 
-        ' CutToolStripMenuItem
-        ' 
-        CutToolStripMenuItem.Image = CType(resources.GetObject("CutToolStripMenuItem.Image"), Image)
-        CutToolStripMenuItem.ImageTransparentColor = Color.Black
-        CutToolStripMenuItem.Name = "CutToolStripMenuItem"
-        CutToolStripMenuItem.ShortcutKeys = Keys.Control Or Keys.X
-        CutToolStripMenuItem.Size = New Size(206, 26)
-        CutToolStripMenuItem.Text = "Cu&t"
-        ' 
-        ' CopyToolStripMenuItem
-        ' 
-        CopyToolStripMenuItem.Image = CType(resources.GetObject("CopyToolStripMenuItem.Image"), Image)
-        CopyToolStripMenuItem.ImageTransparentColor = Color.Black
-        CopyToolStripMenuItem.Name = "CopyToolStripMenuItem"
-        CopyToolStripMenuItem.ShortcutKeys = Keys.Control Or Keys.C
-        CopyToolStripMenuItem.Size = New Size(206, 26)
-        CopyToolStripMenuItem.Text = "&Copy"
-        ' 
-        ' PasteToolStripMenuItem
-        ' 
-        PasteToolStripMenuItem.Image = CType(resources.GetObject("PasteToolStripMenuItem.Image"), Image)
-        PasteToolStripMenuItem.ImageTransparentColor = Color.Black
-        PasteToolStripMenuItem.Name = "PasteToolStripMenuItem"
-        PasteToolStripMenuItem.ShortcutKeys = Keys.Control Or Keys.V
-        PasteToolStripMenuItem.Size = New Size(206, 26)
-        PasteToolStripMenuItem.Text = "&Paste"
-        ' 
-        ' ToolStripSeparator7
-        ' 
-        ToolStripSeparator7.Name = "ToolStripSeparator7"
-        ToolStripSeparator7.Size = New Size(203, 6)
-        ' 
-        ' SelectAllToolStripMenuItem
-        ' 
-        SelectAllToolStripMenuItem.Name = "SelectAllToolStripMenuItem"
-        SelectAllToolStripMenuItem.ShortcutKeys = Keys.Control Or Keys.A
-        SelectAllToolStripMenuItem.Size = New Size(206, 26)
-        SelectAllToolStripMenuItem.Text = "Select &All"
         ' 
         ' MenuToolStripMenuItem
         ' 
@@ -330,15 +252,6 @@ Partial Class frmMenuPrincipal
     Friend WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents SaveToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MenuStrip As System.Windows.Forms.MenuStrip
-    Friend WithEvents EditMenu As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents UndoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents RedoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ToolStripSeparator6 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents CutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents CopyToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents PasteToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ToolStripSeparator7 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents SelectAllToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MenuToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ProductosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ClientesToolStripMenuItem As ToolStripMenuItem
