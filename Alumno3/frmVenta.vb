@@ -15,6 +15,7 @@ Public Class frmVenta
 
         AplicarEstiloFormulario(Me, "Venta")
         AplicarEstiloGrilla(dgvTemp)
+        TextStyle()
 
         BotonPrimario(btnAgregar)
         BotonPeligro(btnEliminar)
@@ -30,6 +31,7 @@ Public Class frmVenta
         Panel2.BackColor = ColorCeleste
         Panel3.BackColor = ColorNegro
 
+
         '= CARGA DE DATOS ==
 
         CargarClientes()
@@ -39,6 +41,21 @@ Public Class frmVenta
     End Sub
 
     '== FUNCIONES ==
+
+    Private Sub TextStyle()
+
+        Label1.Font = FuenteBase
+        Label2.Font = FuenteBase
+        Label3.Font = FuenteBase
+        Label4.Font = FuenteBase
+
+        Label5.Font = FuenteBoton
+        lblTotal.Font = FuenteTitulo
+
+        Label6.Font = FuenteTitulo
+
+
+    End Sub
 
     Private Sub CargarClientes()
 
