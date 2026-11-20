@@ -25,8 +25,11 @@ Public Class VentaDatos
     End Function
     Public Function ObtenerVentasFecha(fechaInicio As Date, fechaFin As Date) As DataTable
         Dim dt As New DataTable()
-        Dim sql As String = "SELECT IdVenta, Fecha, IdCliente, Total, FormaPago " &
-                            "FROM Ventas " &
+        Dim sql As String = "SELECT Ventas.IdVenta, Ventas.Fecha, " &
+                            "Clientes.Apellido & ', ' & Clientes.Nombre AS Cliente, " &
+                            "Ventas.Total, Ventas.FormaPago " &
+                            "FROM Clientes INNER JOIN Ventas " &
+                            "ON Clientes.IdCliente = Ventas.IdCliente " &
                             "WHERE Ventas.Fecha >= ? AND Ventas.Fecha < ? " &
                             "ORDER BY Ventas.Fecha DESC;"
 
@@ -45,10 +48,13 @@ Public Class VentaDatos
 
     Public Function ObtenerVentasCliente(idCliente As Integer) As DataTable
         Dim dt As New DataTable()
-        Dim sql As String = "SELECT IdVenta, Fecha, IdCliente, Total, FormaPago " &
-                            "FROM Ventas " &
-                            "WHERE Ventas.IdCliente = ? " &
-                            "ORDER BY Ventas.Fecha DESC;"
+        Dim sql As String = "SELECT Ventas.IdVenta, Ventas.Fecha, " &
+                           "Clientes.Apellido & ', ' & Clientes.Nombre AS Cliente, " &
+                           "Ventas.Total, Ventas.FormaPago " &
+                           "FROM Clientes INNER JOIN Ventas " &
+                           "ON Clientes.IdCliente = Ventas.IdCliente " &
+                           "WHERE Ventas.IdCliente = ? " &
+                           "ORDER BY Ventas.Fecha DESC;"
         Using cn As New OleDbConnection(CadenaConexion)
             cn.Open()
             Using cmd As New OleDbCommand(sql, cn)
