@@ -58,14 +58,14 @@ Partial Class frmMenuPrincipal
         FileMenu.DropDownItems.AddRange(New ToolStripItem() {ExitToolStripMenuItem})
         FileMenu.ImageTransparentColor = SystemColors.ActiveBorder
         FileMenu.Name = "FileMenu"
-        FileMenu.Size = New Size(46, 24)
-        FileMenu.Text = "&File"
+        FileMenu.Size = New Size(73, 24)
+        FileMenu.Text = "&Archivo"
         ' 
         ' ExitToolStripMenuItem
         ' 
         ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
         ExitToolStripMenuItem.Size = New Size(224, 26)
-        ExitToolStripMenuItem.Text = "E&xit"
+        ExitToolStripMenuItem.Text = "S&alir"
         ' 
         ' MenuToolStripMenuItem
         ' 
