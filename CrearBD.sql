@@ -34,8 +34,7 @@ CREATE TABLE Ventas (
     Fecha DATETIME NOT NULL,
     IdCliente INTEGER,
     Total CURRENCY NOT NULL,
-    FormaPago TEXT(50),
-
+    FormaPago TEXT(50)
 );
 
 CREATE TABLE DetalleVentas (

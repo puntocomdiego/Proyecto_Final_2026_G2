@@ -65,7 +65,7 @@ Partial Class frmMenuPrincipal
         ' ExitToolStripMenuItem
         ' 
         ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        ExitToolStripMenuItem.Size = New Size(224, 26)
+        ExitToolStripMenuItem.Size = New Size(121, 26)
         ExitToolStripMenuItem.Text = "S&alir"
         ' 
         ' MenuToolStripMenuItem
