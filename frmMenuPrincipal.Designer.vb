@@ -24,6 +24,7 @@ Partial Class frmMenuPrincipal
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMenuPrincipal))
         MenuStrip = New MenuStrip()
         FileMenu = New ToolStripMenuItem()
         ExitToolStripMenuItem = New ToolStripMenuItem()
@@ -141,11 +142,12 @@ Partial Class frmMenuPrincipal
         ClientSize = New Size(871, 523)
         Controls.Add(MenuStrip)
         Controls.Add(StatusStrip)
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         IsMdiContainer = True
         MainMenuStrip = MenuStrip
         Margin = New Padding(4)
         Name = "frmMenuPrincipal"
-        Text = "frmMenuPrincipal"
+        Text = "Proyecto Integrador."
         WindowState = FormWindowState.Maximized
         MenuStrip.ResumeLayout(False)
         MenuStrip.PerformLayout()
