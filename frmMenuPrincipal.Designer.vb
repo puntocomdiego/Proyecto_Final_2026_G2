@@ -72,7 +72,7 @@ Partial Class frmMenuPrincipal
         MenuToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ProductosToolStripMenuItem, ClientesToolStripMenuItem, VentasToolStripMenuItem, CategoriasToolStripMenuItem, ConsultaDeVentasToolStripMenuItem, RespaldarYRestaurarToolStripMenuItem, RestaurarToolStripMenuItem})
         MenuToolStripMenuItem.Name = "MenuToolStripMenuItem"
         MenuToolStripMenuItem.Size = New Size(60, 24)
-        MenuToolStripMenuItem.Text = "Menu"
+        MenuToolStripMenuItem.Text = "M&enu"
         ' 
         ' ProductosToolStripMenuItem
         ' 
