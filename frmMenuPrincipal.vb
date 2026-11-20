@@ -2,16 +2,16 @@
 
 Public Class frmMenuPrincipal
 
-    Private Sub ShowNewForm(ByVal sender As Object, ByVal e As EventArgs) Handles NewToolStripMenuItem.Click
+    Private Sub ShowNewForm(ByVal sender As Object, ByVal e As EventArgs)
         ' Create a new instance of the child form.
 
     End Sub
 
-    Private Sub OpenFile(ByVal sender As Object, ByVal e As EventArgs) Handles OpenToolStripMenuItem.Click
+    Private Sub OpenFile(ByVal sender As Object, ByVal e As EventArgs)
 
     End Sub
 
-    Private Sub SaveAsToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles SaveAsToolStripMenuItem.Click
+    Private Sub SaveAsToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
 
     End Sub
 

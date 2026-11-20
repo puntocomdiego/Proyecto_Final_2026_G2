@@ -27,13 +27,8 @@ Partial Class frmMenuPrincipal
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMenuPrincipal))
         MenuStrip = New MenuStrip()
         FileMenu = New ToolStripMenuItem()
-        NewToolStripMenuItem = New ToolStripMenuItem()
-        OpenToolStripMenuItem = New ToolStripMenuItem()
         ToolStripSeparator3 = New ToolStripSeparator()
-        SaveToolStripMenuItem = New ToolStripMenuItem()
-        SaveAsToolStripMenuItem = New ToolStripMenuItem()
         ToolStripSeparator4 = New ToolStripSeparator()
-        PrintToolStripMenuItem = New ToolStripMenuItem()
         PrintPreviewToolStripMenuItem = New ToolStripMenuItem()
         PrintSetupToolStripMenuItem = New ToolStripMenuItem()
         ToolStripSeparator5 = New ToolStripSeparator()
@@ -66,87 +61,45 @@ Partial Class frmMenuPrincipal
         ' 
         ' FileMenu
         ' 
-        FileMenu.DropDownItems.AddRange(New ToolStripItem() {NewToolStripMenuItem, OpenToolStripMenuItem, ToolStripSeparator3, SaveToolStripMenuItem, SaveAsToolStripMenuItem, ToolStripSeparator4, PrintToolStripMenuItem, PrintPreviewToolStripMenuItem, PrintSetupToolStripMenuItem, ToolStripSeparator5, ExitToolStripMenuItem})
+        FileMenu.DropDownItems.AddRange(New ToolStripItem() {ToolStripSeparator3, ToolStripSeparator4, PrintPreviewToolStripMenuItem, PrintSetupToolStripMenuItem, ToolStripSeparator5, ExitToolStripMenuItem})
         FileMenu.ImageTransparentColor = SystemColors.ActiveBorder
         FileMenu.Name = "FileMenu"
         FileMenu.Size = New Size(46, 24)
         FileMenu.Text = "&File"
         ' 
-        ' NewToolStripMenuItem
-        ' 
-        NewToolStripMenuItem.Image = CType(resources.GetObject("NewToolStripMenuItem.Image"), Image)
-        NewToolStripMenuItem.ImageTransparentColor = Color.Black
-        NewToolStripMenuItem.Name = "NewToolStripMenuItem"
-        NewToolStripMenuItem.ShortcutKeys = Keys.Control Or Keys.N
-        NewToolStripMenuItem.Size = New Size(181, 26)
-        NewToolStripMenuItem.Text = "&New"
-        ' 
-        ' OpenToolStripMenuItem
-        ' 
-        OpenToolStripMenuItem.Image = CType(resources.GetObject("OpenToolStripMenuItem.Image"), Image)
-        OpenToolStripMenuItem.ImageTransparentColor = Color.Black
-        OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
-        OpenToolStripMenuItem.ShortcutKeys = Keys.Control Or Keys.O
-        OpenToolStripMenuItem.Size = New Size(181, 26)
-        OpenToolStripMenuItem.Text = "&Open"
-        ' 
         ' ToolStripSeparator3
         ' 
         ToolStripSeparator3.Name = "ToolStripSeparator3"
-        ToolStripSeparator3.Size = New Size(178, 6)
-        ' 
-        ' SaveToolStripMenuItem
-        ' 
-        SaveToolStripMenuItem.Image = CType(resources.GetObject("SaveToolStripMenuItem.Image"), Image)
-        SaveToolStripMenuItem.ImageTransparentColor = Color.Black
-        SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
-        SaveToolStripMenuItem.ShortcutKeys = Keys.Control Or Keys.S
-        SaveToolStripMenuItem.Size = New Size(181, 26)
-        SaveToolStripMenuItem.Text = "&Save"
-        ' 
-        ' SaveAsToolStripMenuItem
-        ' 
-        SaveAsToolStripMenuItem.Name = "SaveAsToolStripMenuItem"
-        SaveAsToolStripMenuItem.Size = New Size(181, 26)
-        SaveAsToolStripMenuItem.Text = "Save &As"
+        ToolStripSeparator3.Size = New Size(221, 6)
         ' 
         ' ToolStripSeparator4
         ' 
         ToolStripSeparator4.Name = "ToolStripSeparator4"
-        ToolStripSeparator4.Size = New Size(178, 6)
-        ' 
-        ' PrintToolStripMenuItem
-        ' 
-        PrintToolStripMenuItem.Image = CType(resources.GetObject("PrintToolStripMenuItem.Image"), Image)
-        PrintToolStripMenuItem.ImageTransparentColor = Color.Black
-        PrintToolStripMenuItem.Name = "PrintToolStripMenuItem"
-        PrintToolStripMenuItem.ShortcutKeys = Keys.Control Or Keys.P
-        PrintToolStripMenuItem.Size = New Size(181, 26)
-        PrintToolStripMenuItem.Text = "&Print"
+        ToolStripSeparator4.Size = New Size(221, 6)
         ' 
         ' PrintPreviewToolStripMenuItem
         ' 
         PrintPreviewToolStripMenuItem.Image = CType(resources.GetObject("PrintPreviewToolStripMenuItem.Image"), Image)
         PrintPreviewToolStripMenuItem.ImageTransparentColor = Color.Black
         PrintPreviewToolStripMenuItem.Name = "PrintPreviewToolStripMenuItem"
-        PrintPreviewToolStripMenuItem.Size = New Size(181, 26)
+        PrintPreviewToolStripMenuItem.Size = New Size(224, 26)
         PrintPreviewToolStripMenuItem.Text = "Print Pre&view"
         ' 
         ' PrintSetupToolStripMenuItem
         ' 
         PrintSetupToolStripMenuItem.Name = "PrintSetupToolStripMenuItem"
-        PrintSetupToolStripMenuItem.Size = New Size(181, 26)
+        PrintSetupToolStripMenuItem.Size = New Size(224, 26)
         PrintSetupToolStripMenuItem.Text = "Print Setup"
         ' 
         ' ToolStripSeparator5
         ' 
         ToolStripSeparator5.Name = "ToolStripSeparator5"
-        ToolStripSeparator5.Size = New Size(178, 6)
+        ToolStripSeparator5.Size = New Size(221, 6)
         ' 
         ' ExitToolStripMenuItem
         ' 
         ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        ExitToolStripMenuItem.Size = New Size(181, 26)
+        ExitToolStripMenuItem.Size = New Size(224, 26)
         ExitToolStripMenuItem.Text = "E&xit"
         ' 
         ' MenuToolStripMenuItem
@@ -240,17 +193,12 @@ Partial Class frmMenuPrincipal
     Friend WithEvents ToolStripStatusLabel As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents StatusStrip As System.Windows.Forms.StatusStrip
     Friend WithEvents PrintPreviewToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents PrintToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator4 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents ExitToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator5 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents PrintSetupToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents SaveAsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents NewToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents FileMenu As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents OpenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents SaveToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MenuStrip As System.Windows.Forms.MenuStrip
     Friend WithEvents MenuToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ProductosToolStripMenuItem As ToolStripMenuItem
