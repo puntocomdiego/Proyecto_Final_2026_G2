@@ -50,8 +50,6 @@ Partial Class frmMenuPrincipal
         ViewMenu = New ToolStripMenuItem()
         ToolBarToolStripMenuItem = New ToolStripMenuItem()
         StatusBarToolStripMenuItem = New ToolStripMenuItem()
-        ToolsMenu = New ToolStripMenuItem()
-        OptionsToolStripMenuItem = New ToolStripMenuItem()
         MenuToolStripMenuItem = New ToolStripMenuItem()
         ProductosToolStripMenuItem = New ToolStripMenuItem()
         ClientesToolStripMenuItem = New ToolStripMenuItem()
@@ -70,7 +68,7 @@ Partial Class frmMenuPrincipal
         ' MenuStrip
         ' 
         MenuStrip.ImageScalingSize = New Size(20, 20)
-        MenuStrip.Items.AddRange(New ToolStripItem() {FileMenu, EditMenu, ViewMenu, ToolsMenu, MenuToolStripMenuItem})
+        MenuStrip.Items.AddRange(New ToolStripItem() {FileMenu, EditMenu, ViewMenu, MenuToolStripMenuItem})
         MenuStrip.Location = New Point(0, 0)
         MenuStrip.Name = "MenuStrip"
         MenuStrip.Padding = New Padding(8, 3, 0, 3)
@@ -257,19 +255,6 @@ Partial Class frmMenuPrincipal
         StatusBarToolStripMenuItem.Size = New Size(158, 26)
         StatusBarToolStripMenuItem.Text = "&Status Bar"
         ' 
-        ' ToolsMenu
-        ' 
-        ToolsMenu.DropDownItems.AddRange(New ToolStripItem() {OptionsToolStripMenuItem})
-        ToolsMenu.Name = "ToolsMenu"
-        ToolsMenu.Size = New Size(58, 24)
-        ToolsMenu.Text = "&Tools"
-        ' 
-        ' OptionsToolStripMenuItem
-        ' 
-        OptionsToolStripMenuItem.Name = "OptionsToolStripMenuItem"
-        OptionsToolStripMenuItem.Size = New Size(144, 26)
-        OptionsToolStripMenuItem.Text = "&Options"
-        ' 
         ' MenuToolStripMenuItem
         ' 
         MenuToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ProductosToolStripMenuItem, ClientesToolStripMenuItem, VentasToolStripMenuItem, CategoriasToolStripMenuItem, ConsultaDeVentasToolStripMenuItem, RespaldarYRestaurarToolStripMenuItem, RestaurarToolStripMenuItem})
@@ -357,7 +342,6 @@ Partial Class frmMenuPrincipal
         PerformLayout()
 
     End Sub
-    Friend WithEvents OptionsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolTip As System.Windows.Forms.ToolTip
     Friend WithEvents ToolStripStatusLabel As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents StatusStrip As System.Windows.Forms.StatusStrip
@@ -386,7 +370,6 @@ Partial Class frmMenuPrincipal
     Friend WithEvents ViewMenu As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolBarToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents StatusBarToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ToolsMenu As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MenuToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ProductosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ClientesToolStripMenuItem As ToolStripMenuItem
