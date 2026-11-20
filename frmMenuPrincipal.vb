@@ -2,37 +2,17 @@
 
 Public Class frmMenuPrincipal
 
-    Private Sub ShowNewForm(ByVal sender As Object, ByVal e As EventArgs) Handles NewToolStripMenuItem.Click, NewToolStripButton.Click, NewWindowToolStripMenuItem.Click
+    Private Sub ShowNewForm(ByVal sender As Object, ByVal e As EventArgs) Handles NewToolStripMenuItem.Click
         ' Create a new instance of the child form.
-        Dim ChildForm As New System.Windows.Forms.Form
-        ' Make it a child of this MDI form before showing it.
-        ChildForm.MdiParent = Me
 
-        m_ChildFormNumber += 1
-        ChildForm.Text = "Window " & m_ChildFormNumber
-
-        ChildForm.Show()
     End Sub
 
-    Private Sub OpenFile(ByVal sender As Object, ByVal e As EventArgs) Handles OpenToolStripMenuItem.Click, OpenToolStripButton.Click
-        Dim OpenFileDialog As New OpenFileDialog
-        OpenFileDialog.InitialDirectory = My.Computer.FileSystem.SpecialDirectories.MyDocuments
-        OpenFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*"
-        If (OpenFileDialog.ShowDialog(Me) = System.Windows.Forms.DialogResult.OK) Then
-            Dim FileName As String = OpenFileDialog.FileName
-            ' TODO: Add code here to open the file.
-        End If
+    Private Sub OpenFile(ByVal sender As Object, ByVal e As EventArgs) Handles OpenToolStripMenuItem.Click
+
     End Sub
 
     Private Sub SaveAsToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles SaveAsToolStripMenuItem.Click
-        Dim SaveFileDialog As New SaveFileDialog
-        SaveFileDialog.InitialDirectory = My.Computer.FileSystem.SpecialDirectories.MyDocuments
-        SaveFileDialog.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*"
 
-        If (SaveFileDialog.ShowDialog(Me) = System.Windows.Forms.DialogResult.OK) Then
-            Dim FileName As String = SaveFileDialog.FileName
-            ' TODO: Add code here to save the current contents of the form to a file.
-        End If
     End Sub
 
 
@@ -53,34 +33,28 @@ Public Class frmMenuPrincipal
     End Sub
 
     Private Sub ToolBarToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ToolBarToolStripMenuItem.Click
-        Me.ToolStrip.Visible = Me.ToolBarToolStripMenuItem.Checked
+        '  Me.ToolStrip.Visible = Me.ToolBarToolStripMenuItem.Checked
     End Sub
 
     Private Sub StatusBarToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles StatusBarToolStripMenuItem.Click
-        Me.StatusStrip.Visible = Me.StatusBarToolStripMenuItem.Checked
     End Sub
 
-    Private Sub CascadeToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles CascadeToolStripMenuItem.Click
-        Me.LayoutMdi(MdiLayout.Cascade)
+    Private Sub CascadeToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
     End Sub
 
-    Private Sub TileVerticalToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles TileVerticalToolStripMenuItem.Click
-        Me.LayoutMdi(MdiLayout.TileVertical)
+    Private Sub TileVerticalToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
     End Sub
 
-    Private Sub TileHorizontalToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles TileHorizontalToolStripMenuItem.Click
-        Me.LayoutMdi(MdiLayout.TileHorizontal)
+    Private Sub TileHorizontalToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
     End Sub
 
-    Private Sub ArrangeIconsToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles ArrangeIconsToolStripMenuItem.Click
-        Me.LayoutMdi(MdiLayout.ArrangeIcons)
+    Private Sub ArrangeIconsToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
+        LayoutMdi(MdiLayout.ArrangeIcons)
     End Sub
 
-    Private Sub CloseAllToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs) Handles CloseAllToolStripMenuItem.Click
+    Private Sub CloseAllToolStripMenuItem_Click(ByVal sender As Object, ByVal e As EventArgs)
         ' Close all child forms of the parent.
-        For Each ChildForm As Form In Me.MdiChildren
-            ChildForm.Close()
-        Next
+
     End Sub
 
     Private m_ChildFormNumber As Integer
@@ -114,5 +88,9 @@ Public Class frmMenuPrincipal
         Dim f As New frmConsultaVentas
         f.MdiParent = Me
         f.Show()
+    End Sub
+
+    Private Sub frmMenuPrincipal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
     End Sub
 End Class

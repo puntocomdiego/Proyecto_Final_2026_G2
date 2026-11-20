@@ -52,50 +52,26 @@ Partial Class frmMenuPrincipal
         StatusBarToolStripMenuItem = New ToolStripMenuItem()
         ToolsMenu = New ToolStripMenuItem()
         OptionsToolStripMenuItem = New ToolStripMenuItem()
-        WindowsMenu = New ToolStripMenuItem()
-        NewWindowToolStripMenuItem = New ToolStripMenuItem()
-        CascadeToolStripMenuItem = New ToolStripMenuItem()
-        TileVerticalToolStripMenuItem = New ToolStripMenuItem()
-        TileHorizontalToolStripMenuItem = New ToolStripMenuItem()
-        CloseAllToolStripMenuItem = New ToolStripMenuItem()
-        ArrangeIconsToolStripMenuItem = New ToolStripMenuItem()
-        HelpMenu = New ToolStripMenuItem()
-        ContentsToolStripMenuItem = New ToolStripMenuItem()
-        IndexToolStripMenuItem = New ToolStripMenuItem()
-        SearchToolStripMenuItem = New ToolStripMenuItem()
-        ToolStripSeparator8 = New ToolStripSeparator()
-        AboutToolStripMenuItem = New ToolStripMenuItem()
         MenuToolStripMenuItem = New ToolStripMenuItem()
         ProductosToolStripMenuItem = New ToolStripMenuItem()
         ClientesToolStripMenuItem = New ToolStripMenuItem()
         VentasToolStripMenuItem = New ToolStripMenuItem()
         CategoriasToolStripMenuItem = New ToolStripMenuItem()
         ConsultaDeVentasToolStripMenuItem = New ToolStripMenuItem()
-        ToolStrip = New ToolStrip()
-        NewToolStripButton = New ToolStripButton()
-        OpenToolStripButton = New ToolStripButton()
-        SaveToolStripButton = New ToolStripButton()
-        ToolStripSeparator1 = New ToolStripSeparator()
-        PrintToolStripButton = New ToolStripButton()
-        PrintPreviewToolStripButton = New ToolStripButton()
-        ToolStripSeparator2 = New ToolStripSeparator()
-        HelpToolStripButton = New ToolStripButton()
+        RespaldarYRestaurarToolStripMenuItem = New ToolStripMenuItem()
+        RestaurarToolStripMenuItem = New ToolStripMenuItem()
         StatusStrip = New StatusStrip()
         ToolStripStatusLabel = New ToolStripStatusLabel()
         ToolTip = New ToolTip(components)
-        RespaldarYRestaurarToolStripMenuItem = New ToolStripMenuItem()
-        RestaurarToolStripMenuItem = New ToolStripMenuItem()
         MenuStrip.SuspendLayout()
-        ToolStrip.SuspendLayout()
         StatusStrip.SuspendLayout()
         SuspendLayout()
         ' 
         ' MenuStrip
         ' 
         MenuStrip.ImageScalingSize = New Size(20, 20)
-        MenuStrip.Items.AddRange(New ToolStripItem() {FileMenu, EditMenu, ViewMenu, ToolsMenu, WindowsMenu, HelpMenu, MenuToolStripMenuItem})
+        MenuStrip.Items.AddRange(New ToolStripItem() {FileMenu, EditMenu, ViewMenu, ToolsMenu, MenuToolStripMenuItem})
         MenuStrip.Location = New Point(0, 0)
-        MenuStrip.MdiWindowListItem = WindowsMenu
         MenuStrip.Name = "MenuStrip"
         MenuStrip.Padding = New Padding(8, 3, 0, 3)
         MenuStrip.Size = New Size(995, 30)
@@ -294,90 +270,6 @@ Partial Class frmMenuPrincipal
         OptionsToolStripMenuItem.Size = New Size(144, 26)
         OptionsToolStripMenuItem.Text = "&Options"
         ' 
-        ' WindowsMenu
-        ' 
-        WindowsMenu.DropDownItems.AddRange(New ToolStripItem() {NewWindowToolStripMenuItem, CascadeToolStripMenuItem, TileVerticalToolStripMenuItem, TileHorizontalToolStripMenuItem, CloseAllToolStripMenuItem, ArrangeIconsToolStripMenuItem})
-        WindowsMenu.Name = "WindowsMenu"
-        WindowsMenu.Size = New Size(84, 24)
-        WindowsMenu.Text = "&Windows"
-        ' 
-        ' NewWindowToolStripMenuItem
-        ' 
-        NewWindowToolStripMenuItem.Name = "NewWindowToolStripMenuItem"
-        NewWindowToolStripMenuItem.Size = New Size(190, 26)
-        NewWindowToolStripMenuItem.Text = "&New Window"
-        ' 
-        ' CascadeToolStripMenuItem
-        ' 
-        CascadeToolStripMenuItem.Name = "CascadeToolStripMenuItem"
-        CascadeToolStripMenuItem.Size = New Size(190, 26)
-        CascadeToolStripMenuItem.Text = "&Cascade"
-        ' 
-        ' TileVerticalToolStripMenuItem
-        ' 
-        TileVerticalToolStripMenuItem.Name = "TileVerticalToolStripMenuItem"
-        TileVerticalToolStripMenuItem.Size = New Size(190, 26)
-        TileVerticalToolStripMenuItem.Text = "Tile &Vertical"
-        ' 
-        ' TileHorizontalToolStripMenuItem
-        ' 
-        TileHorizontalToolStripMenuItem.Name = "TileHorizontalToolStripMenuItem"
-        TileHorizontalToolStripMenuItem.Size = New Size(190, 26)
-        TileHorizontalToolStripMenuItem.Text = "Tile &Horizontal"
-        ' 
-        ' CloseAllToolStripMenuItem
-        ' 
-        CloseAllToolStripMenuItem.Name = "CloseAllToolStripMenuItem"
-        CloseAllToolStripMenuItem.Size = New Size(190, 26)
-        CloseAllToolStripMenuItem.Text = "C&lose All"
-        ' 
-        ' ArrangeIconsToolStripMenuItem
-        ' 
-        ArrangeIconsToolStripMenuItem.Name = "ArrangeIconsToolStripMenuItem"
-        ArrangeIconsToolStripMenuItem.Size = New Size(190, 26)
-        ArrangeIconsToolStripMenuItem.Text = "&Arrange Icons"
-        ' 
-        ' HelpMenu
-        ' 
-        HelpMenu.DropDownItems.AddRange(New ToolStripItem() {ContentsToolStripMenuItem, IndexToolStripMenuItem, SearchToolStripMenuItem, ToolStripSeparator8, AboutToolStripMenuItem})
-        HelpMenu.Name = "HelpMenu"
-        HelpMenu.Size = New Size(55, 24)
-        HelpMenu.Text = "&Help"
-        ' 
-        ' ContentsToolStripMenuItem
-        ' 
-        ContentsToolStripMenuItem.Name = "ContentsToolStripMenuItem"
-        ContentsToolStripMenuItem.ShortcutKeys = Keys.Control Or Keys.F1
-        ContentsToolStripMenuItem.Size = New Size(207, 26)
-        ContentsToolStripMenuItem.Text = "&Contents"
-        ' 
-        ' IndexToolStripMenuItem
-        ' 
-        IndexToolStripMenuItem.Image = CType(resources.GetObject("IndexToolStripMenuItem.Image"), Image)
-        IndexToolStripMenuItem.ImageTransparentColor = Color.Black
-        IndexToolStripMenuItem.Name = "IndexToolStripMenuItem"
-        IndexToolStripMenuItem.Size = New Size(207, 26)
-        IndexToolStripMenuItem.Text = "&Index"
-        ' 
-        ' SearchToolStripMenuItem
-        ' 
-        SearchToolStripMenuItem.Image = CType(resources.GetObject("SearchToolStripMenuItem.Image"), Image)
-        SearchToolStripMenuItem.ImageTransparentColor = Color.Black
-        SearchToolStripMenuItem.Name = "SearchToolStripMenuItem"
-        SearchToolStripMenuItem.Size = New Size(207, 26)
-        SearchToolStripMenuItem.Text = "&Search"
-        ' 
-        ' ToolStripSeparator8
-        ' 
-        ToolStripSeparator8.Name = "ToolStripSeparator8"
-        ToolStripSeparator8.Size = New Size(204, 6)
-        ' 
-        ' AboutToolStripMenuItem
-        ' 
-        AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        AboutToolStripMenuItem.Size = New Size(207, 26)
-        AboutToolStripMenuItem.Text = "&About ..."
-        ' 
         ' MenuToolStripMenuItem
         ' 
         MenuToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ProductosToolStripMenuItem, ClientesToolStripMenuItem, VentasToolStripMenuItem, CategoriasToolStripMenuItem, ConsultaDeVentasToolStripMenuItem, RespaldarYRestaurarToolStripMenuItem, RestaurarToolStripMenuItem})
@@ -388,106 +280,44 @@ Partial Class frmMenuPrincipal
         ' ProductosToolStripMenuItem
         ' 
         ProductosToolStripMenuItem.Name = "ProductosToolStripMenuItem"
-        ProductosToolStripMenuItem.Size = New Size(235, 26)
+        ProductosToolStripMenuItem.Size = New Size(224, 26)
         ProductosToolStripMenuItem.Text = "Productos"
         ' 
         ' ClientesToolStripMenuItem
         ' 
         ClientesToolStripMenuItem.Name = "ClientesToolStripMenuItem"
-        ClientesToolStripMenuItem.Size = New Size(235, 26)
+        ClientesToolStripMenuItem.Size = New Size(224, 26)
         ClientesToolStripMenuItem.Text = "Clientes"
         ' 
         ' VentasToolStripMenuItem
         ' 
         VentasToolStripMenuItem.Name = "VentasToolStripMenuItem"
-        VentasToolStripMenuItem.Size = New Size(235, 26)
+        VentasToolStripMenuItem.Size = New Size(224, 26)
         VentasToolStripMenuItem.Text = "Ventas"
         ' 
         ' CategoriasToolStripMenuItem
         ' 
         CategoriasToolStripMenuItem.Name = "CategoriasToolStripMenuItem"
-        CategoriasToolStripMenuItem.Size = New Size(235, 26)
+        CategoriasToolStripMenuItem.Size = New Size(224, 26)
         CategoriasToolStripMenuItem.Text = "Categorias"
         ' 
         ' ConsultaDeVentasToolStripMenuItem
         ' 
         ConsultaDeVentasToolStripMenuItem.Name = "ConsultaDeVentasToolStripMenuItem"
-        ConsultaDeVentasToolStripMenuItem.Size = New Size(235, 26)
+        ConsultaDeVentasToolStripMenuItem.Size = New Size(224, 26)
         ConsultaDeVentasToolStripMenuItem.Text = "Consulta de ventas"
         ' 
-        ' ToolStrip
+        ' RespaldarYRestaurarToolStripMenuItem
         ' 
-        ToolStrip.ImageScalingSize = New Size(20, 20)
-        ToolStrip.Items.AddRange(New ToolStripItem() {NewToolStripButton, OpenToolStripButton, SaveToolStripButton, ToolStripSeparator1, PrintToolStripButton, PrintPreviewToolStripButton, ToolStripSeparator2, HelpToolStripButton})
-        ToolStrip.Location = New Point(0, 30)
-        ToolStrip.Name = "ToolStrip"
-        ToolStrip.Size = New Size(995, 27)
-        ToolStrip.TabIndex = 6
-        ToolStrip.Text = "ToolStrip"
+        RespaldarYRestaurarToolStripMenuItem.Name = "RespaldarYRestaurarToolStripMenuItem"
+        RespaldarYRestaurarToolStripMenuItem.Size = New Size(224, 26)
+        RespaldarYRestaurarToolStripMenuItem.Text = "Respaldar"
         ' 
-        ' NewToolStripButton
+        ' RestaurarToolStripMenuItem
         ' 
-        NewToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image
-        NewToolStripButton.Image = CType(resources.GetObject("NewToolStripButton.Image"), Image)
-        NewToolStripButton.ImageTransparentColor = Color.Black
-        NewToolStripButton.Name = "NewToolStripButton"
-        NewToolStripButton.Size = New Size(29, 24)
-        NewToolStripButton.Text = "New"
-        ' 
-        ' OpenToolStripButton
-        ' 
-        OpenToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image
-        OpenToolStripButton.Image = CType(resources.GetObject("OpenToolStripButton.Image"), Image)
-        OpenToolStripButton.ImageTransparentColor = Color.Black
-        OpenToolStripButton.Name = "OpenToolStripButton"
-        OpenToolStripButton.Size = New Size(29, 24)
-        OpenToolStripButton.Text = "Open"
-        ' 
-        ' SaveToolStripButton
-        ' 
-        SaveToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image
-        SaveToolStripButton.Image = CType(resources.GetObject("SaveToolStripButton.Image"), Image)
-        SaveToolStripButton.ImageTransparentColor = Color.Black
-        SaveToolStripButton.Name = "SaveToolStripButton"
-        SaveToolStripButton.Size = New Size(29, 24)
-        SaveToolStripButton.Text = "Save"
-        ' 
-        ' ToolStripSeparator1
-        ' 
-        ToolStripSeparator1.Name = "ToolStripSeparator1"
-        ToolStripSeparator1.Size = New Size(6, 27)
-        ' 
-        ' PrintToolStripButton
-        ' 
-        PrintToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image
-        PrintToolStripButton.Image = CType(resources.GetObject("PrintToolStripButton.Image"), Image)
-        PrintToolStripButton.ImageTransparentColor = Color.Black
-        PrintToolStripButton.Name = "PrintToolStripButton"
-        PrintToolStripButton.Size = New Size(29, 24)
-        PrintToolStripButton.Text = "Print"
-        ' 
-        ' PrintPreviewToolStripButton
-        ' 
-        PrintPreviewToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image
-        PrintPreviewToolStripButton.Image = CType(resources.GetObject("PrintPreviewToolStripButton.Image"), Image)
-        PrintPreviewToolStripButton.ImageTransparentColor = Color.Black
-        PrintPreviewToolStripButton.Name = "PrintPreviewToolStripButton"
-        PrintPreviewToolStripButton.Size = New Size(29, 24)
-        PrintPreviewToolStripButton.Text = "Print Preview"
-        ' 
-        ' ToolStripSeparator2
-        ' 
-        ToolStripSeparator2.Name = "ToolStripSeparator2"
-        ToolStripSeparator2.Size = New Size(6, 27)
-        ' 
-        ' HelpToolStripButton
-        ' 
-        HelpToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image
-        HelpToolStripButton.Image = CType(resources.GetObject("HelpToolStripButton.Image"), Image)
-        HelpToolStripButton.ImageTransparentColor = Color.Black
-        HelpToolStripButton.Name = "HelpToolStripButton"
-        HelpToolStripButton.Size = New Size(29, 24)
-        HelpToolStripButton.Text = "Help"
+        RestaurarToolStripMenuItem.Name = "RestaurarToolStripMenuItem"
+        RestaurarToolStripMenuItem.Size = New Size(224, 26)
+        RestaurarToolStripMenuItem.Text = "Restaurar"
         ' 
         ' StatusStrip
         ' 
@@ -506,24 +336,11 @@ Partial Class frmMenuPrincipal
         ToolStripStatusLabel.Size = New Size(49, 20)
         ToolStripStatusLabel.Text = "Status"
         ' 
-        ' RespaldarYRestaurarToolStripMenuItem
-        ' 
-        RespaldarYRestaurarToolStripMenuItem.Name = "RespaldarYRestaurarToolStripMenuItem"
-        RespaldarYRestaurarToolStripMenuItem.Size = New Size(224, 26)
-        RespaldarYRestaurarToolStripMenuItem.Text = "Respaldar"
-        ' 
-        ' RestaurarToolStripMenuItem
-        ' 
-        RestaurarToolStripMenuItem.Name = "RestaurarToolStripMenuItem"
-        RestaurarToolStripMenuItem.Size = New Size(224, 26)
-        RestaurarToolStripMenuItem.Text = "Restaurar"
-        ' 
         ' frmMenuPrincipal
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(995, 697)
-        Controls.Add(ToolStrip)
         Controls.Add(MenuStrip)
         Controls.Add(StatusStrip)
         IsMdiContainer = True
@@ -534,40 +351,16 @@ Partial Class frmMenuPrincipal
         WindowState = FormWindowState.Maximized
         MenuStrip.ResumeLayout(False)
         MenuStrip.PerformLayout()
-        ToolStrip.ResumeLayout(False)
-        ToolStrip.PerformLayout()
         StatusStrip.ResumeLayout(False)
         StatusStrip.PerformLayout()
         ResumeLayout(False)
         PerformLayout()
 
     End Sub
-    Friend WithEvents ContentsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents HelpMenu As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents IndexToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents SearchToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ToolStripSeparator8 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents AboutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ArrangeIconsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents CloseAllToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents NewWindowToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents WindowsMenu As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents CascadeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents TileVerticalToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents TileHorizontalToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OptionsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents HelpToolStripButton As System.Windows.Forms.ToolStripButton
-    Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
-    Friend WithEvents PrintPreviewToolStripButton As System.Windows.Forms.ToolStripButton
     Friend WithEvents ToolTip As System.Windows.Forms.ToolTip
     Friend WithEvents ToolStripStatusLabel As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents StatusStrip As System.Windows.Forms.StatusStrip
-    Friend WithEvents PrintToolStripButton As System.Windows.Forms.ToolStripButton
-    Friend WithEvents NewToolStripButton As System.Windows.Forms.ToolStripButton
-    Friend WithEvents ToolStrip As System.Windows.Forms.ToolStrip
-    Friend WithEvents OpenToolStripButton As System.Windows.Forms.ToolStripButton
-    Friend WithEvents SaveToolStripButton As System.Windows.Forms.ToolStripButton
-    Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
     Friend WithEvents PrintPreviewToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents PrintToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripSeparator4 As System.Windows.Forms.ToolStripSeparator
