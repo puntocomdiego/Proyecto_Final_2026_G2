@@ -9,13 +9,15 @@ Public Class Cls_ProductoDatos
         Using cn As New OleDbConnection(cadenaConexion)
             cn.Open()
 
-            Dim sqlVerificar As String = "SELECT COUNT(*) FROM Productos WHERE Codigo = ?"
+            Dim sqlVerificar As String = "SELECT COUNT(*) FROM Productos WHERE Codigo = ? OR Descripcion = ?"
             Using cmdVerificar As New OleDbCommand(sqlVerificar, cn)
                 cmdVerificar.Parameters.AddWithValue("?", p.Codigo)
+                cmdVerificar.Parameters.AddWithValue("?", p.Descripcion.Trim())
+
                 Dim existe As Integer = Convert.ToInt32(cmdVerificar.ExecuteScalar())
 
                 If existe > 0 Then
-                    MessageBox.Show("Ya existe un producto registrado con el código ingresado.", "Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    MessageBox.Show("Ya existe un producto registrado con el mismo código o la misma descripción.", "Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                     Return False
                 End If
             End Using
