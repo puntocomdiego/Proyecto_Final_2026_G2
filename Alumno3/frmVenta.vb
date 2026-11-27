@@ -666,8 +666,10 @@ Public Class frmVenta
 
             If respuesta = DialogResult.Yes Then
                 bcerrar = True
-                Me.Close()
 
+                btnNuevo_Click(sender, e)
+
+                Me.Close()
             Else
 
                 bcerrar = False
@@ -695,6 +697,10 @@ Public Class frmVenta
             If respuesta = DialogResult.No Then
 
                 e.Cancel = True
+
+            Else
+
+                btnNuevo_Click(sender, e)
 
             End If
 

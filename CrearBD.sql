@@ -33,7 +33,7 @@ CREATE TABLE Ventas (
     IdVenta COUNTER PRIMARY KEY,
     Fecha DATETIME NOT NULL,
     IdCliente INTEGER,
-    Total CURRENCY NOT NULL,
+	Total CURRENCY NOT NULL,
     FormaPago TEXT(50)
 );
 
@@ -50,7 +50,7 @@ CREATE TABLE Temp (
     ID COUNTER PRIMARY KEY,
     IdVenta INTEGER NOT NULL,
     IdProducto INTEGER NOT NULL,
-    Descripcion TEXT(50),
+	Descripcion TEXT(50),
     Cantidad INTEGER NOT NULL,
     PrecioUnita CURRENCY NOT NULL,
     Subtotal CURRENCY NOT NULL
