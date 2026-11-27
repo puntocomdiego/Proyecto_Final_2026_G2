@@ -223,7 +223,7 @@ Public Class frmConsultaVentas
         End Try
     End Sub
 
-    '== EXPORTAR ==
+    '== FUNCIONES DE EXPORTAR ==
 
     Public Sub ExportarDatosPDF(ByVal document As Document)
 
