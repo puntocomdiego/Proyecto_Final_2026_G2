@@ -1,4 +1,5 @@
 ﻿Imports System.Data.OleDb
+Imports System.Reflection.Emit
 
 Public Class frmConsultaVentas
 
@@ -8,16 +9,41 @@ Public Class frmConsultaVentas
     Dim bcerrar As Boolean = False
 
     Private Sub frmConsultaVentas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        '== ESTILOS ==
 
         AplicarEstiloFormulario(Me, "Consultar Ventas")
         AplicarEstiloGrilla(dgvConsulta)
+        TextStyle()
+
+        BotonPrimario(btnFecha)
+        BotonPrimario(btnCliente)
+
+        BotonSecundario(btnNuevo)
+        BotonSecundario(btnCerrar)
+
+        Panel1.BackColor = Color.White
+        Panel2.BackColor = ColorCeleste
+        Panel3.BackColor = ColorNegro
+
+
+        '= CARGA DE DATOS ==
 
         CargarClientes()
-        dgvBase(New DataTable())
+        'dgvBase(New DataTable())
+        btnNuevo_Click(sender, e)
 
     End Sub
 
     '== FUNCIONES ==
+
+    Private Sub TextStyle()
+
+        Label1.Font = FuenteBase
+        Label2.Font = FuenteBase
+
+        Label6.Font = FuenteTitulo
+
+    End Sub
 
     Private Sub CargarClientes()
 
@@ -74,11 +100,16 @@ Public Class frmConsultaVentas
     Private Sub MostrarDatos(dt As DataTable)
 
         dgvConsulta.DataSource = dt
+
+        dgvConsulta.Columns("Cliente").DisplayIndex = 1
+        dgvConsulta.Columns("Total").DisplayIndex = 2
+        dgvConsulta.Columns("FormaPago").DisplayIndex = 3
+
         dgvConsulta.Columns("IdVenta").HeaderText = "ID"
         dgvConsulta.Columns("IdVenta").Visible = False
 
         dgvConsulta.Columns("Fecha").HeaderText = "Fecha"
-        dgvConsulta.Columns("IdCliente").HeaderText = "Nombre"
+        dgvConsulta.Columns("Cliente").HeaderText = "Cliente"
 
         dgvConsulta.Columns("Total").HeaderText = "Total"
         dgvConsulta.Columns("Total").DefaultCellStyle.Format = "C2"
@@ -111,7 +142,7 @@ Public Class frmConsultaVentas
     Private Sub dgvBase(dt As DataTable)
 
         dt.Columns.Add("Fecha", GetType(Date))
-        dt.Columns.Add("Nombre", GetType(Integer))
+        dt.Columns.Add("Cliente", GetType(Integer))
         dt.Columns.Add("Total", GetType(Decimal))
         dt.Columns.Add("Forma de Pago", GetType(String))
 
@@ -119,17 +150,38 @@ Public Class frmConsultaVentas
 
     End Sub
 
-    '== CONTROLES ==
+    Private Sub ConsultaFechas()
 
 
-    Private Sub btnConsultar_Click(sender As Object, e As EventArgs) Handles btnConsultar.Click
-
+        dgvBase(New DataTable())
 
         Dim fechaInicio As Date = dtpFecha1.Value
         Dim fechaFin As Date = dtpFecha2.Value
 
         MostrarDatos(datos.ObtenerVentasFecha(fechaInicio, fechaFin))
 
+    End Sub
+
+    Private Sub ConsultarCliente()
+
+        dgvBase(New DataTable())
+        CargarVenta(CInt(cboCliente.SelectedValue))
+
+    End Sub
+
+
+    '== CONTROLES ==
+
+    Private Sub btnFecha_Click(sender As Object, e As EventArgs) Handles btnFecha.Click
+
+        If dtpFecha1.Enabled = False Then
+            dtpFecha1.Enabled = True
+            dtpFecha2.Enabled = True
+
+            btnCliente.Enabled = False
+            btnExportar.Enabled = True
+
+        End If
 
     End Sub
 
@@ -137,53 +189,101 @@ Public Class frmConsultaVentas
 
         If cboCliente.SelectedIndex = 0 Then
 
-            dtpFecha1.Enabled = True
-            dtpFecha2.Enabled = True
+            dgvBase(New DataTable())
+            btnExportar.Enabled = False
+            rbtExel.Enabled = False
+            rbtPDF.Enabled = False
 
         Else
 
-            dtpFecha1.Enabled = False
-            dtpFecha2.Enabled = False
+            ConsultarCliente()
+            btnExportar.Enabled = True
+            rbtExel.Enabled = True
+            rbtPDF.Enabled = True
 
         End If
-
-    End Sub
-
-    Private Sub dtpFecha1_ValueChanged(sender As Object, e As EventArgs) Handles dtpFecha1.ValueChanged
-
-        'If dtpFecha1 IsNot Nothing AndAlso dtpFecha2 IsNot Nothing Then
-
-        '    If dtpFecha1.Value > dtpFecha2.Value Then
-        '        MessageBox.Show("La fecha de inicio no puede ser mayor que la fecha de fin.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        '        dtpFecha1.Value = dtpFecha2.Value
-        '    End If
-        'End If
 
     End Sub
 
     Private Sub btnCliente_Click(sender As Object, e As EventArgs) Handles btnCliente.Click
 
-        If cboCliente.SelectedIndex = 0 Then
-            MessageBox.Show("Por favor, seleccione un cliente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return
+        If cboCliente.Enabled = False Then
+
+            cboCliente.Enabled = True
+
+            btnFecha.Enabled = False
+
         End If
-
-        dgvConsulta.DataSource = Nothing
-        CargarVenta(CInt(cboCliente.SelectedValue))
-
 
     End Sub
 
     Private Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevo.Click
 
-
+        cboCliente.Enabled = False
         cboCliente.SelectedIndex = 0
 
-        dtpFecha1.Value = DateTime.Now
-        dtpFecha2.Value = DateTime.Now
+        dtpFecha1.Enabled = False
+        dtpFecha2.Enabled = False
+        dtpFecha1.Value = Date.Now
+        dtpFecha2.Value = Date.Now
 
-        dgvBase(New DataTable())
+        btnFecha.Enabled = True
+        btnCliente.Enabled = True
 
+        btnExportar.Enabled = False
+
+        rbtExel.Checked = False
+        rbtExel.Enabled = False
+
+        rbtPDF.Checked = False
+        rbtPDF.Enabled = False
+
+        dgvBase(New DataTable)
+
+    End Sub
+
+    Private Sub dtpFecha1_ValueChanged(sender As Object, e As EventArgs) Handles dtpFecha1.ValueChanged
+
+        If dtpFecha1.Enabled = True Then
+
+            If dtpFecha1.Value > dtpFecha2.Value Then
+                MessageBox.Show("La fecha de inicio no puede ser mayor que la fecha de fin.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                dtpFecha1.Value = dtpFecha2.Value
+                Return
+            End If
+
+            ConsultaFechas()
+
+            btnExportar.Enabled = True
+            rbtExel.Enabled = True
+            rbtPDF.Enabled = True
+
+        End If
+
+    End Sub
+
+    Private Sub dtpFecha2_ValueChanged(sender As Object, e As EventArgs) Handles dtpFecha2.ValueChanged
+
+        If dtpFecha2.Enabled = True Then
+
+            If dtpFecha2.Value < dtpFecha1.Value Then
+                MessageBox.Show("La fecha de fin no puede ser menor que la fecha de inicio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                dtpFecha2.Value = dtpFecha1.Value
+                Return
+
+            ElseIf dtpFecha2.Value > Date.Now Then
+                MessageBox.Show("La fecha de fin no puede ser mayor que la fecha actual.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                dtpFecha2.Value = Date.Now
+                Return
+
+            End If
+
+            ConsultaFechas()
+
+            btnExportar.Enabled = True
+            rbtExel.Enabled = True
+            rbtPDF.Enabled = True
+        End If
 
     End Sub
 
@@ -220,7 +320,7 @@ Public Class frmConsultaVentas
 
             If respuesta = DialogResult.Yes Then
                 bcerrar = True
-                Me.Close()
+                Close()
 
             Else
 
@@ -234,4 +334,5 @@ Public Class frmConsultaVentas
         End Try
 
     End Sub
+
 End Class
