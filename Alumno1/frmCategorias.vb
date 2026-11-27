@@ -1,6 +1,7 @@
 ﻿Public Class frmCategorias
     Private idCategoriaSeleccionada As Integer = -1
     Private datos As New Cls_CategoriasDatos()
+    Dim bcerrar As Boolean = False
 
     Private Sub frmCategorias_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ConfigurarGrilla()
@@ -38,8 +39,12 @@
     End Sub
 
     Private Sub Limpiar()
+        txtID.Clear()
         txtNombre.Clear()
-        txtNombre.Focus()
+        txtNombre.Enabled = False
+        btnModificar.Enabled = False
+        btnAgregar.Enabled = False
+        btnEliminar.Enabled = False
         dgvCategorias.ClearSelection()
         idCategoriaSeleccionada = -1
     End Sub
@@ -93,6 +98,9 @@
             idCategoriaSeleccionada = Convert.ToInt32(row.Cells("IdCategoria").Value)
             txtNombre.Text = row.Cells("Nombre").Value.ToString()
             txtID.Text = idCategoriaSeleccionada.ToString()
+            txtNombre.Enabled = True
+            btnModificar.Enabled = True
+            btnEliminar.Enabled = True
         End If
     End Sub
 
@@ -135,12 +143,22 @@
     End Sub
 
     Private Sub btnfin_Click(sender As Object, e As EventArgs) Handles btnfin.Click
-        MessageBox.Show("Gracias por usar el Programa.", "Cerrado", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        Close()
+        Dim respuesta As DialogResult = MessageBox.Show("¿Desea salir del Programa?", "Confirmar",
+                          MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+        bcerrar = True
+        If respuesta = DialogResult.Yes Then
+            bcerrar = True
+            Me.Close()
+            MsgBox("Gracias por utilizar el programa!", MsgBoxStyle.Information, "Fin del programa")
+        Else
+            bcerrar = False
+        End If
     End Sub
 
     Private Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevo.Click
         Limpiar()
+        txtNombre.Enabled = True
         txtNombre.Focus()
         MsgBox("Ingrese el nombre de la categoría nueva y luego presione el botón 'Agregar'.", MsgBoxStyle.Information, "Nueva Categoría")
         btnAgregar.Enabled = True
@@ -149,6 +167,34 @@
     Private Sub txtNombre_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtNombre.KeyPress
         If Chr(13) = e.KeyChar Then
             btnAgregar.PerformClick()
+        End If
+    End Sub
+
+    Private Sub frmCategorias_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        If bcerrar = False Then
+            Dim respuesta As DialogResult = MessageBox.Show("¿Desea salir del Programa?", "Confirmar",
+                          MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If respuesta = DialogResult.No Then
+                e.Cancel = True
+            Else
+                MsgBox("Gracias por utilizar el programa!", MsgBoxStyle.Information, "Fin del programa")
+            End If
+        End If
+    End Sub
+
+    Private Sub txtNombre_GotFocus(sender As Object, e As EventArgs) Handles txtNombre.GotFocus
+        txtNombre.BackColor = Color.LightGreen
+    End Sub
+
+    Private Sub txtNombre_LostFocus(sender As Object, e As EventArgs) Handles txtNombre.LostFocus
+        txtNombre.BackColor = Color.White
+    End Sub
+    Private Sub dgvCategorias_MouseDown(sender As Object, e As MouseEventArgs) Handles dgvCategorias.MouseDown
+        Dim hitTest As DataGridView.HitTestInfo = dgvCategorias.HitTest(e.X, e.Y)
+        If hitTest.Type = DataGridViewHitTestType.None Then
+            dgvCategorias.ClearSelection()
+            idCategoriaSeleccionada = -1
+            Limpiar()
         End If
     End Sub
 End Class

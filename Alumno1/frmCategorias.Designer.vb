@@ -53,6 +53,7 @@ Partial Class frmCategorias
         ' 
         ' txtNombre
         ' 
+        txtNombre.Enabled = False
         txtNombre.Font = New Font("Segoe UI", 12F)
         txtNombre.Location = New Point(105, 26)
         txtNombre.Name = "txtNombre"
@@ -75,6 +76,8 @@ Partial Class frmCategorias
         ' 
         ' txtID
         ' 
+        txtID.BackColor = Color.White
+        txtID.Enabled = False
         txtID.Font = New Font("Segoe UI", 12F)
         txtID.Location = New Point(446, 26)
         txtID.Name = "txtID"
@@ -103,6 +106,7 @@ Partial Class frmCategorias
         ' 
         ' btnModificar
         ' 
+        btnModificar.Enabled = False
         btnModificar.Font = New Font("Segoe UI", 12F)
         btnModificar.Location = New Point(269, 346)
         btnModificar.Name = "btnModificar"
@@ -205,6 +209,7 @@ Partial Class frmCategorias
         Controls.Add(btnAgregar)
         Controls.Add(GroupBox1)
         Name = "frmCategorias"
+        StartPosition = FormStartPosition.CenterScreen
         Text = "frmCategorias"
         GroupBox1.ResumeLayout(False)
         GroupBox1.PerformLayout()
