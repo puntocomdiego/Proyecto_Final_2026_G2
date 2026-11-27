@@ -125,9 +125,9 @@ Partial Class frmConsultaVentas
         ' 
         cboCliente.Enabled = False
         cboCliente.FormattingEnabled = True
-        cboCliente.Location = New Point(172, 53)
+        cboCliente.Location = New Point(166, 53)
         cboCliente.Name = "cboCliente"
-        cboCliente.Size = New Size(193, 25)
+        cboCliente.Size = New Size(199, 25)
         cboCliente.TabIndex = 5
         ' 
         ' Label1
@@ -144,7 +144,7 @@ Partial Class frmConsultaVentas
         ' 
         Label2.AutoSize = True
         Label2.Font = New Font("Segoe UI Semibold", 11F, FontStyle.Bold)
-        Label2.Location = New Point(240, 15)
+        Label2.Location = New Point(237, 15)
         Label2.Name = "Label2"
         Label2.Size = New Size(56, 20)
         Label2.TabIndex = 9
