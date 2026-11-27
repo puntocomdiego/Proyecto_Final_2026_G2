@@ -60,9 +60,9 @@ Public Class frmConsultaVentas
             Using cn As New OleDbConnection(CadenaConexion)
                 cn.Open()
 
-                Dim sql As String = "SELECT IdCliente, Apellido, Nombre " &
-                                    "FROM Clientes " &
-                                    "ORDER BY Apellido DESC;"
+                Dim sql As String = "SELECT Ventas.IdCliente, Clientes.Nombre, Clientes.Apellido" _
+                                    & " FROM Clientes INNER Join Ventas On Clientes.IdCliente = Ventas.IdCliente" _
+                                    & " Group By Ventas.IdCliente, Clientes.Nombre, Clientes.Apellido;"
 
 
                 Dim da As New OleDb.OleDbDataAdapter(sql, CadenaConexion)
