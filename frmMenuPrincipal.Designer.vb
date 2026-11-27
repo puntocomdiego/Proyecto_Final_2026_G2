@@ -39,7 +39,6 @@ Partial Class frmMenuPrincipal
         StatusStrip = New StatusStrip()
         ToolStripStatusLabel = New ToolStripStatusLabel()
         ToolTip = New ToolTip(components)
-        sfdRespaldo = New SaveFileDialog()
         MenuStrip.SuspendLayout()
         StatusStrip.SuspendLayout()
         SuspendLayout()
@@ -50,8 +49,8 @@ Partial Class frmMenuPrincipal
         MenuStrip.Items.AddRange(New ToolStripItem() {FileMenu, MenuToolStripMenuItem})
         MenuStrip.Location = New Point(0, 0)
         MenuStrip.Name = "MenuStrip"
-        MenuStrip.Padding = New Padding(7, 2, 0, 2)
-        MenuStrip.Size = New Size(871, 24)
+        MenuStrip.Padding = New Padding(8, 3, 0, 3)
+        MenuStrip.Size = New Size(995, 30)
         MenuStrip.TabIndex = 5
         MenuStrip.Text = "MenuStrip"
         ' 
@@ -60,92 +59,92 @@ Partial Class frmMenuPrincipal
         FileMenu.DropDownItems.AddRange(New ToolStripItem() {ExitToolStripMenuItem})
         FileMenu.ImageTransparentColor = SystemColors.ActiveBorder
         FileMenu.Name = "FileMenu"
-        FileMenu.Size = New Size(60, 20)
+        FileMenu.Size = New Size(73, 24)
         FileMenu.Text = "&Archivo"
         ' 
         ' ExitToolStripMenuItem
         ' 
         ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        ExitToolStripMenuItem.Size = New Size(96, 22)
+        ExitToolStripMenuItem.Size = New Size(121, 26)
         ExitToolStripMenuItem.Text = "S&alir"
         ' 
         ' MenuToolStripMenuItem
         ' 
         MenuToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {ProductosToolStripMenuItem, ClientesToolStripMenuItem, VentasToolStripMenuItem, CategoriasToolStripMenuItem, ConsultaDeVentasToolStripMenuItem, RespaldarYRestaurarToolStripMenuItem, RestaurarToolStripMenuItem})
         MenuToolStripMenuItem.Name = "MenuToolStripMenuItem"
-        MenuToolStripMenuItem.Size = New Size(50, 20)
+        MenuToolStripMenuItem.Size = New Size(60, 24)
         MenuToolStripMenuItem.Text = "M&enu"
         ' 
         ' ProductosToolStripMenuItem
         ' 
         ProductosToolStripMenuItem.Name = "ProductosToolStripMenuItem"
-        ProductosToolStripMenuItem.Size = New Size(180, 22)
+        ProductosToolStripMenuItem.Size = New Size(224, 26)
         ProductosToolStripMenuItem.Text = "Productos"
         ' 
         ' ClientesToolStripMenuItem
         ' 
         ClientesToolStripMenuItem.Name = "ClientesToolStripMenuItem"
-        ClientesToolStripMenuItem.Size = New Size(180, 22)
+        ClientesToolStripMenuItem.Size = New Size(224, 26)
         ClientesToolStripMenuItem.Text = "Clientes"
         ' 
         ' VentasToolStripMenuItem
         ' 
         VentasToolStripMenuItem.Name = "VentasToolStripMenuItem"
-        VentasToolStripMenuItem.Size = New Size(180, 22)
+        VentasToolStripMenuItem.Size = New Size(224, 26)
         VentasToolStripMenuItem.Text = "Ventas"
         ' 
         ' CategoriasToolStripMenuItem
         ' 
         CategoriasToolStripMenuItem.Name = "CategoriasToolStripMenuItem"
-        CategoriasToolStripMenuItem.Size = New Size(180, 22)
+        CategoriasToolStripMenuItem.Size = New Size(224, 26)
         CategoriasToolStripMenuItem.Text = "Categorias"
         ' 
         ' ConsultaDeVentasToolStripMenuItem
         ' 
         ConsultaDeVentasToolStripMenuItem.Name = "ConsultaDeVentasToolStripMenuItem"
-        ConsultaDeVentasToolStripMenuItem.Size = New Size(180, 22)
+        ConsultaDeVentasToolStripMenuItem.Size = New Size(224, 26)
         ConsultaDeVentasToolStripMenuItem.Text = "Consulta de ventas"
         ' 
         ' RespaldarYRestaurarToolStripMenuItem
         ' 
         RespaldarYRestaurarToolStripMenuItem.Name = "RespaldarYRestaurarToolStripMenuItem"
-        RespaldarYRestaurarToolStripMenuItem.Size = New Size(180, 22)
+        RespaldarYRestaurarToolStripMenuItem.Size = New Size(224, 26)
         RespaldarYRestaurarToolStripMenuItem.Text = "Respaldar"
         ' 
         ' RestaurarToolStripMenuItem
         ' 
         RestaurarToolStripMenuItem.Name = "RestaurarToolStripMenuItem"
-        RestaurarToolStripMenuItem.Size = New Size(180, 22)
+        RestaurarToolStripMenuItem.Size = New Size(224, 26)
         RestaurarToolStripMenuItem.Text = "Restaurar"
         ' 
         ' StatusStrip
         ' 
         StatusStrip.ImageScalingSize = New Size(20, 20)
         StatusStrip.Items.AddRange(New ToolStripItem() {ToolStripStatusLabel})
-        StatusStrip.Location = New Point(0, 501)
+        StatusStrip.Location = New Point(0, 671)
         StatusStrip.Name = "StatusStrip"
-        StatusStrip.Padding = New Padding(1, 0, 17, 0)
-        StatusStrip.Size = New Size(871, 22)
+        StatusStrip.Padding = New Padding(1, 0, 19, 0)
+        StatusStrip.Size = New Size(995, 26)
         StatusStrip.TabIndex = 7
         StatusStrip.Text = "StatusStrip"
         ' 
         ' ToolStripStatusLabel
         ' 
         ToolStripStatusLabel.Name = "ToolStripStatusLabel"
-        ToolStripStatusLabel.Size = New Size(39, 17)
+        ToolStripStatusLabel.Size = New Size(49, 20)
         ToolStripStatusLabel.Text = "Status"
         ' 
         ' frmMenuPrincipal
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(871, 523)
+        ClientSize = New Size(995, 697)
         Controls.Add(MenuStrip)
         Controls.Add(StatusStrip)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         IsMdiContainer = True
         MainMenuStrip = MenuStrip
-        Margin = New Padding(4)
+        Margin = New Padding(4, 5, 4, 5)
         Name = "frmMenuPrincipal"
         Text = "Proyecto Integrador."
         WindowState = FormWindowState.Maximized
@@ -171,6 +170,5 @@ Partial Class frmMenuPrincipal
     Friend WithEvents ConsultaDeVentasToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RespaldarYRestaurarToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RestaurarToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents sfdRespaldo As SaveFileDialog
 
 End Class

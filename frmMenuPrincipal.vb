@@ -96,27 +96,5 @@ Public Class frmMenuPrincipal
 
     Private Sub RespaldarYRestaurarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RespaldarYRestaurarToolStripMenuItem.Click
 
-
-        Try
-            sfdRespaldo.Filter = "Base de datos Access|*.accdb"
-            sfdRespaldo.InitialDirectory = BaseDeDatos.CarpetaRespaldos()
-            sfdRespaldo.FileName = $"Comercial_{Date.Now:yyyy-MM-dd_HHmm}.accdb"
-            If sfdRespaldo.ShowDialog() <> DialogResult.OK Then Exit Sub
-
-            BaseDeDatos.Respaldar(sfdRespaldo.FileName)
-
-            Dim mensaje = "Respaldo guardado en:" & vbCrLf & sfdRespaldo.FileName
-            If BaseDeDatos.CarpetaGoogleDrive() IsNot Nothing AndAlso
-        sfdRespaldo.FileName.StartsWith(BaseDeDatos.CarpetaGoogleDrive(), StringComparison.OrdinalIgnoreCase) Then
-                mensaje &= vbCrLf & vbCrLf & "Google Drive lo subirá a la nube automáticamente."
-            End If
-            MessageBox.Show(mensaje, "Respaldo", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        Catch ex As Exception
-            MessageBox.Show("No se pudo hacer el respaldo: " & ex.Message,
-                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-
-
-
     End Sub
 End Class
