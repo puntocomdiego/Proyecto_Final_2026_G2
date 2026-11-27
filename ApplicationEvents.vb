@@ -24,6 +24,30 @@ Namespace My
     ' End Sub
 
     Partial Friend Class MyApplication
+        Private Sub MyApplication_Startup(sender As Object, e As ApplicationServices.StartupEventArgs) Handles Me.Startup
+            If BaseDeDatos.Existe() Then Exit Sub
 
+            Dim respuesta = MessageBox.Show(
+         "No se encontró la base de datos:" & vbCrLf & BaseDeDatos.Ruta & vbCrLf & vbCrLf &
+         "¿Desea crearla ahora a partir del script CrearBD.sql?",
+         "Base de datos no encontrada", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+
+            If respuesta = DialogResult.No Then
+                MessageBox.Show("El programa no puede funcionar sin la base de datos y se cerrará.",
+                         "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                e.Cancel = True
+                Exit Sub
+            End If
+
+            Try
+                BaseDeDatos.Crear()
+                MessageBox.Show("La base de datos se creó correctamente.",
+                         "Listo", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Catch ex As Exception
+                MessageBox.Show("No se pudo crear la base de datos:" & vbCrLf & ex.Message,
+                         "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                e.Cancel = True
+            End Try
+        End Sub
     End Class
 End Namespace
